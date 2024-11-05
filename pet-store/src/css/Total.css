@@ -1,0 +1,163 @@
+@import url(http://fonts.googleapis.com/css?family=Noto+Sans+JP:400,700&subset=japanese);
+@import url("../images/null_4c29cf01f9ce4286b53c1d3e1e9893d3.css");
+
+.mainVisual .slide img {
+    width: 100%;
+}
+
+.newCat {
+    background: url("../images/bg.jpg") no-repeat bottom;
+    background-size: contain;
+}
+
+@media screen and (max-width: 896px) {
+    .about .imgBox {
+        margin-bottom: 15px;
+    }
+}
+
+.breed {
+    background: url("../images/bg2.jpg");
+    background-size: cover;
+}
+
+.breed .inner {
+    max-width: 1200px;
+}
+
+.breed ul li {
+    float: left;
+    width: calc(42.5%/2);
+    margin-left: 5%;
+    margin-bottom: 5%;
+    position: relative;
+    counter-increment: li;
+}
+
+.breed ul li a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 4;
+}
+
+.breed ul li .imgBox img {
+    vertical-align: top;
+    width: 100%;
+}
+
+.breed ul li p {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.breed ul li::before {
+    content: counter(li);
+    position: absolute;
+    font-weight: bold;
+    color: #fff;
+    left: 10px;
+    top: 5px;
+    z-index: 2;
+}
+
+.breed ul li::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    color: #fff;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 48px 48px 0 0;
+    border-color: #F39ABC transparent transparent transparent;
+    text-align: center;
+}
+
+.breed ul li:first-child {
+    width: 47.5%;
+    margin: 0;
+}
+
+.breed ul li:first-child::before {
+    font-size: 157.1%;
+    left: 10px;
+    top: 3px;
+}
+
+.breed ul li:first-child::after {
+    border-width: 64px 64px 0 0;
+    border-color: #BC87BB transparent transparent transparent;
+}
+
+.breed ul li:hover p {
+    opacity: 1;
+}
+
+@media screen and (max-width: 896px) {
+    .breed ul li {
+        margin: 0 2.5% 5%;
+        width: calc(90%/2);
+    }
+
+    .breed ul li:first-child {
+        width: 100%;
+        margin-bottom: 5%;
+    }
+}
+
+.news ul li {
+    margin-bottom: 2%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.news ul li .date,
+.news ul li a {
+    display: block;
+    background: #f7f6f2;
+    padding: 5px 10px;
+}
+
+.news ul li .date {
+    width: 10%;
+    min-width: 100px;
+}
+
+.news ul li a {
+    width: 88%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 896px) {
+    .news ul li {
+        display: block;
+    }
+
+    .news ul li .date {
+        background: #fff;
+    }
+
+    .news ul li a {
+        width: 100%;
+    }
+}

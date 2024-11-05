@@ -1,0 +1,19 @@
+.news ul li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2%;
+  }
+  
+  .news ul li .date {
+    width: 10%;
+    min-width: 100px;
+    background: #f7f6f2;
+    padding: 5px 10px;
+  }
+  
+  .news ul li a {
+    width: 88%;
+    background: #f7f6f2;
+    padding: 5px 10px;
+  }
+  

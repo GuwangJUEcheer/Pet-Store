@@ -1,0 +1,25 @@
+.footer {
+    background-color: #f8f8f8;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .footer-links {
+    margin-bottom: 15px;
+  }
+  
+  .footer-links a {
+    margin: 0 10px;
+    color: #555;
+    text-decoration: none;
+  }
+  
+  .footer-links a:hover {
+    opacity: 0.7;
+  }
+  
+  .copyright {
+    font-size: 0.9rem;
+    color: #777;
+  }
+  

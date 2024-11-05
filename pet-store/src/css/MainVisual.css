@@ -1,0 +1,20 @@
+.mainVisual {
+  padding: 40px 20px;
+  position: relative;
+  padding: 20px;
+}
+
+.mainTtl .title {
+  font-size: 2rem;
+}
+
+.mainTtl .text {
+  font-size: 1rem;
+  color: #555;
+}
+
+
+.slide img {
+  width: 100%;
+  vertical-align: bottom;
+}
