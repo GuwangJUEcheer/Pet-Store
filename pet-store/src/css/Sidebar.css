@@ -1,0 +1,115 @@
+.sidebar {
+  height: 100vh;
+  display: flex;
+  position: fixed;
+  background-color: #e3a7a2;
+  overflow: auto;
+  /* 设置背景颜色 */
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 80;
+}
+
+.gNav nav ul li {
+  margin-bottom: 60px;
+  text-align: center;
+  line-height: 1;
+}
+
+.gNav nav ul {
+   list-style: none;
+}
+
+.snsList{
+  list-style: none;
+}
+
+.gNav nav ul li a {
+  color: #fff;
+  font-weight: bold;
+  font-size: 107.1%;
+}
+
+.gNav nav ul li a span {
+  display: block;
+  margin-top: 10px;
+  font-weight: normal;
+  font-size: 66.7%;
+}
+
+.gNav {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  justify-content: center;
+  /* 垂直居中菜单 */
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding-bottom: 20px;
+}
+
+.social-links img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ffffff;
+}
+
+
+/* 响应式样式 */
+@media screen and (max-width: 896px) {
+  .menu-container .menu-item {
+    margin-bottom: 0;
+    border-bottom: 1px solid #e2ddcb;
+  }
+
+  .menu-container .menu-item a {
+    display: block;
+    padding: 30px 0;
+  }
+}
+
+
+.gNav .snsList {
+  display: flex;
+  justify-content: center;
+}
+
+.gNav .snsList li {
+  margin: 0 10px;
+}
+
+.gNav .snsList li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #fff;
+  /* font-size: 171.4%; */
+}
+
+@media screen and (max-width: 896px) {
+  .gNav .snsList {
+      margin: 30px 0;
+  }
+}
+
+@media screen and (max-width: 896px) {
+  .gNav {
+      position: fixed;
+      top: 60px;
+      z-index: 80;
+      display: none;
+      overflow: auto;
+      width: 100%;
+      background: #E0B4B5;
+  }
+}
