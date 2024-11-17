@@ -9,7 +9,7 @@ import BreedList from './components/BreedList';
 import News from './components/News';
 import ScrollAnimation from './components/ScrollAnimation';
 import BackToTop from './components/BackToTop';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useRoutes } from 'react-router-dom';
 import './App.css';
 
 const { Content } = Layout;
@@ -17,8 +17,10 @@ const { Content } = Layout;
 const App: React.FC = () => {
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <Sidebar/>
-      <Layout style={{marginLeft:'19%'}}>
+      <Router>      
+        <Sidebar />
+      </Router>
+      <Layout style={{ marginLeft: '19%' }}>
         <Header />
         <Content style={{ padding: '20px' }}>
           <MainVisual />
@@ -30,6 +32,7 @@ const App: React.FC = () => {
         <Footer />
       </Layout>
     </Layout>
+
   );
 };
 

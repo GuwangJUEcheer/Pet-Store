@@ -4,11 +4,15 @@ import '../css/Sidebar.css';
 import logo from '../images/logo.png'
 import insta from '../images/ico_insta.png'
 import tiktok from '../images/ico_tiktok_blk.svg'
+import {useRoutes } from 'react-router-dom';
+import routes from '../routes';
 const { Sider } = Layout;
 
 const Sidebar: React.FC = () => {
+  const routing = useRoutes(routes);
   return (
     <Sider width="20%" className="sidebar" theme="light">
+      {routing}
       <div className="outScroll">
       <div className="logo">
         <a href="/">
