@@ -1,0 +1,300 @@
+/* 全局基础样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: #fefefe;
+    color: #333;
+    display: flex;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+/* 左侧导航栏 */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #f2d4d8;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 水平居中 */
+    justify-content: flex-start; /* 控制垂直对齐方式 */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar .logo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sidebar .logo img {
+    width: 100px; /* 增大 Logo 尺寸 */
+    border-radius: 50%;
+}
+
+.sidebar .logo h2 {
+    font-size: 24px; /* 增大 "Cat Haven" 字体 */
+    font-weight: bold; /* 加粗字体 */
+    color: #333;
+    margin-top: 10px; /* 增加 Logo 和标题之间的间距 */
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%; /* 让导航项占满宽度 */
+}
+
+.sidebar nav ul li {
+    margin: 10px 0;
+}
+
+.sidebar nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    padding: 10px;
+    display: block;
+    transition: background 0.3s, color 0.3s;
+    border-radius: 5px;
+    text-align: center; /* 居中对齐导航链接文字 */
+}
+
+.sidebar nav ul li a:hover,
+.sidebar nav ul li a.active {
+    background-color: #d8a6b1;
+    color: #fff;
+}
+
+/* 主内容区域 */
+.content {
+    margin-left: 270px; /* 增加导航栏与主内容的距离 */
+    padding: 30px;
+    flex-grow: 1;
+}
+
+h1 {
+    font-size: 32px;
+    color: #d17a88;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    font-size: 18px;
+    text-align: center;
+    color: #888;
+    margin-bottom: 30px;
+}
+
+/* 标题 h2 的样式 */
+h2 {
+    margin-top: 20px; /* 上方间距 */
+    margin-bottom: 20px; /* 下方间距 */
+    font-size: 24px; /* 调整字体大小 */
+    color: #d17a88; /* 设置颜色 */
+}
+
+/* 欢迎模块 */
+.hero img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* 服务模块 */
+.services-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.service-card {
+    width: 300px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.service-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+}
+
+.service-card h3 {
+    font-size: 18px;
+    color: #d17a88;
+    margin: 15px 0;
+}
+
+.service-card p {
+    font-size: 14px;
+    color: #555;
+    padding: 0 15px 15px;
+}
+
+/* 特色展示模块 */
+.features-section img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* 最新子猫卡片样式 */
+.kitten-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.kitten-card {
+    width: 300px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.kitten-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.kitten-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+}
+
+/* 突出 "ご予約受付中" */
+.kitten-card .status {
+    display: inline-block;
+    background-color: #d17a88; /* 添加背景色 */
+    color: #fff; /* 字体颜色为白色 */
+    font-size: 14px; /* 设置字体大小 */
+    font-weight: bold; /* 加粗文字 */
+    padding: 5px 10px; /* 内边距 */
+    border-radius: 20px; /* 圆角 */
+    margin-top: 10px; /* 与顶部内容保持间距 */
+}
+
+.kitten-card h2 {
+    font-size: 18px;
+    color: #d17a88;
+    margin: 15px 0;
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.kitten-card p {
+    font-size: 14px;
+    color: #555;
+    padding: 0 15px 15px;
+    line-height: 1.6;
+    max-height: 3.2em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 表格样式 */
+.kitten-card table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.kitten-card table td {
+    padding: 5px 10px;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.4;
+}
+
+.kitten-card table td:first-child {
+    font-weight: bold; /* 加粗字段名 */
+    color: #333;
+    text-align: left; /* 左对齐 */
+    width: 30%; /* 分配字段名的宽度 */
+}
+
+.kitten-card table td:last-child {
+    text-align: left; /* 数据部分左对齐 */
+    color: #555;
+}
+
+/* 猫种卡片样式 */
+.breeds-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.breed-card {
+    width: 350px; /* 调整卡片宽度 */
+    height: auto; /* 根据内容自动调整高度 */
+    background-color: #f9f9f9;
+    border: 2px solid #d17a88;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.breed-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.breed-card img {
+    width: 100%;
+    height: 220px; /* 调整图片高度 */
+    object-fit: cover;
+    border-bottom: 2px solid #d17a88;
+}
+
+.breed-card h2 {
+    font-size: 18px; /* 与 kitten-card 保持一致 */
+    color: #d17a88;
+    margin: 15px 0;
+    line-height: 1.4;
+}
+
+.breed-card p {
+    font-size: 14px; /* 与 kitten-card 保持一致 */
+    color: #444;
+    padding: 0 15px 15px;
+    line-height: 1.6;
+}
