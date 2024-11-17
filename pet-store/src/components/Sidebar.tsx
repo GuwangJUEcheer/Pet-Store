@@ -28,7 +28,7 @@ const Sidebar: React.FC = () => {
               <li><Link to="/shop/">店舗情報・アクセス<span>Shop info・Access</span></Link></li>
               <li><Link to="https://catlounge418.base.shop" target="_blank" rel="noopener noreferrer">オンラインショップ<span>Online Shop</span></Link></li>
               <li>
-                <Link to="/home">管理者登録<span>Sign in As Admin</span></Link>
+                <Link to="/login">管理者登録<span>Sign in As Admin</span></Link>
               </li>
             </ul>
           </nav>
