@@ -18,7 +18,7 @@ const App: React.FC = () => {
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sidebar/>
-      <Layout style={{marginLeft:'21%'}}>
+      <Layout style={{marginLeft:'19%'}}>
         <Header />
         <Content style={{ padding: '20px' }}>
           <MainVisual />

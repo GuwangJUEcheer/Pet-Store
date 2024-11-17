@@ -1,12 +1,5 @@
 import React from 'react';
 import { Layout, Menu } from 'antd';
-import {
-  UserOutlined,
-  HomeOutlined,
-  AppstoreOutlined,
-  ShopOutlined,
-  PhoneOutlined,
-} from '@ant-design/icons';
 import '../css/Sidebar.css';
 import logo from '../images/logo.png'
 import insta from '../images/ico_insta.png'
@@ -16,6 +9,7 @@ const { Sider } = Layout;
 const Sidebar: React.FC = () => {
   return (
     <Sider width="20%" className="sidebar" theme="light">
+      <div className="outScroll">
       <div className="logo">
         <a href="/">
           <img src={logo} alt="Logo" style={{ width: '50%' }} />
@@ -41,6 +35,7 @@ const Sidebar: React.FC = () => {
           <div className="contactBtn">
             <a href="/contact/"><i className="fas fa-caret-right"></i>&nbsp;お問い合わせ</a>
           </div>
+        </div>
         </div>
     </Sider>
   );

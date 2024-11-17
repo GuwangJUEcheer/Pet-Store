@@ -3,7 +3,9 @@
   display: flex;
   position: fixed;
   background-color: #e3a7a2;
-  overflow: auto;
+  overflow: auto !important; /* 保持滚动功能 */
+  scrollbar-width: none !important; /* Firefox: 隐藏滚动条 */
+  -ms-overflow-style: none !important; /* IE 和 Edge */
   /* 设置背景颜色 */
   flex-direction: column;
   align-items: center;
@@ -44,6 +46,7 @@
   align-items: center;
   flex: 1;
   justify-content: center;
+  overflow: hidden;
   /* 垂直居中菜单 */
 }
 
@@ -108,7 +111,7 @@
       top: 60px;
       z-index: 80;
       display: none;
-      overflow: auto;
+      overflow: hidden;
       width: 100%;
       background: #E0B4B5;
   }
