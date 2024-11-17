@@ -4,35 +4,32 @@ import { Layout } from 'antd';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import MainVisual from './components/MainVisual';
-import BreedList from './components/BreedList';
-import News from './components/News';
-import ScrollAnimation from './components/ScrollAnimation';
-import BackToTop from './components/BackToTop';
-import { BrowserRouter as Router, Route, Routes, useRoutes } from 'react-router-dom';
+import { BrowserRouter as Router,useRoutes } from 'react-router-dom';
 import './App.css';
+import routes from './routes'; // 路由配置
 
 const { Content } = Layout;
 
+// 封装路由渲染
+const Routes = () => {
+  const routing = useRoutes(routes); // 使用路由配置动态渲染内容
+  return <>{routing}</>;
+};
+
 const App: React.FC = () => {
   return (
-    <Layout style={{ minHeight: '100vh' }}>
-      <Router>      
+    <Router> 
+    <Layout style={{ minHeight: '100vh' }}>    
         <Sidebar />
-      </Router>
       <Layout style={{ marginLeft: '19%' }}>
-        <Header />
+        <Header /> 
         <Content style={{ padding: '20px' }}>
-          <MainVisual />
-          <BreedList />
-          <News />
-          <ScrollAnimation />
-          <BackToTop />
-        </Content>
+          <Routes /> {/* 动态加载路由内容 */}
+        </Content> 
         <Footer />
       </Layout>
     </Layout>
-
+    </Router> 
   );
 };
 
