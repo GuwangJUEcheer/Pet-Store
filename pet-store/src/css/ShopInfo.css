@@ -1,0 +1,36 @@
+.shopinfo-container {
+    padding: 20px;
+    text-align: center;
+    color: #666;
+    line-height: 1.8;
+  }
+  
+  .shopinfo-container h1 {
+    font-size: 2.5rem;
+    color: #d48888;
+    margin-bottom: 10px;
+  }
+  
+  .shopinfo-container .subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #999;
+  }
+  
+  .shopinfo-section {
+    text-align: left;
+    margin-bottom: 30px;
+  }
+  
+  .shopinfo-section h2 {
+    font-size: 1.8rem;
+    color: #d48888;
+    margin-bottom: 10px;
+  }
+  
+  .shopinfo-section p {
+    font-size: 1rem;
+    color: #555;
+    margin: 0;
+  }
+  

@@ -1,19 +1,83 @@
-.news ul li {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 2%;
-  }
-  
-  .news ul li .date {
-    width: 10%;
-    min-width: 100px;
-    background: #f7f6f2;
-    padding: 5px 10px;
-  }
-  
-  .news ul li a {
-    width: 88%;
-    background: #f7f6f2;
-    padding: 5px 10px;
-  }
-  
+.news-container {
+  padding: 20px;
+  text-align: center;
+}
+
+.news-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #d48888;
+}
+
+.news-container .subtitle {
+  font-size: 1.2rem;
+  color: #999;
+  margin-bottom: 30px;
+}
+
+.kitten-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.kitten-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 300px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.kitten-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.kitten-info {
+  padding: 15px;
+}
+
+.status {
+  display: inline-block;
+  background: #f2dede;
+  color: #a94442;
+  font-size: 0.9rem;
+  padding: 5px 10px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+.kitten-info h2 {
+  font-size: 1.5rem;
+  color: #d48888;
+  margin: 10px 0;
+}
+
+.kitten-info .price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #f56c6c;
+  margin-bottom: 10px;
+}
+
+table {
+  width: 100%;
+  margin-top: 10px;
+}
+
+table td {
+  padding: 3px 5px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+table td:first-child {
+  font-weight: bold;
+  width: 40%;
+  color: #999;
+}

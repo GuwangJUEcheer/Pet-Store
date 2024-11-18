@@ -1,0 +1,64 @@
+.hotel-container {
+    padding: 20px;
+    text-align: center;
+    color: #666;
+    line-height: 1.8;
+  }
+  
+  .hotel-container h1 {
+    font-size: 2.5rem;
+    color: #d48888;
+    margin-bottom: 10px;
+  }
+  
+  .hotel-container .subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #999;
+  }
+  
+  .hotel-section,
+  .price-section,
+  .caution-section {
+    text-align: left;
+    margin-bottom: 30px;
+  }
+  
+  .hotel-section h2,
+  .price-section h2,
+  .caution-section h2 {
+    font-size: 1.8rem;
+    color: #d48888;
+    margin-bottom: 10px;
+  }
+  
+  .hotel-section ul,
+  .caution-section ul {
+    margin: 0;
+    padding-left: 20px;
+  }
+  
+  .hotel-section ul li,
+  .caution-section ul li {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .price-section .price-table {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+  }
+  
+  .price-section .price-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    font-size: 1rem;
+  }
+  
+  .price-section .price-table td:first-child {
+    font-weight: bold;
+  }
+  

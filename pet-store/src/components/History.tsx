@@ -1,57 +1,56 @@
-import React from 'react';
-import '../css/News.css';
+import React from "react";
+import "../css/History.css";
 
 // 导入图片
-import Cat1 from '../images/cat1.jpg';
-import Cat2 from '../images/cat2.jpg';
-import Cat3 from '../images/cat3.jpg';
+import Cat1 from "../images/cat1.jpg";
+import Cat2 from "../images/cat2.jpg";
+import Cat3 from "../images/cat3.jpg";
 
-const kittenData = [
+const kittenHistoryData = [
   {
     id: 1,
     img: Cat1,
-    name: "ちっちゃいけど元気",
-    price: "250000円（税込）",
-    breed: "ベンガル",
+    name: "みんなの人気者",
+    price: "お迎え済み",
+    breed: "スコティッシュフォールド",
     gender: "男の子",
-    color: "ブラウンスポッテッドタビー",
-    birthday: "2024年10月05日",
+    color: "クリームタビー",
+    birthday: "2023年5月15日",
   },
   {
     id: 2,
     img: Cat2,
-    name: "茶色薄め",
-    price: "260000円（税込）",
-    breed: "ベンガル",
+    name: "優しいお姉さん",
+    price: "お迎え済み",
+    breed: "ラグドール",
     gender: "女の子",
-    color: "ブラウンスポッテッドタビー",
-    birthday: "2024年10月05日",
+    color: "ブルーポイント",
+    birthday: "2023年3月22日",
   },
   {
     id: 3,
     img: Cat3,
-    name: "ぴえん顔",
-    price: "280000円（税込）",
-    breed: "ベンガル",
-    gender: "女の子",
-    color: "ブラウンスポッテッドタビー",
-    birthday: "2024年10月05日",
+    name: "元気いっぱい",
+    price: "お迎え済み",
+    breed: "アメリカンショートヘア",
+    gender: "男の子",
+    color: "シルバーパッチドタビー",
+    birthday: "2023年1月10日",
   },
 ];
 
-const News: React.FC = () => {
+const History: React.FC = () => {
   return (
-    <div className="news-container">
-      <h1>最新子猫紹介</h1>
-      <p className="subtitle">Kitten Info</p>
+    <div className="history-container">
+      <h1>過去子猫紹介</h1>
+      <p className="subtitle">Kitten History</p>
       <div className="kitten-grid">
-        {kittenData.map((kitten) => (
+        {kittenHistoryData.map((kitten) => (
           <div key={kitten.id} className="kitten-card">
             <img src={kitten.img} alt={kitten.name} className="kitten-image" />
             <div className="kitten-info">
-              <span className="status">ご予約受付中</span>
+              <span className="status">{kitten.price}</span>
               <h2>{kitten.name}</h2>
-              <p className="price">{kitten.price}</p>
               <table>
                 <tbody>
                   <tr>
@@ -80,4 +79,4 @@ const News: React.FC = () => {
   );
 };
 
-export default News;
+export default History;

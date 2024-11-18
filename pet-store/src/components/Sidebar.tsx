@@ -24,7 +24,7 @@ const Sidebar: React.FC = () => {
               <li><Link to="/history/">過去子猫紹介<span>History</span></Link></li>
               <li><Link to="/breed/">取扱猫種紹介<span>Cat breed</span></Link></li>
               <li><Link to="/buy/">ご購入について<span>Buying info</span></Link></li>
-              <li><Link to="/pet-hotel/">ペットホテルについて<span>Pet hotel</span></Link></li>
+              <li><Link to="/pethotel/">ペットホテルについて<span>Pet hotel</span></Link></li>
               <li><Link to="/shop/">店舗情報・アクセス<span>Shop info・Access</span></Link></li>
               <li><Link to="https://catlounge418.base.shop" target="_blank" rel="noopener noreferrer">オンラインショップ<span>Online Shop</span></Link></li>
               <li>

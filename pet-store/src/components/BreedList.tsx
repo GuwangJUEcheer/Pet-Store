@@ -1,153 +1,51 @@
 // BreedList.tsx
-import React from 'react';
-import '../css/BreedList.css';
-import breed01 from '../images/IMG_4890.jpeg';
-import breed02 from '../images/IMG_4755.jpeg';
-import breed03 from '../images/IMG_4764.jpeg';
-import breed04 from '../images/IMG_4545.jpeg';
-import breed05 from '../images/IMG_4140.jpeg';
-import breed06 from '../images/IMG_4653.jpeg';
+import React from "react";
+import "../css/BreedList.css";
 
-interface CatInfo {
-  link: string;
-  imageUrl: string;
-  imageAlt: string;
-  status: string;
-  category: string;
-  price: string;
-  breed: string;
-  gender: string;
-  color: string;
-  birthDate: string;
-}
+// 导入图片
+import ScottishFold from "../images/scottish.jpg";
+import Munchkin from "../images/munchkin.jpg";
+import Bengal from "../images/bengal.jpg";
 
-const catData: CatInfo[] = [
+const breedData = [
   {
-    link: "https://cat-lounge.com/news/news-3660/",
-    imageUrl: breed01,
-    imageAlt: "中足短毛垂れ耳三毛の女の子スーパーおっとりちゃん",
-    status: "ご予約受付中",
-    category: "中足短毛垂れ耳三毛の女の子スーパーおっとりちゃん",
-    price: "260000円（税込）",
-    breed: "マンチカン",
-    gender: "女の子",
-    color: "ダイリュートキャリコ",
-    birthDate: "2024年08月15日",
+    id: 1,
+    img: ScottishFold,
+    name: "スコティッシュフォールド",
+    description:
+      "優しい性格で家族向け。丸い顔と折れた耳が特徴です。静かな性格で他のペットとも相性が良いです。",
   },
   {
-    link: "https://cat-lounge.com/news/news-3654/",
-    imageUrl: breed02,
-    imageAlt: "マンチカン短毛短足人気の薄い三毛猫ちゃん",
-    status: "ご予約受付中",
-    category: "マンチカン短毛短足人気の薄い三毛猫ちゃん😻",
-    price: "380000円（税込）",
-    breed: "マンチカン",
-    gender: "女の子",
-    color: "シルバーパッチドタビー＆ホワイト",
-    birthDate: "2024年08月15日",
+    id: 2,
+    img: Munchkin,
+    name: "マンチカン",
+    description:
+      "短い脚が特徴的な愛らしい猫種。活発で好奇心が旺盛。小さな体で家中を駆け回る姿が魅力です。",
   },
   {
-    link: "https://cat-lounge.com/news/news-3650/",
-    imageUrl: breed03,
-    imageAlt: "マンチカン長毛足長アメショの長毛みたいな見た目のイケメン男の子",
-    status: "ご予約受付中",
-    category: "マンチカン長毛足長アメショの長毛みたいな見た目のイケメン男の子",
-    price: "220000円（税込）",
-    breed: "マンチカン",
-    gender: "男の子",
-    color: "シルバータビー",
-    birthDate: "2024年08月15日",
+    id: 3,
+    img: Bengal,
+    name: "ベンガル",
+    description:
+      "アクティブで遊び好き。野性的な模様が魅力で、水遊びも好きな珍しい猫種です。",
   },
-  {
-    link: "https://cat-lounge.com/news/news-3644/",
-    imageUrl: breed04,
-    imageAlt: "マンチカン長毛短足ぴえんなお顔の女の子🥺",
-    status: "ご予約受付中",
-    category: "マンチカン長毛短足ぴえんなお顔の女の子🥺",
-    price: "350000円（税込）",
-    breed: "マンチカン",
-    gender: "女の子",
-    color: "シルバーパッチドタビー＆ホワイト",
-    birthDate: "2024年08月15日",
-  },
-  {
-    link: "https://cat-lounge.com/news/news-3599/",
-    imageUrl: breed05,
-    imageAlt: "マンチカン足長長毛フワフワちゃん💜ブリティッシュロングヘアのような品のある見た目✨",
-    status: "ご予約受付中",
-    category: "マンチカン足長長毛フワフワちゃん💜ブリティッシュロングヘアのような品のある見た目✨",
-    price: "270000円（税込）",
-    breed: "マンチカン",
-    gender: "女の子",
-    color: "ブルー",
-    birthDate: "2024年07月28日",
-  },
-  {
-    link: "https://cat-lounge.com/news/news-3591/",
-    imageUrl: breed06,
-    imageAlt: "マンチカンミニマム姫長毛短足女の子👸",
-    status: "ご予約受付中",
-    category: "マンチカンミニマム姫長毛短足女の子👸",
-    price: "400000円（税込）",
-    breed: "マンチカン",
-    gender: "女の子",
-    color: "シルバータビー",
-    birthDate: "2024年07月28日",
-  }
 ];
-
-
-
 
 const BreedList: React.FC = () => {
   return (
-    <section className="breed block01">
-      <h2 className="headline01"><span>最新子猫情報</span><span>What's new</span></h2>
-      <ul>
-        {catData.map((cat, index) => (
-        <li key={index}>
-          <a href={cat.link}></a>
-          <div className="imgBox">
-            <img
-              width="1280"
-              height="720"
-              src={cat.imageUrl}
-              alt={cat.imageAlt}
-              loading="lazy"
-            />
+    <div className="breedlist-container">
+      <h1>取扱猫種紹介</h1>
+      <p className="subtitle">当店で扱っている猫種の特徴をご紹介します。</p>
+      <div className="breed-grid">
+        {breedData.map((breed) => (
+          <div key={breed.id} className="breed-card">
+            <img src={breed.img} alt={breed.name} className="breed-image" />
+            <h2>{breed.name}</h2>
+            <p>{breed.description}</p>
           </div>
-          <div className="detail">
-            <div className="status">
-              <span>{cat.status}</span>
-            </div>
-            <div className="category">{cat.category}</div>
-            <div className="price">
-              {cat.price}
-            </div>
-          </div>
-          <table className="detailTable">
-            <tbody>
-              <tr>
-                <td>猫種：{cat.breed}</td>
-              </tr>
-              <tr>
-                <td>性別：{cat.gender}</td>
-              </tr>
-              <tr>
-                <td>毛色：{cat.color}</td>
-              </tr>
-              <tr>
-                <td>誕生日：{cat.birthDate}</td>
-              </tr>
-            </tbody>
-          </table>
-        </li>
-      ))}
-      </ul>
-      <div className="btn txtC">
-        <a href="/news/">他の猫ちゃんはこちらから</a>
-       </div> 
-    </section>
+        ))}
+      </div>
+    </div>
   );
 };
 

@@ -1,312 +1,53 @@
-.breed {
-    background: url("../images/bg2.jpg");
-    background-size: contain;
-  }
-  
-  .breed .inner {
-    max-width: 1200px;
-  }
-  
-  .breed ul li {
-    float: left;
-    width: calc(42.5% / 2);
-    margin-left: 5%;
-    margin-bottom: 5%;
-    position: relative;
-  }
-
-  .breed ul li .imgBox{
-    margin: 0;
-    padding: 0;
-  }
-  
-  .breed ul li .imgBox img {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-  
-
-  .headline01 {
-    position: relative;
-    margin-bottom: 60px;
-    text-align: center;
-}
-
-.headline01 span {
-    display: block;
-    padding-bottom: 10px;
-    line-height: 1;
-}
-
-.headline01 span:first-child {
-    padding-top: 45px;
-    letter-spacing: .1em;
-    font-weight: bold;
-    font-size: 185.7%;
-}
-
-.headline01 span:last-child {
-    font-size: 92.9%;
-}
-
-.headline01::before {
-    position: absolute;
-    right: 0;
-    left: 0;
-    margin: auto;
-    width: 18px;
-    height: 18px;
-    background: url("../images/ico_star.png");
-    background-size: 100%;
-    content: "";
-}
-
-.headline01::after {
-    position: absolute;
-    right: 0;
-    left: 0;
-    margin: auto;
-    background: url("../images/line.png");
-    background-size: 100%;
-    content: "";
-}
-
-.block01 {
-  padding: 75px 30px 145px;
-}
-
-@media screen and (max-width: 1024px) {
-  .block01 {
-      padding: 40px;
-  }
-}
-
-@media screen and (max-width: 896px) {
-  .block01 {
-      padding: 40px 15px;
-  }
-}
-
-.breed>ul {
-  display: flex;/*铺开*/
-  flex-wrap: wrap;/*子元素是否换行*/
-  justify-content: space-between;/*均匀铺开*/
-  margin: auto;
-  max-width: 1080px;
-}
-
-.breed>ul::after {
-  display: block;
-  width: calc(95%/3);
-  content: "";
-}
-
-.breed>ul li {
-  position: relative;/*相对父元素*/
-  margin-bottom: 90px;
-  width: calc(95%/3);
-}
-
-.breed>ul li:hover {
-  opacity: .8;/*透明度*/
-}
-
-.breed>ul li a {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.breed>ul li .imgBox {
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 25px;
-  width: 100%;
-}
-
-.breed>ul li .imgBox::before {
-  display: block;
-  padding-top: 65%;
-  content: "";
-}
-
-.breed>ul li .imgBox img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 150%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-.breed>ul li .detail .status {
-  margin-bottom: 10px;
-}
-
-.breed>ul li .detail .status span {
-  padding: 1px 10px;
-  border: 1px solid #85745b;
-  border-radius: 50px;
-  font-size: 92.9%;
-  line-height: 1;
-}
-
-.breed>ul li .detail .category {
-  font-weight: bold;
-}
-
-.breed>ul li .detail .price {
-  color: #DB9398;
-  font-weight: bold;
-}
-
-.breed>ul li .detail .price i {
-  font-weight: normal;
-  font-size: 90%;
-}
-
-.breed>ul li .detailTable {
-  margin-top: 10px;
-  width: 100%;
-  border-top: 1px solid #e2ddcb;
-}
-
-.breed>ul li .detailTable td {
-  padding: 10px 0;
-  border-bottom: 1px solid #e2ddcb;
-}
-
-.breed>ul li.agree .detail {
-  position: relative;
-}
-
-.breed>ul li.agree .detail::before {
-  position: absolute;
-  top: -40px;
-  right: 10px;
-  width: 81px;
-  height: 100px;
-  background: url(../images/agree.png);
-  background-size: 100%;
-  content: "";
-}
-
-@media screen and (max-width: 1024px) {
-  .breed>ul::after {
-      display: none;
-  }
-
-  .breed>ul li {
-      margin-bottom: 40px;
-      width: calc(95%/2);
-  }
-}
-
-.breed>ul li .imgBox {
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 25px;
-  width: 100%;
-}
-
-.breed>ul li .imgBox::before {
-  display: block;
-  padding-top: 65%;
-  content: "";
-}
-
-.breed>ul li .imgBox img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 150%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-@media screen and (max-width: 896px) {
-  .breed>ul li {
-      display: flex;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      width: 100%;
-  }
-
-  .breed>ul li .imgBox {
-      margin-bottom: 0;
-      width: 45%;
-  }
-
-  .breed>ul li .detail {
-      width: 50%;
-  }
-
-  .breed>ul li.agree .detail::before {
-      top: 0;
-      right: 0;
-  }
-}
-
-
-.btn a {
-  position: relative;
-  display: inline-block;
-  box-sizing: border-box;
-  padding: 25px;
-  min-width: 324px;
-  border-radius: 9999px;
-  background: linear-gradient(45deg, rgba(255, 15, 250, 1) 0%, rgba(247, 142, 245, 1) 100%);
-  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.35);
-  color: #fff;
+.breedlist-container {
+  padding: 20px;
   text-align: center;
-  font-weight: bold;
-  font-size: 100%;
-  line-height: 1;
-  
 }
 
-/*
-.box {
-    width: 200px;
-    height: 100px;
-    padding: 20px;
-    border: 10px solid black;
-}
-在 box-sizing: content-box; 情况下，实际的渲染尺寸是：
-
-宽度 = 内容宽度 + 左右 padding + 左右 border = 200px + 20px * 2 + 10px * 2 = 260px
-高度 = 内容高度 + 上下 padding + 上下 border = 100px + 20px * 2 + 10px * 2 = 160px
-
-border-box 高度不会变 不会随着padding 和margin变化
-*/
-
-.btn a::after {
-  position: absolute;
-  top: 0;
-  right: 15px;
-  bottom: 0;
-  margin: auto;
-  height: 1em;
-  content: "→";
+.breedlist-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #d48888;
 }
 
-@media screen and (max-width: 896px) {
-  .btn a {
-      min-width: 100%;
-  }
+.breedlist-container .subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 30px;
 }
 
-.txtC {
-  text-align: center !important;
+.breed-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.breed-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 300px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 20px;
+}
+
+.breed-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.breed-card h2 {
+  font-size: 1.5rem;
+  color: #d48888;
+  margin: 10px 0;
+}
+
+.breed-card p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.5;
 }

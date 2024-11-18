@@ -1,0 +1,45 @@
+.buy-container {
+    padding: 20px;
+    text-align: center;
+    color: #666;
+    line-height: 1.8;
+  }
+  
+  .buy-container h1 {
+    font-size: 2.5rem;
+    color: #d48888;
+    margin-bottom: 10px;
+  }
+  
+  .buy-container .subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #999;
+  }
+  
+  .buy-section,
+  .caution-section {
+    text-align: left;
+    margin-bottom: 30px;
+  }
+  
+  .buy-section h2,
+  .caution-section h2 {
+    font-size: 1.8rem;
+    color: #d48888;
+    margin-bottom: 10px;
+  }
+  
+  .buy-section ol,
+  .caution-section ul {
+    margin: 0;
+    padding-left: 20px;
+  }
+  
+  .buy-section ol li,
+  .caution-section ul li {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #555;
+  }
+  
