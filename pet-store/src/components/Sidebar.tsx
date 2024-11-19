@@ -19,7 +19,7 @@ const Sidebar: React.FC = () => {
       <div className="gNav">
           <nav>
             <ul>
-              <li><Link to="/about/">Cat Loungeとは<span>About us</span></Link></li>
+              <li><Link to="/about">Cat Loungeとは<span>About us</span></Link></li>
               <li><Link to="/news/">最新子猫情報<span>What's new</span></Link></li>
               <li><Link to="/history/">過去子猫紹介<span>History</span></Link></li>
               <li><Link to="/breed/">取扱猫種紹介<span>Cat breed</span></Link></li>

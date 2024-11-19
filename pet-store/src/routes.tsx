@@ -1,6 +1,7 @@
 import React from 'react';
 import { RouteObject } from 'react-router-dom';
 import Home from './components/home';
+import About from "./components/About";
 import HomePageContent from './components/HomePageContent';
 import LoginPage  from './components/LoginPage';
 import News from './components/News';
@@ -11,8 +12,13 @@ import PetHotel from "./components/PetHotel";
 import ShopInfo from "./components/ShopInfo";
 
 
+
 // 使用 RouteObject 类型来指定路由
 const routes: RouteObject[] = [
+  {
+    path: "/about",
+    element: <About />,
+  },
   {
     path: '/',
     element: <HomePageContent/>, // 指定渲染的组件
@@ -34,7 +40,7 @@ const routes: RouteObject[] = [
     element: <Buy />, // 购入页面
   },
   {
-    path: "/pet-hotel",
+    path: "/pethotel",
     element: <PetHotel />, // 宠物酒店页面
   },
   {

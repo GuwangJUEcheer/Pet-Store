@@ -1,45 +1,60 @@
 .buy-container {
-    padding: 20px;
-    text-align: center;
-    color: #666;
-    line-height: 1.8;
-  }
-  
-  .buy-container h1 {
-    font-size: 2.5rem;
-    color: #d48888;
-    margin-bottom: 10px;
-  }
-  
-  .buy-container .subtitle {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-    color: #999;
-  }
-  
-  .buy-section,
-  .caution-section {
-    text-align: left;
-    margin-bottom: 30px;
-  }
-  
-  .buy-section h2,
-  .caution-section h2 {
-    font-size: 1.8rem;
-    color: #d48888;
-    margin-bottom: 10px;
-  }
-  
-  .buy-section ol,
-  .caution-section ul {
-    margin: 0;
-    padding-left: 20px;
-  }
-  
-  .buy-section ol li,
-  .caution-section ul li {
-    margin-bottom: 10px;
-    font-size: 1rem;
-    color: #555;
-  }
-  
+  padding: 40px 20px; /* 增加上下间距 */
+  text-align: center;
+  color: #555;
+  line-height: 1.8;
+  background-color: #f9f9f9; /* 添加浅背景 */
+  border-radius: 10px; /* 圆角效果 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* 添加阴影，增加层次感 */
+}
+
+.buy-container h1 {
+  font-size: 2.8rem; /* 增大标题字体 */
+  color: #d45d5d; /* 使用柔和的红色 */
+  margin-bottom: 20px; /* 增大标题与子标题间距 */
+  font-weight: bold;
+}
+
+.buy-container .subtitle {
+  font-size: 1.4rem; /* 增加子标题字体 */
+  margin-bottom: 40px; /* 增加子标题与内容的间距 */
+  color: #777; /* 调整为中灰色 */
+}
+
+.buy-section,
+.caution-section {
+  text-align: left;
+  margin-bottom: 40px; /* 加大段落间距 */
+  padding: 20px; /* 增加内边距 */
+  background-color: #fff; /* 为段落添加白色背景 */
+  border-radius: 10px; /* 圆角效果 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* 阴影效果 */
+}
+
+.buy-section h2,
+.caution-section h2 {
+  font-size: 1.8rem; /* 增加副标题字体 */
+  color: #d45d5d;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.buy-section ol,
+.caution-section ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.buy-section ol li,
+.caution-section ul li {
+  margin-bottom: 15px; /* 增加列表项间距 */
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6; /* 提高行间距 */
+}
+
+.buy-section ol li::marker,
+.caution-section ul li::marker {
+  color: #d45d5d; /* 列表标记颜色 */
+  font-weight: bold;
+}

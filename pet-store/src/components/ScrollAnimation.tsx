@@ -23,8 +23,8 @@ const ScrollAnimation: React.FC = () => {
 
   return (
     <div className="scroll-container">
-      <img src="/assets/images/kitten1.jpg" alt="Kitten 1" className="anim scroll-image" />
-      <img src="/assets/images/kitten2.jpg" alt="Kitten 2" className="anim scroll-image" />
+      {/* <img src="/assets/images/kitten1.jpg" alt="Kitten 1" className="anim scroll-image" /> */}
+      {/* <img src="/assets/images/kitten2.jpg" alt="Kitten 2" className="anim scroll-image" /> */}
       {/* 添加更多内容或图片 */}
     </div>
   );

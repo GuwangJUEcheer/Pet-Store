@@ -1,36 +1,74 @@
 .shopinfo-container {
-    padding: 20px;
-    text-align: center;
-    color: #666;
-    line-height: 1.8;
+  padding: 40px 20px; /* 增加整体上下间距 */
+  text-align: center;
+  color: #555; /* 主字体颜色 */
+  line-height: 1.8;
+  background-color: #f9f9f9; /* 添加浅背景 */
+  border-radius: 10px; /* 圆角效果 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* 添加阴影，提升层次感 */
+}
+
+.shopinfo-container h1 {
+  font-size: 2.8rem; /* 增大标题字体 */
+  color: #d45d5d; /* 柔和的红色 */
+  margin-bottom: 20px; /* 增大标题与副标题间距 */
+  font-weight: bold;
+}
+
+.shopinfo-container .subtitle {
+  font-size: 1.4rem; /* 增加副标题字体 */
+  margin-bottom: 40px;
+  color: #777; /* 中灰色 */
+}
+
+/* 信息模块样式 */
+.shopinfo-section {
+  text-align: left;
+  margin-bottom: 40px; /* 模块之间的间距 */
+  padding: 20px; /* 内部间距 */
+  background-color: #fff; /* 每个模块的白色背景 */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* 模块阴影 */
+}
+
+/* 模块标题 */
+.shopinfo-section h2 {
+  font-size: 2rem; /* 增大模块标题字体 */
+  color: #d45d5d;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+/* 文本内容 */
+.shopinfo-section p {
+  font-size: 1rem;
+  color: #555;
+  margin: 0 0 10px; /* 每段文字的下方间距 */
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .shopinfo-container {
+    padding: 30px 15px;
   }
-  
+
+  .shopinfo-section {
+    padding: 15px;
+  }
+
   .shopinfo-container h1 {
-    font-size: 2.5rem;
-    color: #d48888;
-    margin-bottom: 10px;
+    font-size: 2.4rem;
   }
-  
+
   .shopinfo-container .subtitle {
     font-size: 1.2rem;
-    margin-bottom: 30px;
-    color: #999;
   }
-  
-  .shopinfo-section {
-    text-align: left;
-    margin-bottom: 30px;
-  }
-  
+
   .shopinfo-section h2 {
-    font-size: 1.8rem;
-    color: #d48888;
-    margin-bottom: 10px;
+    font-size: 1.6rem;
   }
-  
+
   .shopinfo-section p {
-    font-size: 1rem;
-    color: #555;
-    margin: 0;
+    font-size: 0.9rem;
   }
-  
+}

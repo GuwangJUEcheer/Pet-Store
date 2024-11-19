@@ -1,64 +1,110 @@
 .hotel-container {
-    padding: 20px;
-    text-align: center;
-    color: #666;
-    line-height: 1.8;
+  padding: 40px 20px; /* 增加整体上下间距 */
+  text-align: center;
+  color: #555; /* 主字体颜色 */
+  line-height: 1.8;
+  background-color: #f9f9f9; /* 添加浅背景 */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* 添加柔和阴影 */
+}
+
+.hotel-container h1 {
+  font-size: 2.8rem; /* 增大主标题字体 */
+  color: #d45d5d; /* 柔和的红色 */
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.hotel-container .subtitle {
+  font-size: 1.4rem; /* 增加子标题字体 */
+  margin-bottom: 40px;
+  color: #777; /* 中灰色 */
+}
+
+/* 各段落容器 */
+.hotel-section,
+.price-section,
+.caution-section {
+  text-align: left;
+  margin-bottom: 40px; /* 增加段落间距 */
+  padding: 20px; /* 添加内部间距 */
+  background-color: #fff; /* 添加白色背景 */
+  border-radius: 10px; /* 圆角 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* 段落阴影 */
+}
+
+/* 标题样式 */
+.hotel-section h2,
+.price-section h2,
+.caution-section h2 {
+  font-size: 2rem; /* 增大副标题字体 */
+  color: #d45d5d; /* 柔和红色 */
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+/* 列表样式 */
+.hotel-section ul,
+.caution-section ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.hotel-section ul li,
+.caution-section ul li {
+  margin-bottom: 15px; /* 增加列表项间距 */
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6; /* 行间距优化 */
+}
+
+.hotel-section ul li::marker,
+.caution-section ul li::marker {
+  color: #d45d5d; /* 列表标记颜色 */
+  font-weight: bold;
+}
+
+/* 表格样式 */
+.price-section .price-table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  font-size: 1rem;
+}
+
+.price-section .price-table th,
+.price-section .price-table td {
+  border: 1px solid #ddd; /* 表格边框颜色 */
+  padding: 15px;
+  text-align: left;
+}
+
+.price-section .price-table th {
+  background-color: #f5f5f5; /* 表头背景色 */
+  font-weight: bold;
+  color: #555;
+}
+
+.price-section .price-table td:first-child {
+  font-weight: bold;
+  color: #333;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .hotel-container {
+    padding: 30px 15px;
   }
-  
-  .hotel-container h1 {
-    font-size: 2.5rem;
-    color: #d48888;
-    margin-bottom: 10px;
-  }
-  
-  .hotel-container .subtitle {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-    color: #999;
-  }
-  
+
   .hotel-section,
   .price-section,
   .caution-section {
-    text-align: left;
-    margin-bottom: 30px;
+    padding: 15px;
   }
-  
-  .hotel-section h2,
-  .price-section h2,
-  .caution-section h2 {
-    font-size: 1.8rem;
-    color: #d48888;
-    margin-bottom: 10px;
-  }
-  
-  .hotel-section ul,
-  .caution-section ul {
-    margin: 0;
-    padding-left: 20px;
-  }
-  
-  .hotel-section ul li,
-  .caution-section ul li {
-    margin-bottom: 10px;
-    font-size: 1rem;
-    color: #555;
-  }
-  
-  .price-section .price-table {
-    width: 100%;
-    margin-top: 10px;
-    border-collapse: collapse;
-  }
-  
+
+  .price-section .price-table th,
   .price-section .price-table td {
-    border: 1px solid #ddd;
+    font-size: 0.9rem;
     padding: 10px;
-    text-align: left;
-    font-size: 1rem;
   }
-  
-  .price-section .price-table td:first-child {
-    font-weight: bold;
-  }
-  
+}

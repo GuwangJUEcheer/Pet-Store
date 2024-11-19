@@ -14,7 +14,7 @@ const ShopInfo: React.FC = () => {
           <br />
           東京都新宿区猫町1-2-3
           <br />
-          Cat Haven 店舗ビル 2F
+          Cat Lounge 店舗ビル 2F
         </p>
       </section>
 
@@ -41,7 +41,7 @@ const ShopInfo: React.FC = () => {
         <p>
           電話番号：03-1234-5678
           <br />
-          メールアドレス：info@cat-haven.jp
+          メールアドレス：info@cat-lounge.jp
         </p>
       </section>
     </div>

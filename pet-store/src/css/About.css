@@ -1,0 +1,181 @@
+/* 全局字体和基本样式 */
+body {
+  font-family: 'Noto Sans JP', sans-serif; /* 使用 Google Fonts 提供的字体 */
+  margin: 0;
+  padding: 0;
+  line-height: 1.8;
+  color: #333; /* 主文本颜色 */
+  background-color: #f7f8fc; /* 更浅的背景颜色，显得清新 */
+}
+
+main.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+/* 欢迎标题样式 */
+.hero {
+  text-align: center;
+  padding: 50px 20px;
+  background: linear-gradient(to right, #f8a5c2, #ff7e5f); /* 更柔和的渐变 */
+  color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.hero .subtitle {
+  font-size: 1.3rem;
+  font-weight: 300;
+  opacity: 0.9;
+}
+
+/* 服务区样式 */
+.services {
+  margin: 50px 0;
+}
+
+.services .section-title {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #444;
+  font-weight: bold;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.service-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.service-card img {
+  width: 100%;
+  height: 220px; /* 固定高度，统一图片大小 */
+  object-fit: cover; /* 图片裁剪但保持比例 */
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 15px;
+}
+
+.service-card h3 {
+  font-size: 1.5rem;
+  margin: 15px 0 10px;
+  font-weight: 600;
+  color: #222;
+}
+
+.service-card p {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* 特色展示样式 */
+.features {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  margin: 50px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.features .section-title {
+  font-size: 2rem;
+  margin-bottom: 25px;
+  text-align: center;
+  color: #444;
+  font-weight: bold;
+}
+
+.features ul {
+  list-style: none;
+  padding: 0;
+}
+
+.features li {
+  font-size: 1.1rem;
+  margin: 12px 0;
+  position: relative;
+  padding-left: 30px;
+}
+
+.features li:before {
+  content: '✔';
+  position: absolute;
+  left: 0;
+  color: #f77e5f;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* 联系方式样式 */
+.contact {
+  text-align: center;
+  margin: 50px 0;
+}
+
+.contact .section-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #444;
+  font-weight: bold;
+}
+
+.contact p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #555;
+}
+
+.contact p br {
+  margin-bottom: 15px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.4rem;
+  }
+
+  .hero .subtitle {
+    font-size: 1.1rem;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr; /* 单列布局 */
+  }
+
+  .service-card {
+    padding: 20px;
+  }
+
+  .features ul li {
+    font-size: 1rem;
+  }
+
+  .contact p {
+    font-size: 1rem;
+  }
+}
