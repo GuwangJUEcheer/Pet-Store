@@ -12,6 +12,7 @@ public class InterCeptorConfig implements WebMvcConfigurer{
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		TokenInterceptor interceptor = new TokenInterceptor();
-		registry.addInterceptor(interceptor);
+		//除了login 还有register以外 都禁止访问
+		interceptor.addPathPatterns("/**").excludePathPatterns("/login", "/register");
 	}	
 }

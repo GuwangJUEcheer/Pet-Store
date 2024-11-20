@@ -1,4 +1,4 @@
-package com.example.model;
+package cn.itcast.mp.model;
 
 public class UserWithBLOBs extends User {
     private byte[] sslCipher;

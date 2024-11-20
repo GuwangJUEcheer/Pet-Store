@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.dao.UserMapper">
-  <resultMap id="BaseResultMap" type="com.example.model.User">
+<mapper namespace="cn.itcast.mp.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="cn.itcast.mp.model.User">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
@@ -21,13 +21,13 @@
     delete from user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.example.model.User">
+  <insert id="insert" parameterType="cn.itcast.mp.model.User">
     insert into user (id, username, password, 
       add_time, update_time)
     values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{addTime,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.example.model.User">
+  <insert id="insertSelective" parameterType="cn.itcast.mp.model.User">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -64,7 +64,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.model.User">
+  <update id="updateByPrimaryKeySelective" parameterType="cn.itcast.mp.model.User">
     update user
     <set>
       <if test="username != null">
@@ -82,7 +82,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.model.User">
+  <update id="updateByPrimaryKey" parameterType="cn.itcast.mp.model.User">
     update user
     set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
@@ -90,7 +90,7 @@
       update_time = #{updateTime,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <resultMap id="BaseResultMap" type="com.example.model.User">
+  <resultMap id="BaseResultMap" type="cn.itcast.mp.model.User">
     <id column="User" jdbcType="CHAR" property="user" />
     <result column="Host" jdbcType="CHAR" property="host" />
     <result column="Select_priv" jdbcType="CHAR" property="selectPriv" />
@@ -138,7 +138,7 @@
     <result column="Password_reuse_time" jdbcType="SMALLINT" property="passwordReuseTime" />
     <result column="Password_require_current" jdbcType="CHAR" property="passwordRequireCurrent" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.model.UserWithBLOBs">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.itcast.mp.model.UserWithBLOBs">
     <result column="ssl_cipher" jdbcType="LONGVARBINARY" property="sslCipher" />
     <result column="x509_issuer" jdbcType="LONGVARBINARY" property="x509Issuer" />
     <result column="x509_subject" jdbcType="LONGVARBINARY" property="x509Subject" />
@@ -170,7 +170,7 @@
     delete from user
     where User = #{user,jdbcType=CHAR}
   </delete>
-  <insert id="insert" parameterType="com.example.model.UserWithBLOBs">
+  <insert id="insert" parameterType="cn.itcast.mp.model.UserWithBLOBs">
     insert into user (User, Host, Select_priv, 
       Insert_priv, Update_priv, Delete_priv, 
       Create_priv, Drop_priv, Reload_priv, 
@@ -208,7 +208,7 @@
       #{x509Subject,jdbcType=LONGVARBINARY}, #{authenticationString,jdbcType=LONGVARCHAR}, 
       #{userAttributes,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.example.model.UserWithBLOBs">
+  <insert id="insertSelective" parameterType="cn.itcast.mp.model.UserWithBLOBs">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="user != null">
@@ -521,7 +521,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.model.UserWithBLOBs">
+  <update id="updateByPrimaryKeySelective" parameterType="cn.itcast.mp.model.UserWithBLOBs">
     update user
     <set>
       <if test="host != null">
@@ -677,7 +677,7 @@
     </set>
     where User = #{user,jdbcType=CHAR}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.model.UserWithBLOBs">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.itcast.mp.model.UserWithBLOBs">
     update user
     set Host = #{host,jdbcType=CHAR},
       Select_priv = #{selectPriv,jdbcType=CHAR},
@@ -731,7 +731,7 @@
       User_attributes = #{userAttributes,jdbcType=LONGVARCHAR}
     where User = #{user,jdbcType=CHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.model.User">
+  <update id="updateByPrimaryKey" parameterType="cn.itcast.mp.model.User">
     update user
     set Host = #{host,jdbcType=CHAR},
       Select_priv = #{selectPriv,jdbcType=CHAR},
@@ -780,41 +780,37 @@
       Password_require_current = #{passwordRequireCurrent,jdbcType=CHAR}
     where User = #{user,jdbcType=CHAR}
   </update>
-  <resultMap id="BaseResultMap" type="com.example.model.User">
-    <id column="id" jdbcType="BIGINT" property="id" />
+  <resultMap id="BaseResultMap" type="cn.itcast.mp.model.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="phone" jdbcType="VARCHAR" property="phone" />
-    <result column="status" jdbcType="TINYINT" property="status" />
-    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
-    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="jwt_token" jdbcType="VARCHAR" property="jwtToken" />
+    <result column="is_login" jdbcType="BIT" property="isLogin" />
+    <result column="is_locked" jdbcType="BIT" property="isLocked" />
     <result column="role_id" jdbcType="INTEGER" property="roleId" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, username, password, email, phone, status, created_at, updated_at, role_id
+    id, username, password, jwt_token, is_login, is_locked, role_id
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from user
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.example.model.User">
+  <insert id="insert" parameterType="cn.itcast.mp.model.User">
     insert into user (id, username, password, 
-      email, phone, status, 
-      created_at, updated_at, role_id
-      )
-    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
-      #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{roleId,jdbcType=INTEGER}
-      )
+      jwt_token, is_login, is_locked, 
+      role_id)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{jwtToken,jdbcType=VARCHAR}, #{isLogin,jdbcType=BIT}, #{isLocked,jdbcType=BIT}, 
+      #{roleId,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.example.model.User">
+  <insert id="insertSelective" parameterType="cn.itcast.mp.model.User">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -826,20 +822,14 @@
       <if test="password != null">
         password,
       </if>
-      <if test="email != null">
-        email,
+      <if test="jwtToken != null">
+        jwt_token,
       </if>
-      <if test="phone != null">
-        phone,
+      <if test="isLogin != null">
+        is_login,
       </if>
-      <if test="status != null">
-        status,
-      </if>
-      <if test="createdAt != null">
-        created_at,
-      </if>
-      <if test="updatedAt != null">
-        updated_at,
+      <if test="isLocked != null">
+        is_locked,
       </if>
       <if test="roleId != null">
         role_id,
@@ -847,7 +837,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
-        #{id,jdbcType=BIGINT},
+        #{id,jdbcType=INTEGER},
       </if>
       <if test="username != null">
         #{username,jdbcType=VARCHAR},
@@ -855,27 +845,21 @@
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
       </if>
-      <if test="email != null">
-        #{email,jdbcType=VARCHAR},
+      <if test="jwtToken != null">
+        #{jwtToken,jdbcType=VARCHAR},
       </if>
-      <if test="phone != null">
-        #{phone,jdbcType=VARCHAR},
+      <if test="isLogin != null">
+        #{isLogin,jdbcType=BIT},
       </if>
-      <if test="status != null">
-        #{status,jdbcType=TINYINT},
-      </if>
-      <if test="createdAt != null">
-        #{createdAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updatedAt != null">
-        #{updatedAt,jdbcType=TIMESTAMP},
+      <if test="isLocked != null">
+        #{isLocked,jdbcType=BIT},
       </if>
       <if test="roleId != null">
         #{roleId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.model.User">
+  <update id="updateByPrimaryKeySelective" parameterType="cn.itcast.mp.model.User">
     update user
     <set>
       <if test="username != null">
@@ -884,37 +868,29 @@
       <if test="password != null">
         password = #{password,jdbcType=VARCHAR},
       </if>
-      <if test="email != null">
-        email = #{email,jdbcType=VARCHAR},
+      <if test="jwtToken != null">
+        jwt_token = #{jwtToken,jdbcType=VARCHAR},
       </if>
-      <if test="phone != null">
-        phone = #{phone,jdbcType=VARCHAR},
+      <if test="isLogin != null">
+        is_login = #{isLogin,jdbcType=BIT},
       </if>
-      <if test="status != null">
-        status = #{status,jdbcType=TINYINT},
-      </if>
-      <if test="createdAt != null">
-        created_at = #{createdAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updatedAt != null">
-        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      <if test="isLocked != null">
+        is_locked = #{isLocked,jdbcType=BIT},
       </if>
       <if test="roleId != null">
         role_id = #{roleId,jdbcType=INTEGER},
       </if>
     </set>
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.model.User">
+  <update id="updateByPrimaryKey" parameterType="cn.itcast.mp.model.User">
     update user
     set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR},
-      phone = #{phone,jdbcType=VARCHAR},
-      status = #{status,jdbcType=TINYINT},
-      created_at = #{createdAt,jdbcType=TIMESTAMP},
-      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      jwt_token = #{jwtToken,jdbcType=VARCHAR},
+      is_login = #{isLogin,jdbcType=BIT},
+      is_locked = #{isLocked,jdbcType=BIT},
       role_id = #{roleId,jdbcType=INTEGER}
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

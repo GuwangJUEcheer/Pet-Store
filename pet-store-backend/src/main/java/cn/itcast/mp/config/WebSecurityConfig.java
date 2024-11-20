@@ -1,22 +1,39 @@
 package cn.itcast.mp.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig {
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-    	  http
-          // 禁用 CSRF 保护，这通常对于 REST API 是合理的选择
-          .csrf().disable()
-          // 配置 CORS（如果需要的话）
-          .cors().and()
-          // 配置权限规则
-          .authorizeRequests()
-              // 允许对所有URL的访问
-              .anyRequest().permitAll();
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+                // 禁用 CSRF
+                .csrf().disable()
+                // 启用自定义 CORS 配置
+                .cors().and()
+                // 配置请求授权规则
+                .authorizeRequests()
+                .anyRequest().permitAll(); // 允许所有请求
+
+        return http.build();
+    }
+
+    @Bean
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true); // 允许凭证
+        config.addAllowedOrigin("*"); // 允许所有来源
+        config.addAllowedHeader("*"); // 允许所有头
+        config.addAllowedMethod("*"); // 允许所有方法（GET、POST 等）
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source);
     }
 }

@@ -1,31 +1,17 @@
 package cn.itcast.mp.mapper;
 
-import java.util.List;
+import cn.itcast.mp.model.User;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
-
-import cn.itcast.mp.model.UserInfo;
-
-@Mapper
 public interface UserMapper {
-	
-	@Select("SELECT * FROM user")
-	List<UserInfo> getAllUsers();
+    int deleteByPrimaryKey(Integer id);
 
-	@Select("SELECT * FROM user WHERE id = #{id}")
-	UserInfo getUserById(String id);
+    int insert(User row);
 
-	void insertUser(UserInfo user);
+    int insertSelective(User row);
 
-	@Update("UPDATE user SET username=#{username}, age=#{age} WHERE id=#{id}")
-	void updateUser(UserInfo user);
+    User selectByPrimaryKey(Integer id);
 
-	@Delete("DELETE FROM user WHERE id=#{id}")
-	void deleteUser(Long id);
-	
-	@Select("SELECT * FROM user WHERE username=#{username}")
-	UserInfo findUserByName(String username);
+    int updateByPrimaryKeySelective(User row);
+
+    int updateByPrimaryKey(User row);
 }
