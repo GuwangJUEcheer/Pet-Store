@@ -1,17 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Input, Button, Card, Typography, Space } from 'antd';
 import '../css/LoginPage.css'; // 自定义样式
+import request from '../Request/request';
+import { useUser } from "../context/UserContext";
 
 const { Title, Text } = Typography;
 
 const LoginPage: React.FC = () => {
-  const onFinish = (values: any) => {
-    console.log('Success:', values);
-  };
+  
+  const { login } = useUser(); // 获取 login 方法
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-  const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
-  };
+  const handleLogin = () =>{
+     try{
+       request.post("/login",{
+          userName:username,passWord:password
+       }).then((response)=>{
+         if(response.data.loginResult == "OK"){
+             login({
+              username: response.data.username,
+              role: "", // 从响应中获取用户角色
+              userId:response.data.userId,
+            });
+         }
+       });
+     }catch{
+
+     }
+  }
 
   return (
     <div className="login-container">
@@ -24,15 +41,14 @@ const LoginPage: React.FC = () => {
           name="login"
           layout="vertical"
           initialValues={{ remember: true }}
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
         >
           <Form.Item
             label="Username"
             name="username"
             rules={[{ required: true, message: 'Please input your username!' }]}
           >
-            <Input placeholder="Enter your username" />
+           <Input placeholder="Enter your username"  value={username}
+                    onChange={(e) => setUsername(e.target.value)}/>
           </Form.Item>
 
           <Form.Item
@@ -40,21 +56,22 @@ const LoginPage: React.FC = () => {
             name="password"
             rules={[{ required: true, message: 'Please input your password!' }]}
           >
-            <Input.Password placeholder="Enter your password" />
+          <Input.Password placeholder="Enter your password"  value={password}
+                      onChange={(e) => setUsername(e.target.value)}/>
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" htmlType="submit" block>
+            <Button type="primary" htmlType="submit" block  onClick={handleLogin}>
               Sign In
             </Button>
           </Form.Item>
         </Form>
-        <div className="login-footer">
+        {/* <div className="login-footer">
           <Text type="secondary">Don't have an account?</Text>
           <Button type="link" href="/register">
             Sign Up
           </Button>
-        </div>
+        </div> */}
       </Card>
     </div>
   );

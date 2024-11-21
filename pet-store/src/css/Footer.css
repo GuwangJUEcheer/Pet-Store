@@ -1,23 +1,3 @@
-.footer {
-  background-color: #f8f8f8;
-  padding: 20px;
-  text-align: center;
-}
-
-.footer-links {
-  margin-bottom: 15px;
-}
-
-.footer-links a {
-  margin: 0 10px;
-  color: #555;
-  text-decoration: none;
-}
-
-.footer-links a:hover {
-  opacity: 0.7;
-}
-
 .copyright {
   font-size: 0.9rem;
   color: #777;
@@ -27,4 +7,255 @@
   position: absolute;
   bottom: 233px;
   display: block;
+}
+
+
+
+@media screen and (max-width: 1024px) {
+  .block01 {
+      padding: 40px;
+  }
+}
+
+@media screen and (max-width: 896px) {
+  .block01 {
+      padding: 40px 15px;
+  }
+}
+
+.headline01 {
+  position: relative;
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.headline01 span {
+  display: block;
+  padding-bottom: 10px;
+  line-height: 1;
+}
+
+.headline01 span:first-child {
+  padding-top: 45px;
+  letter-spacing: .1em;
+  font-weight: bold;
+  font-size: 185.7%;
+}
+
+.headline01 span:last-child {
+  font-size: 92.9%;
+}
+
+.headline01::before {
+  position: absolute;
+  right: 0;
+  left: 0;
+  margin: auto;
+  width: 18px;
+  height: 18px;
+  background: url("../images/ico_star.png");
+  background-size: 100%;
+  content: "";
+}
+
+.headline01::after {
+  position: absolute;
+  right: 0;
+  left: 0;
+  margin: auto;
+  width: 356px;
+  height: 7px;
+  background: url("../images/line.png");
+  background-size: 100%;
+  content: "";
+}
+
+@media screen and (max-width: 896px) {
+  .headline01 {
+      margin-bottom: 40px;
+      font-size: 86%;
+  }
+
+  .headline01 span:first-child {
+      padding-top: 35px;
+  }
+
+  .headline01::after {
+      width: 100%;
+      background-size: 356px;
+  }
+}
+
+.headline01_2 {
+  display: inline-block;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #ba7e1d;
+}
+
+.headline01_2 span {
+  display: inline-block;
+  padding-bottom: 10px;
+  line-height: 1;
+}
+
+.headline01_2 span:first-child {
+  padding-right: 15px;
+  letter-spacing: .1em;
+  font-weight: bold;
+  font-size: 185.7%;
+}
+
+.headline01_2 span:last-child {
+  font-size: 92.9%;
+}
+
+.headline01_2::before {
+  display: inline-block;
+  margin-right: 10px;
+  width: 18px;
+  height: 18px;
+  background: url("../images/ico_star.png");
+  background-size: 100%;
+  content: "";
+}
+
+.headline02 {
+  margin: auto;
+  margin-bottom: 50px;
+  min-width: 320px;
+  color: #4f4433;
+  text-align: center;
+  letter-spacing: .1em;
+  font-weight: bold;
+  font-size: 185.7%;
+}
+
+.headline02 span {
+  display: inline-block;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #4f4433;
+}
+
+@media screen and (max-width: 896px) {
+  .headline02 {
+      font-size: 155.7%;
+  }
+
+  .headline02 span {
+      padding-bottom: 20px;
+  }
+}
+
+.footer {
+  position: relative;
+}
+
+.footer .footerInner {
+  background: #DB9398;
+}
+
+.footer .footerInner .footNav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: auto;
+  padding: 40px 0;
+  width: 80%;
+}
+.logoDiv {
+  display: flex;
+  align-items: left; /* 居左显示 */
+  height: 100%; /* 高度与父容器一致 */
+}
+
+.logoDiv img {
+  height: 100px; /* 设置图片高度，可根据需要调整 */
+  width: auto; /* 按比例放大宽度 */
+  object-fit: contain; /* 保持图片比例 */
+}
+
+.footer .footerInner .footNav a {
+  color: #fff;
+}
+
+.footer .footerInner .footNav .navList {
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+  width: 80%;
+}
+
+.footer .footerInner .footNav .navList li {
+  margin: 10px 0;
+  width: calc(100%/4);
+  font-weight: bold;
+  list-style:none;
+}
+
+.footer .footerInner .footNav .snsList {
+  display: flex;
+  margin-top: 15px;
+  margin-left: 15px;
+  width: 100%;
+  font-size: 171.4%;
+}
+
+.footer .footerInner .footNav .snsList li {
+  margin: 0 30px;
+}
+
+.footer .copyright {
+  padding: 30px 0;
+  text-align: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .footer .footerInner .footNav {
+      padding: 40px 15px;
+      width: 100%;
+  }
+
+  .footer .footerInner .footNav .navList {
+      justify-content: space-between;
+      width: 75%;
+      font-size: 90%;
+  }
+
+  .footer .footerInner .footNav .navList li {
+      width: calc(95%/3);
+  }
+}
+
+@media screen and (max-width: 896px) {
+  .footer .footerInner .footNav {
+      justify-content: space-around;
+      padding: 20px 0;
+  }
+
+  .footer .footerInner .footNav .navList {
+      display: none;
+  }
+
+  .footer .footerInner .footNav .snsList {
+      justify-content: center;
+      margin-left: 0;
+  }
+}
+
+.bnr__insta {
+  width: 80px;
+  position: fixed;
+  bottom: 80px;
+  right: 10px;
+
+  img {
+      width: 100%;
+      object-fit: contain;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .bnr__insta {
+      width: 150px;
+  }
 }

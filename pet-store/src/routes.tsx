@@ -1,6 +1,5 @@
 import React from 'react';
 import { RouteObject } from 'react-router-dom';
-import Home from './components/home';
 import About from "./components/About";
 import HomePageContent from './components/HomePageContent';
 import LoginPage  from './components/LoginPage';
@@ -21,7 +20,7 @@ const routes: RouteObject[] = [
   },
   {
     path: '/',
-    element: <HomePageContent/>, // 指定渲染的组件
+    element: <HomePageContent/>, // 主页
   },
   {
     path: "/news",

@@ -6,10 +6,12 @@ import cn.itcast.mp.model.UserTokens;
 import cn.itcast.mp.service.TokenService;
 import cn.itcast.mp.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+@Service
 public class TokenServiceImpl implements TokenService {
 
     @Autowired

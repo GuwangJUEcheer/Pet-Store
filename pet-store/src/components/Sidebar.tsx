@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Menu } from 'antd';
+import { Layout } from 'antd';
 import '../css/Sidebar.css';
 import logo from '../images/logo.png'
 import insta from '../images/ico_insta.png'
@@ -19,14 +19,14 @@ const Sidebar: React.FC = () => {
       <div className="gNav">
           <nav>
             <ul>
-              <li><Link to="/about">Cat Loungeとは<span>About us</span></Link></li>
+              <li><Link to="/about">Doriapet とは<span>About us</span></Link></li>
               <li><Link to="/news/">最新子猫情報<span>What's new</span></Link></li>
               <li><Link to="/history/">過去子猫紹介<span>History</span></Link></li>
-              <li><Link to="/breed/">取扱猫種紹介<span>Cat breed</span></Link></li>
+              <li><Link to="/breed/">親猫紹介<span>Cat Parents</span></Link></li>
+              <li><Link to="/breed/">ミヌエットとは<span>What is Minuet Cat</span></Link></li>
               <li><Link to="/buy/">ご購入について<span>Buying info</span></Link></li>
-              <li><Link to="/pethotel/">ペットホテルについて<span>Pet hotel</span></Link></li>
               <li><Link to="/shop/">店舗情報・アクセス<span>Shop info・Access</span></Link></li>
-              <li><Link to="https://catlounge418.base.shop" target="_blank" rel="noopener noreferrer">オンラインショップ<span>Online Shop</span></Link></li>
+              <li><Link to="https://www.doriapet.net/" target="_blank" rel="noopener noreferrer">自社ブランドショップサイト<span>Online Shop</span></Link></li>
               <li>
                 <Link to="/login">管理者登録<span>Sign in As Admin</span></Link>
               </li>

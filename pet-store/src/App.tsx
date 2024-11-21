@@ -5,6 +5,7 @@ import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { BrowserRouter as Router,useRoutes } from 'react-router-dom';
+import { UserProvider } from "./context/UserContext";
 import './App.css';
 import routes from './routes'; // 路由配置
 
@@ -18,6 +19,7 @@ const Routes = () => {
 
 const App: React.FC = () => {
   return (
+    <UserProvider>
     <Router> 
     <Layout style={{ minHeight: '100vh' }}>    
         <Sidebar />
@@ -29,7 +31,8 @@ const App: React.FC = () => {
         <Footer />
       </Layout>
     </Layout>
-    </Router> 
+    </Router>
+    </UserProvider> 
   );
 };
 

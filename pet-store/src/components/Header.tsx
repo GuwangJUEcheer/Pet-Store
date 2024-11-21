@@ -1,6 +1,6 @@
 import React from 'react';
 import '../css/Header.css';
-import pt1 from '../images/mvTtl.png';
+import logo from '../images/logo.png';
 
 const Header: React.FC = () => {
   return (
@@ -8,7 +8,7 @@ const Header: React.FC = () => {
       <div className="mainTtl">
         <h1 className="mainTtl">
           <span className="title">
-            <img src={pt1} alt="" width="252" />
+            <img src={logo} alt="" width="252" />
           </span>
           <span className="text">
             猫を愛する、安心優良なブリーダーです。<br />
