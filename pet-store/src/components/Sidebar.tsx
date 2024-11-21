@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout } from 'antd';
 import '../css/Sidebar.css';
-import logo from '../images/logo.png'
+import logo from '../images/logo_sp1.png'
 import insta from '../images/ico_insta.png'
 import tiktok from '../images/ico_tiktok_blk.svg'
 import {Link } from 'react-router-dom';
@@ -33,8 +33,8 @@ const Sidebar: React.FC = () => {
             </ul>
           </nav>
           <ul className="snsList">
-            <li><Link to="https://www.instagram.com/cat_lounge0418/" target="_blank"><img src={insta} alt="" style={{ width: "28px" }} /></Link></li>
-            <li><Link to="https://www.tiktok.com/@maririn523828" target="_blank"><img src={tiktok} alt="" style={{ width: "21px" }} /></Link></li>
+            <li><Link to="https://www.instagram.com/doriapet_minuet?igsh=Zm42YWYxczJ5OHVl&utm_source=qr" target="_blank"><img src={insta} alt="" style={{ width: "28px" }} /></Link></li>
+            <li><Link to="https://www.tiktok.com/@doriapet?_t=8pIUi7YWL1r&_r=1" target="_blank"><img src={tiktok} alt="" style={{ width: "21px" }} /></Link></li>
           </ul>
           <div className="contactBtn">
             <Link to="/contact/"><i className="fas fa-caret-right"></i>&nbsp;お問い合わせ</Link>

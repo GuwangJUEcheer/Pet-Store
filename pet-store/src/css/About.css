@@ -1,181 +1,184 @@
-/* 全局字体和基本样式 */
-body {
-  font-family: 'Noto Sans JP', sans-serif; /* 使用 Google Fonts 提供的字体 */
-  margin: 0;
-  padding: 0;
-  line-height: 1.8;
-  color: #333; /* 主文本颜色 */
-  background-color: #f7f8fc; /* 更浅的背景颜色，显得清新 */
+/* 整体内容容器样式 */
+.content {
+  padding: 20px; /* 内边距 */
+  max-width: 1200px; /* 页面最大宽度 */
+  margin: 0 auto; /* 居中 */
+  font-family: 'Arial', sans-serif; /* 全局字体 */
 }
 
-main.content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 30px;
-}
-
-/* 欢迎标题样式 */
-.hero {
-  text-align: center;
-  padding: 50px 20px;
-  background: linear-gradient(to right, #f8a5c2, #ff7e5f); /* 更柔和的渐变 */
-  color: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.hero h1 {
-  font-size: 2.8rem;
-  margin-bottom: 15px;
+/* 标题样式 */
+.section-title {
+  font-size: 2.5rem;
   font-weight: bold;
-}
-
-.hero .subtitle {
-  font-size: 1.3rem;
-  font-weight: 300;
-  opacity: 0.9;
-}
-
-/* 服务区样式 */
-.services {
-  margin: 50px 0;
-}
-
-.services .section-title {
-  font-size: 2rem;
-  margin-bottom: 30px;
   text-align: center;
-  color: #444;
-  font-weight: bold;
+  margin-bottom: 40px;
+  color: #333;
 }
 
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 25px;
-}
-
-.service-card {
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  overflow: hidden;
-  text-align: center;
-  padding: 25px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.service-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-}
-
-.service-card img {
-  width: 100%;
-  height: 220px; /* 固定高度，统一图片大小 */
-  object-fit: cover; /* 图片裁剪但保持比例 */
-  border-bottom: 1px solid #ddd;
-  margin-bottom: 15px;
-}
-
-.service-card h3 {
-  font-size: 1.5rem;
-  margin: 15px 0 10px;
-  font-weight: 600;
-  color: #222;
-}
-
-.service-card p {
-  font-size: 1rem;
-  color: #666;
-  line-height: 1.5;
-}
-
-/* 特色展示样式 */
-.features {
-  background: #ffffff;
-  padding: 30px;
-  border-radius: 10px;
-  margin: 50px 0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.features .section-title {
-  font-size: 2rem;
-  margin-bottom: 25px;
-  text-align: center;
-  color: #444;
-  font-weight: bold;
-}
-
-.features ul {
-  list-style: none;
-  padding: 0;
-}
-
-.features li {
-  font-size: 1.1rem;
-  margin: 12px 0;
-  position: relative;
-  padding-left: 30px;
-}
-
-.features li:before {
-  content: '✔';
-  position: absolute;
-  left: 0;
-  color: #f77e5f;
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-
-/* 联系方式样式 */
-.contact {
-  text-align: center;
-  margin: 50px 0;
-}
-
-.contact .section-title {
+/* 每个部分的标题 */
+.room-title {
   font-size: 2rem;
   margin-bottom: 20px;
-  color: #444;
-  font-weight: bold;
-}
-
-.contact p {
-  font-size: 1.1rem;
-  line-height: 1.6;
   color: #555;
+  border-left: 5px solid #ffc107;
+  padding-left: 10px;
 }
 
-.contact p br {
-  margin-bottom: 15px;
+/* 各部分内容区域 */
+.room-section {
+  display: flex;
+  flex-wrap: wrap; /* 在小屏幕时支持换行 */
+  gap: 20px; /* 内容之间的间距 */
+  margin-bottom: 40px;
+  align-items: flex-start; /* 顶部对齐 */
+}
+
+/* 左侧图片区域 */
+.image-content {
+  flex: 1;
+  max-width: 40%; /* 最大宽度占页面的40% */
+}
+
+.room-image {
+  width: 100%; /* 图片宽度自适应父容器 */
+  border-radius: 10px; /* 图片圆角 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+  object-fit: cover; /* 保持图片比例 */
+  cursor: pointer; /* 鼠标悬停时显示手势 */
+  transition: transform 0.3s ease; /* 动画过渡效果 */
+}
+
+.room-image:hover {
+  transform: scale(1.05); /* 放大效果 */
+}
+
+/* 右侧文字区域 */
+.text-content {
+  flex: 2;
+  min-width: 300px;
+  line-height: 1.8; /* 增加行高，提高可读性 */
+  color: #555;
+  background: #f9f9f9; /* 添加浅灰背景色 */
+  padding: 20px; /* 内边距 */
+  border-radius: 10px; /* 圆角 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+}
+
+/* 文字内容中的段落 */
+.text-content p {
+  margin-bottom: 16px; /* 段落间距 */
+}
+
+/* 列表样式 */
+.text-content ol {
+  padding-left: 20px; /* 列表左缩进 */
+  list-style-type: decimal; /* 使用数字编号 */
+}
+
+.text-content ol li {
+  margin-bottom: 10px; /* 列表项间距 */
+}
+
+.text-content ul {
+  padding-left: 20px; /* 列表左缩进 */
+  list-style-type: disc; /* 使用圆点符号 */
+}
+
+.text-content ul li {
+  margin-bottom: 8px; /* 列表项间距 */
+}
+
+/* 强调文字 */
+.text-content strong {
+  font-weight: bold;
+  color: #333;
+}
+
+/* 证书图片专属样式 */
+.certification-image {
+  width: 100%;
+  max-width: 300px; /* 最大宽度为300px */
+  margin: 0 auto; /* 居中 */
+  display: block;
+  cursor: pointer; /* 鼠标悬停时显示手势 */
+  transition: transform 0.3s ease; /* 添加过渡效果 */
+}
+
+.certification-image:hover {
+  transform: scale(1.1); /* 放大效果 */
+}
+
+/* 模态框背景 */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease; /* 添加动画 */
+}
+
+/* 模态框内容 */
+.modal-content {
+  position: relative;
+  max-width: 35%;
+  max-height: 35%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.modal-content:hover {
+  cursor: pointer;
+}
+
+/* 模态框关闭按钮 */
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5rem;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 /* 响应式设计 */
 @media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2.4rem;
+  /* 小屏幕时，图片和文字上下排列 */
+  .room-section {
+    flex-direction: column;
+    gap: 20px;
   }
 
-  .hero .subtitle {
-    font-size: 1.1rem;
+  .image-content, .text-content {
+    max-width: 100%; /* 宽度占满父容器 */
   }
 
-  .services-grid {
-    grid-template-columns: 1fr; /* 单列布局 */
+  .modal-content {
+    max-width: 100%;
+    max-height: 100%;
   }
+}
 
-  .service-card {
-    padding: 20px;
+/* 动画效果 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-
-  .features ul li {
-    font-size: 1rem;
-  }
-
-  .contact p {
-    font-size: 1rem;
+  to {
+    opacity: 1;
   }
 }

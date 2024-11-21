@@ -5,10 +5,11 @@ import HomePageContent from './components/HomePageContent';
 import LoginPage  from './components/LoginPage';
 import News from './components/News';
 import History from "./components/History";
-import BreedList from "./components/BreedList";
+import Parent from "./components/Parent";
+import Minuet from "./components/Minuet";
 import Buy from "./components/Buy";
-import PetHotel from "./components/PetHotel";
 import ShopInfo from "./components/ShopInfo";
+import Contact from "./components/Contact";
 
 
 
@@ -28,20 +29,21 @@ const routes: RouteObject[] = [
   },
   {
     path: "/history",
-    element: <History />, // 新增路由
+    element: <History />, // 过去子猫情报
   },
   {
-    path: "/breed",
-    element: <BreedList />, // 猫种介绍页面
+    path: "/parent",
+    element: <Parent />, // 猫父母
+  },
+  {
+    path: "/minuet",
+    element: <Minuet />, // minuet
   },
   {
     path: "/buy",
     element: <Buy />, // 购入页面
   },
-  {
-    path: "/pethotel",
-    element: <PetHotel />, // 宠物酒店页面
-  },
+
   {
     path: "/shop",
     element: <ShopInfo />, // 店铺情报页面
@@ -49,7 +51,11 @@ const routes: RouteObject[] = [
   {
     path: '/login',
     element: <LoginPage/>, // 指定渲染的组件
-  }
+  },
+  {
+    path: '/contact',
+    element: <Contact/>, // 指定渲染的组件
+  },
 
 ];
 

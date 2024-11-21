@@ -1,5 +1,5 @@
 import MainVisual from './MainVisual';
-import BreedList from './BreedList';
+import BreedList from './Parent';
 import News from './News';
 import ScrollAnimation from './ScrollAnimation';
 import BackToTop from './BackToTop';
