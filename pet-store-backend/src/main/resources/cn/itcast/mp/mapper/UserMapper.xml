@@ -893,4 +893,8 @@
       role_id = #{roleId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectByUserName" parameterType="cn.itcast.mp.model.User">
+   select top 1 from user
+   where username = #{username}
+  </select>
 </mapper>

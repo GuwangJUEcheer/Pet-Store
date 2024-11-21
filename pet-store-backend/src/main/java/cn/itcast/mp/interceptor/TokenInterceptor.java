@@ -1,5 +1,6 @@
 package cn.itcast.mp.interceptor;
 
+import cn.itcast.mp.utils.TokenUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -16,21 +17,15 @@ public class TokenInterceptor implements HandlerInterceptor {
 
         // 检查 token 是否存在
         if (token == null || token.isEmpty()) {
-
+             return false;
         }
 
         // 校验 token 的有效性（示例代码，需要替换为实际的校验逻辑）
-        boolean isValid = validateToken(token);
+        boolean isValid = TokenUtils.isTokenValid(token);
         if (!isValid) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED); // 401 状态码
             return false; // 中断请求
         }
-        
         return true; // 继续执行后续的处理器
-    }
-    
-    private boolean validateToken(String token) {
-
-        return true; // 假设 token 有效
     }
 }

@@ -5,69 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2e49c3ae-9e16-418c-94c4-4be7eb6844c3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/controller/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/model/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/sql/Token.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/mapper/UserTokensMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/model/UserTokens.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/service/TokenService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/serviceImpl/TokenServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/utils/TokenUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cn/itcast/mp/mapper/UserTokensMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/config/InterCeptorConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/config/InterCeptorConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/config/RedisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/config/RedisConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/config/WebConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/config/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/controller/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/controller/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/interceptor/TokenInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/interceptor/TokenInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/mapper/UserMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/model/UserInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/service/TokenService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/model/LoginResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/model/LoginResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/serviceImpl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/serviceImpl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dao/UserMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/model/UserWithBLOBs.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application-prod.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-prod.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/mapper/UserMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cn/itcast/mp/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cn/itcast/mp/mapper/UserMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/user.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/user.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application-prod.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application-prod.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/itcast/mp/MyApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/itcast/mp/config/CacheConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/itcast/mp/config/InterCeptorConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/itcast/mp/config/RedisConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/itcast/mp/config/WebConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/itcast/mp/config/WebSecurityConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/itcast/mp/controller/IndexController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/itcast/mp/controller/UserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/itcast/mp/filter/LoginFilter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/itcast/mp/interceptor/TokenInterceptor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/itcast/mp/mapper/UserMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/itcast/mp/model/AuthorizeDVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/itcast/mp/model/GithubUser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/itcast/mp/model/LoginResponse$LoginResult.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/itcast/mp/model/LoginResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/itcast/mp/model/UserInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/itcast/mp/provider/AuthorizeProvider.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/itcast/mp/service/TokenService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/itcast/mp/service/UserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/itcast/mp/serviceImpl/UserServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/itcast/mp/utils/DateUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/itcast/mp/utils/JobUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/itcast/mp/utils/RedisUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/itcast/mp/utils/TimerUtils$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/itcast/mp/utils/TimerUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/dao/UserMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/mapper/UserMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/model/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/model/UserWithBLOBs.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sql/user.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sql/user.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/itcast-mp-springboot-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/itcast-mp-springboot-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/2024-11-17T12-24-03_703-jvmRun1.dump" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-cm.itcast.mp.test.MyTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-cm.itcast.mp.test.MyTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/cm.itcast.mp.test.MyTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/cm.itcast.mp.test.MyTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/generatorConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/UserMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/itcast-mp-springboot-1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/2024-11-20T16-38-12_353-jvmRun1.dump" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-cm.itcast.mp.test.MyTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/cm.itcast.mp.test.MyTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/cm/itcast/mp/test/MyTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/cm/itcast/mp/test/TestConnection.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,26 +67,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.itcast-mp-springboot [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.itcast-mp-springboot [mybatis-generator:generate].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.import&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.Unnamed.executor": "Run",
+    "Maven.itcast-mp-springboot [clean,install].executor": "Run",
+    "Maven.itcast-mp-springboot [mybatis-generator:generate].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "editor.preferences.import",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="Maven.itcast-mp-springboot [mybatis-generator:generate]">
+}]]></component>
+  <component name="RunManager" selected="Maven.itcast-mp-springboot [clean,install]">
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cn.itcast.mp.MyApplication" />
       <module name="itcast-mp-springboot" />
@@ -239,11 +208,14 @@
       <option name="presentableId" value="Default" />
       <updated>1732088173088</updated>
       <workItem from="1732088175104" duration="4446000" />
-      <workItem from="1732096075715" duration="567000" />
+      <workItem from="1732096075715" duration="8927000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

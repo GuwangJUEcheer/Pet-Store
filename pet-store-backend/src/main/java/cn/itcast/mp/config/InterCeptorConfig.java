@@ -9,10 +9,18 @@ import cn.itcast.mp.interceptor.TokenInterceptor;
 @Configuration
 public class InterCeptorConfig implements WebMvcConfigurer{
 
+	private final TokenInterceptor tokenInterceptor;
+
+	// 使用构造函数注入拦截器
+	public InterCeptorConfig(TokenInterceptor tokenInterceptor) {
+		this.tokenInterceptor = tokenInterceptor;
+	}
+
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		TokenInterceptor interceptor = new TokenInterceptor();
-		//除了login 还有register以外 都禁止访问
-		interceptor.addPathPatterns("/**").excludePathPatterns("/login", "/register");
+		registry.addInterceptor(tokenInterceptor)
+				.addPathPatterns("/**") // 所有路径
+				.excludePathPatterns("/login", "/register"); // 排除 login 和 register
 	}	
 }
