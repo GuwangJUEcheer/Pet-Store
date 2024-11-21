@@ -6,23 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2e49c3ae-9e16-418c-94c4-4be7eb6844c3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/serviceImpl/TokenServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/serviceImpl/TokenServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/serviceImpl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/serviceImpl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/utils/RedisUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/utils/TokenUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/utils/TokenUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cn/itcast/mp/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cn/itcast/mp/mapper/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cn/itcast/mp/mapper/UserTokensMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cn/itcast/mp/mapper/UserTokensMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/cm/itcast/mp/test/MyTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pet-store/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pet-store/src/components/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/components/Footer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pet-store/src/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/components/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pet-store/src/components/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/components/LoginPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pet-store/src/components/Sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/components/Sidebar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pet-store/src/css/Footer.css" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/css/Footer.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pet-store/src/images/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/images/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pet-store/src/routes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/routes.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/config/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/itcast/mp/config/WebSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/itcast/mp/config/WebSecurityConfig.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,7 +187,7 @@
       <option name="presentableId" value="Default" />
       <updated>1732088173088</updated>
       <workItem from="1732088175104" duration="4446000" />
-      <workItem from="1732096075715" duration="13894000" />
+      <workItem from="1732096075715" duration="14702000" />
     </task>
     <servers />
   </component>

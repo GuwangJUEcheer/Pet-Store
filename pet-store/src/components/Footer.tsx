@@ -7,10 +7,6 @@ import ins from '../images/ico_insta_02.png';
 const Footer: React.FC = () => {
   return (
     <section className="news block01">
-      <h2 className="headline01">
-        <span>新着情報</span>
-        <span>News</span>
-      </h2>
       <div className="inner">
         <ul>
           {/* 可以在这里添加新闻列表 */}
