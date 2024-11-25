@@ -37,8 +37,8 @@ public class TokenServiceImpl implements TokenService {
     }
 
     @Override
-    public void deleteToken() {
-
+    public void deleteToken(Long id) {
+        tokenMapper.deleteByPrimaryKey(id);
     }
 
     @Override

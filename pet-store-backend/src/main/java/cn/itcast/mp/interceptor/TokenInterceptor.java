@@ -12,6 +12,12 @@ public class TokenInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        String uri = request.getRequestURI();
+        System.out.println("拦截到的路径: " + uri);
+        if ("/login".equals(uri) || "/register".equals(uri)) {
+            System.out.println("该路径被排除，不需要拦截");
+            return true; // 放行该请求
+        }
         // 从请求头中获取 token
         String token = request.getHeader("Authorization");
 

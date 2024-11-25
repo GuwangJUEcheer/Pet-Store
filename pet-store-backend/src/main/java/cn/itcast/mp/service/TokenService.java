@@ -7,7 +7,7 @@ public interface TokenService {
 
     public UserTokens insertToken(User user);
 
-    public void deleteToken();
+    public void deleteToken(Long id);
 
     public void updateToken();
 }
