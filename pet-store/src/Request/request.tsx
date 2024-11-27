@@ -3,7 +3,8 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 interface ApiResponse<T = any> {
   code: number; // 状态码
   message: string; // 响应信息
-  data: T; // 响应数据
+  data: T; // 业务数据
+  success?: boolean; // 可选的业务成功标志
 }
 
 const axiosInstance: AxiosInstance = axios.create({
@@ -32,6 +33,7 @@ axiosInstance.interceptors.request.use(
     return config;
   },
   (error) => {
+    console.error('Request Error:', error);
     return Promise.reject(error);
   }
 );

@@ -25,6 +25,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="PerforceDirect.Settings">
+    <option name="CHARSET" value="无" />
+  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="ProjectErrors" />
   </component>
@@ -68,14 +71,22 @@
     "settings.editor.selected.configurable": "editor.preferences.import",
     "vue.rearranger.settings.migration": "true"
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
-  <component name="RunManager" selected="Application.start">
+  <component name="RunManager" selected="应用程序.start">
     <configuration name="start" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="cn.itcast.mp.MyApplication" />
       <module name="itcast-mp-springboot" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="itcast-mp-springboot中的所有" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="itcast-mp-springboot" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

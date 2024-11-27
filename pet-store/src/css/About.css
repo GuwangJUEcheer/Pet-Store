@@ -1,9 +1,11 @@
-/* 整体内容容器样式 */
+/* 全局样式 */
 .content {
-  padding: 20px; /* 内边距 */
+  padding: 20px;
   max-width: 1200px; /* 页面最大宽度 */
   margin: 0 auto; /* 居中 */
   font-family: 'Arial', sans-serif; /* 全局字体 */
+  background-color: #fff; /* 背景颜色为白色 */
+  color: #333; /* 默认文字颜色 */
 }
 
 /* 标题样式 */
@@ -19,28 +21,31 @@
 .room-title {
   font-size: 2rem;
   margin-bottom: 20px;
-  color: #555;
-  border-left: 5px solid #ffc107;
+  color: #444;
+  border-left: 5px solid #ffc107; /* 黄色左侧线条 */
   padding-left: 10px;
 }
 
-/* 各部分内容区域 */
+/* 内容区域布局 */
 .room-section {
   display: flex;
   flex-wrap: wrap; /* 在小屏幕时支持换行 */
   gap: 20px; /* 内容之间的间距 */
   margin-bottom: 40px;
-  align-items: flex-start; /* 顶部对齐 */
+  align-items: stretch; /* 子元素高度拉伸以对齐 */
 }
 
-/* 左侧图片区域 */
+/* 图片区域样式 */
 .image-content {
   flex: 1;
-  max-width: 40%; /* 最大宽度占页面的40% */
+  max-width: 50%; /* 图片最大宽度为父容器的50% */
+  display: flex;
+  align-items: center;
 }
 
 .room-image {
   width: 100%; /* 图片宽度自适应父容器 */
+  height: auto; /* 高度自动调整 */
   border-radius: 10px; /* 图片圆角 */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加阴影 */
   object-fit: cover; /* 保持图片比例 */
@@ -49,73 +54,111 @@
 }
 
 .room-image:hover {
-  transform: scale(1.05); /* 放大效果 */
+  transform: scale(1.05); /* 鼠标悬停放大效果 */
 }
 
-/* 右侧文字区域 */
+/* 针对每张图片的具体样式 */
+.cattery-intro-image,
+.philosophy-image,
+.visitation-room-image{
+  width: 100%; /* 宽度占满父容器 */
+  max-width: 600px; /* 最大宽度限制为500px */
+  max-height: 400px; /* 最大高度限制为350px */
+  height: auto; /* 保持图片比例 */
+  margin: 0 auto; /* 居中 */
+  border-radius: 10px; /* 圆角 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 添加更明显的阴影 */
+  object-fit: cover; /* 裁剪多余内容，保持比例 */
+  cursor: pointer; /* 鼠标悬停时显示手势 */
+  transition: transform 0.3s ease; /* 添加动画效果 */
+}
+.kitten-kindergarten-image,
+.mom-room-image,
+.dad-room-image,
+.birthing-room-image,
+.photo-studio-image,
+.cat-kitchen-image,
+.cat-bathroom-image,
+.services-image {
+  width: 100%;
+  height: auto;
+}
+/* 针对特定图片类添加悬浮放大效果 */
+.room-image,
+.cattery-intro-image,
+.philosophy-image,
+.visitation-room-image,
+.kitten-kindergarten-image,
+.mom-room-image,
+.dad-room-image,
+.birthing-room-image,
+.photo-studio-image,
+.cat-kitchen-image,
+.cat-bathroom-image,
+.services-image {
+  transition: transform 0.3s ease; /* 平滑动画效果 */
+}
+
+.room-image:hover,
+.cattery-intro-image:hover,
+.philosophy-image:hover,
+.visitation-room-image:hover,
+.kitten-kindergarten-image:hover,
+.mom-room-image:hover,
+.dad-room-image:hover,
+.birthing-room-image:hover,
+.photo-studio-image:hover,
+.cat-kitchen-image:hover,
+.cat-bathroom-image:hover,
+.services-image:hover {
+  transform: scale(1.1); /* 鼠标悬停放大 */
+}
+
+/* 文字内容样式 */
 .text-content {
-  flex: 2;
-  min-width: 300px;
+  flex: 1; /* 与图片相同的占用比例 */
+  max-width: 50%; /* 最大宽度为父容器的50% */
   line-height: 1.8; /* 增加行高，提高可读性 */
-  color: #555;
   background: #f9f9f9; /* 添加浅灰背景色 */
   padding: 20px; /* 内边距 */
   border-radius: 10px; /* 圆角 */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+  display: flex;
+  flex-direction: column; /* 文字内容垂直排列 */
+  align-items: flex-start; 
+  text-align: left;
 }
 
 /* 文字内容中的段落 */
 .text-content p {
-  margin-bottom: 16px; /* 段落间距 */
+  margin-bottom: 16px;
+  color: #555;
+}
+
+.text-content strong {
+  font-weight: bold;
+  color: #333; /* 突出文字颜色 */
 }
 
 /* 列表样式 */
-.text-content ol {
-  padding-left: 20px; /* 列表左缩进 */
-  list-style-type: decimal; /* 使用数字编号 */
-}
-
-.text-content ol li {
-  margin-bottom: 10px; /* 列表项间距 */
-}
-
+.text-content ol,
 .text-content ul {
   padding-left: 20px; /* 列表左缩进 */
-  list-style-type: disc; /* 使用圆点符号 */
 }
 
+.text-content ol li,
 .text-content ul li {
-  margin-bottom: 8px; /* 列表项间距 */
+  margin-bottom: 10px;
 }
 
-/* 强调文字 */
-.text-content strong {
-  font-weight: bold;
-  color: #333;
-}
-
-/* 证书图片专属样式 */
-.certification-image {
-  width: 100%;
-  max-width: 300px; /* 最大宽度为300px */
-  margin: 0 auto; /* 居中 */
-  display: block;
-  cursor: pointer; /* 鼠标悬停时显示手势 */
-  transition: transform 0.3s ease; /* 添加过渡效果 */
-}
-
-.certification-image:hover {
-  transform: scale(1.1); /* 放大效果 */
-}
-
-/* 模态框背景 */
+/* 模态框样式 */
 .modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.8); /* 半透明黑色背景 */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -123,18 +166,17 @@
   animation: fadeIn 0.3s ease; /* 添加动画 */
 }
 
-/* 模态框内容 */
 .modal-content {
   position: relative;
-  max-width: 35%;
-  max-height: 35%;
+  max-width: 90%;
+  max-height: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .modal-image {
-  width: 100%;
+  width: 180%;
   height: auto;
   border-radius: 8px;
 }
@@ -157,19 +199,13 @@
 
 /* 响应式设计 */
 @media (max-width: 768px) {
-  /* 小屏幕时，图片和文字上下排列 */
   .room-section {
-    flex-direction: column;
-    gap: 20px;
+    flex-direction: column; /* 在小屏幕时图片和文字上下排列 */
   }
 
-  .image-content, .text-content {
-    max-width: 100%; /* 宽度占满父容器 */
-  }
-
-  .modal-content {
-    max-width: 100%;
-    max-height: 100%;
+  .image-content,
+  .text-content {
+    max-width: 100%; /* 小屏幕时宽度占满父容器 */
   }
 }
 
@@ -181,4 +217,14 @@
   to {
     opacity: 1;
   }
+}
+
+/* 专门针对资格免许部分的图片调整 */
+.qualifications .image-content img {
+  width: 80%; /* 将图片宽度调整为容器宽度的 80% */
+  max-width: 300px; /* 设置图片的最大宽度 */
+  margin: 0 auto; /* 图片居中 */
+  display: block; /* 让图片块级化 */
+  border-radius: 10px; /* 添加圆角 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加阴影 */
 }

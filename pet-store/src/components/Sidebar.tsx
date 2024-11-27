@@ -22,8 +22,8 @@ const Sidebar: React.FC = () => {
               <li><Link to="/about">Doriapet とは<span>About us</span></Link></li>
               <li><Link to="/news/">最新子猫情報<span>What's new</span></Link></li>
               <li><Link to="/history/">過去子猫紹介<span>History</span></Link></li>
-              <li><Link to="/breed/">親猫紹介<span>Cat Parents</span></Link></li>
-              <li><Link to="/breed/">ミヌエットとは<span>What is Minuet Cat</span></Link></li>
+              <li><Link to="/parent/">親猫紹介<span>Cat Parents</span></Link></li>
+              <li><Link to="/minuet/">ミヌエットとは<span>What is Minuet Cat</span></Link></li>
               <li><Link to="/buy/">ご購入について<span>Buying info</span></Link></li>
               <li><Link to="/shop/">店舗情報・アクセス<span>Shop info・Access</span></Link></li>
               <li><Link to="https://www.doriapet.net/" target="_blank" rel="noopener noreferrer">自社ブランドショップサイト<span>Online Shop</span></Link></li>
