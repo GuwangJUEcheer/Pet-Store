@@ -1,34 +1,36 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Form, Input, Button, Card, Typography, Space } from 'antd';
 import '../css/LoginPage.css'; // 自定义样式
-import request from '../Request/request';
+import axios from '../Request/request';
 import { useUser } from "../context/UserContext";
 
 const { Title, Text } = Typography;
 
 const LoginPage: React.FC = () => {
-  
-  const { login } = useUser(); // 获取 login 方法
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const { login } = useUser();
 
-  const handleLogin = () =>{
-     try{
-       request.post("/login",{
-          userName:username,passWord:password
-       }).then((response)=>{
-         if(response.data.loginResult == "OK"){
-             login({
-              username: response.data.username,
-              role: "", // 从响应中获取用户角色
-              userId:response.data.userId,
-            });
-         }
-       });
-     }catch{
-
-     }
-  }
+ const  handleLogin = async (values: { username: string; password: string }) => {
+    try {
+      axios.post<{ loginResult: string; token: string; userId: number; userName: string }>("/login", {
+        userName: values.username,
+        passWord: values.password,
+      }).then((response) =>{
+        const { loginResult, userName, userId,token} = response.data;
+        if(loginResult == "OK"){
+          login({
+           username: userName,
+           role: "", // 从响应中获取用户角色
+           userId:userId,
+         });
+         if (token) {
+          localStorage.setItem('token', token);
+        }
+      }
+    });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="login-container">
@@ -41,14 +43,14 @@ const LoginPage: React.FC = () => {
           name="login"
           layout="vertical"
           initialValues={{ remember: true }}
+          onFinish={handleLogin} // 提交时触发
         >
           <Form.Item
             label="Username"
             name="username"
             rules={[{ required: true, message: 'Please input your username!' }]}
           >
-           <Input placeholder="Enter your username"  value={username}
-                    onChange={(e) => setUsername(e.target.value)}/>
+            <Input placeholder="Enter your username" />
           </Form.Item>
 
           <Form.Item
@@ -56,22 +58,15 @@ const LoginPage: React.FC = () => {
             name="password"
             rules={[{ required: true, message: 'Please input your password!' }]}
           >
-          <Input.Password placeholder="Enter your password"  value={password}
-                      onChange={(e) => setUsername(e.target.value)}/>
+            <Input.Password placeholder="Enter your password" />
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" htmlType="submit" block  onClick={handleLogin}>
+            <Button type="primary" htmlType="submit" block>
               Sign In
             </Button>
           </Form.Item>
         </Form>
-        {/* <div className="login-footer">
-          <Text type="secondary">Don't have an account?</Text>
-          <Button type="link" href="/register">
-            Sign Up
-          </Button>
-        </div> */}
       </Card>
     </div>
   );

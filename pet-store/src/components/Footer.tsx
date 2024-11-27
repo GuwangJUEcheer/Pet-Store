@@ -48,6 +48,9 @@ const Footer: React.FC = () => {
               <li>
                 <Link to="/contact/">お問い合わせ</Link>
               </li>
+              <li>
+                <Link to="/login">管理者登録</Link>
+              </li>
             </ul>
           </nav>
           </div>           
