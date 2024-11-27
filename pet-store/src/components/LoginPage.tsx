@@ -3,18 +3,22 @@ import { Form, Input, Button, Card, Typography, Space } from 'antd';
 import '../css/LoginPage.css'; // 自定义样式
 import axios from '../Request/request';
 import { useUser } from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const { Title, Text } = Typography;
 
 const LoginPage: React.FC = () => {
   const { login } = useUser();
-
+  const navigate = useNavigate();
  const  handleLogin = async (values: { username: string; password: string }) => {
+  
     try {
       axios.post<{ loginResult: string; token: string; userId: number; userName: string }>("/login", {
         userName: values.username,
         passWord: values.password,
       }).then((response) =>{
+        console.log(response);
+        console.log(response.data);
         const { loginResult, userName, userId,token} = response.data;
         if(loginResult == "OK"){
           login({
@@ -25,6 +29,7 @@ const LoginPage: React.FC = () => {
          if (token) {
           localStorage.setItem('token', token);
         }
+        navigate("/success");
       }
     });
     } catch (error) {

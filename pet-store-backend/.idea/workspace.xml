@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2e49c3ae-9e16-418c-94c4-4be7eb6844c3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/model/LoginResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/model/LoginResponse.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -285,7 +283,7 @@
       <workItem from="1732538788704" duration="410000" />
       <workItem from="1732539212991" duration="2373000" />
       <workItem from="1732541606584" duration="420000" />
-      <workItem from="1732671069759" duration="4272000" />
+      <workItem from="1732671069759" duration="5811000" />
     </task>
     <servers />
   </component>
@@ -294,16 +292,5 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/cn/itcast/mp/controller/LoginController.java</url>
-          <line>48</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

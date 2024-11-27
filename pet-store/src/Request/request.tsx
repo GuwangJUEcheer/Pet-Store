@@ -14,6 +14,14 @@ const axiosInstance: AxiosInstance = axios.create({
   },
 });
 
+const axiosInstance2 : AxiosInstance = axios.create({
+  baseURL: 'http://localhost:8080/file',
+  timeout: 10000,
+  headers: {
+    'Content-Type': 'form-data/multipart',
+  },
+});
+
 axiosInstance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
@@ -42,5 +50,8 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
 export default axiosInstance;
+// export default {
+//   ,
+//   axiosInstance2
+// }
