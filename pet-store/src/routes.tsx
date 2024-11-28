@@ -10,6 +10,7 @@ import Minuet from "./components/Minuet";
 import Buy from "./components/Buy";
 import ShopInfo from "./components/ShopInfo";
 import Contact from "./components/Contact";
+import SuccessPage from "./components/LoginSuccess";
 
 
 
@@ -56,7 +57,10 @@ const routes: RouteObject[] = [
     path: '/contact',
     element: <Contact/>, // 指定渲染的组件
   },
-
+  {
+    path: '/success',
+    element: <SuccessPage/>, // 指定渲染的组件
+  },
 ];
 
 export default routes;

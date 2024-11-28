@@ -90,8 +90,9 @@
       update_time = #{updateTime,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="selectByUserName" parameterType="cn.itcast.mp.model.User">
-   select top 1 from user
-   where username = #{username}
+  <select id="selectByUserName" parameterType="cn.itcast.mp.model.User" resultType="cn.itcast.mp.model.User">
+    select * from user
+    where username = #{username}
+    limit 1
   </select>
 </mapper>
