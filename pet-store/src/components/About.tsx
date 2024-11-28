@@ -36,7 +36,7 @@ const About: React.FC = () => {
       <section className="cattery-introduction">
   <h2 className="room-title">キャッテリ紹介</h2>
   <div className="room-section">
-    <img src={catteryIntro} alt="Cattery Introduction" className="room-image" />
+    <img src={catteryIntro} alt="Cattery Introduction" className="cattery-intro-image" />
     <div className="text-content">
       <p>
         弊社は、一般家庭の一軒家で、のびのびとストレスのかかりにくい環境の中で猫ちゃんのお世話をしています。
@@ -61,7 +61,7 @@ const About: React.FC = () => {
           <p>弊社では、見た目が美しく、大変良い性格で、骨格に異常がなく、健康的な「小さな短足ねこちゃん」の繁殖に努めています。</p>
           <p>TICA協会の標準と私たちの繊細な猫ちゃんに対してのこだわりを満たすことを目指しています。</p>
           </div>
-          <img src={catteryPhilosophy} alt="Cattery Philosophy" className="room-image" />
+          <img src={catteryPhilosophy} alt="Cattery Philosophy" className="philosophy-image" />
         </div>
       </section>
 
@@ -72,7 +72,7 @@ const About: React.FC = () => {
           <img
             src={visitationRoom}
             alt="Visitation Room"
-            className="room-image"
+            className="visitation-room-image"
             onClick={() => openModal(visitationRoom)}
           />
           <div className="text-content">
@@ -120,7 +120,7 @@ const About: React.FC = () => {
 
     {/* 右侧图片 */}
     <div className="image-content">
-      <img src={kittenKindergarten} alt="Kindergarten Room 1" className="room-image" />
+      <img src={kittenKindergarten} alt="Kindergarten Room 1" className="kitten-kindergarten-image" />
     </div>
   </div>
 </section>
@@ -131,7 +131,7 @@ const About: React.FC = () => {
   <div className="room-section">
     {/* 左侧图片 */}
     <div className="image-content">
-      <img src={momRoom} alt="Mom's Room View 1" className="room-image" />
+      <img src={momRoom} alt="Mom's Room View 1" className="mom-room-image" />
     </div>
 
     {/* 右侧文字 */}
@@ -191,7 +191,7 @@ const About: React.FC = () => {
 
     {/* 右侧图片内容 */}
     <div className="image-content">
-      <img src={dadRoom} alt="Dad's Room View 1" className="room-image" />
+      <img src={dadRoom} alt="Dad's Room View 1" className="dad-room-image" />
     </div>
   </div>
 </section>
@@ -203,7 +203,7 @@ const About: React.FC = () => {
   <div className="room-section">
     {/* 左侧图片部分 */}
     <div className="image-content">
-      <img src={birthingRoom} alt="Birthing Room View 1" className="room-image" />
+      <img src={birthingRoom} alt="Birthing Room View 1" className="birthing-room-image" />
         </div>
 
     {/* 右侧文字部分 */}
@@ -259,7 +259,7 @@ const About: React.FC = () => {
 
     {/* 右侧图片内容 */}
     <div className="image-content">
-      <img src={photoStudio} alt="Photo Studio" className="room-image" />
+      <img src={photoStudio} alt="Photo Studio" className="photo-studio-image" />
     </div>
   </div>
 </section>
@@ -284,7 +284,7 @@ const About: React.FC = () => {
 
     {/* 右侧图片内容 */}
     <div className="image-content">
-      <img src={catKitchen} alt="Cat-Only Kitchen" className="room-image" />
+      <img src={catKitchen} alt="Cat-Only Kitchen" className="cat-kitchen-image" />
     </div>
   </div>
 </section>
@@ -313,7 +313,7 @@ const About: React.FC = () => {
 
     {/* 右侧图片内容 */}
     <div className="image-content">
-      <img src={catBathroom} alt="Cat Bathroom View 1" className="room-image" />
+      <img src={catBathroom} alt="Cat Bathroom View 1" className="cat-bathroom-image" />
     </div>
   </div>
 </section>
@@ -325,7 +325,7 @@ const About: React.FC = () => {
   <div className="room-section">
     {/* 左侧图片 */}
     <div className="image-content">
-      <img src={service} alt="Service" className="room-image" />
+      <img src={service} alt="Service" className="services-image" />
     </div>
 
     {/* 右侧文字 */}
