@@ -1,9 +1,9 @@
 package cn.itcast.mp.model;
 
 public class Kitten {
-    private Long id;
+    private int id;
     private String name;
-    private Double price;
+    private double price;
     private String gender;
     private String color;
     private String birthday;
@@ -11,11 +11,11 @@ public class Kitten {
     private String imgUrl;
 
     // Getters and Setters
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -27,11 +27,11 @@ public class Kitten {
         this.name = name;
     }
 
-    public Double getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -74,4 +74,19 @@ public class Kitten {
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
     }
+    
+    @Override
+    public String toString() {
+        return "Kitten{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", gender='" + gender + '\'' +
+                ", color='" + color + '\'' +
+                ", birthday=" + birthday +
+                ", status='" + status + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
+                '}';
+    }
+
 }

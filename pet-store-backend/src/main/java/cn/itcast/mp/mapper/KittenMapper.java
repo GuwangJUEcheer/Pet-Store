@@ -8,22 +8,22 @@ import java.util.List;
 @Mapper
 public interface KittenMapper {
 
-    // 查询所有小猫
-    @Select("SELECT id, name, price, gender, color, birthday, status, img_url AS imgUrl FROM kittens")
+    // 获取所有子猫信息
+    @Select("SELECT * FROM kittens")
     List<Kitten> getAllKittens();
 
-    // 插入新小猫
+    // 添加新的子猫信息
     @Insert("INSERT INTO kittens (name, price, gender, color, birthday, status, img_url) " +
-            "VALUES (#{name}, #{price}, #{gender}, #{color}, #{birthday}, #{status}, #{imgUrl})")
-    @Options(useGeneratedKeys = true, keyProperty = "id")
+            "VALUES (#{name}, #{price}, #{gender}, #{color}, #{birthday}, #{status}, #{img_url})")
+    @Options(useGeneratedKeys = true, keyProperty = "id") // 自动生成主键
     void addKitten(Kitten kitten);
 
-    // 更新小猫信息
+    // 更新子猫信息
     @Update("UPDATE kittens SET name = #{name}, price = #{price}, gender = #{gender}, color = #{color}, " +
-            "birthday = #{birthday}, status = #{status}, img_url = #{imgUrl} WHERE id = #{id}")
-    void updateKitten(Kitten kitten);
+            "birthday = #{birthday}, status = #{status}, img_url = #{img_url} WHERE id = #{id}")
+    int updateKitten(Kitten kitten);
 
-    // 删除小猫
+    // 删除子猫信息
     @Delete("DELETE FROM kittens WHERE id = #{id}")
-    void deleteKitten(Long id);
+    int deleteKitten(int id);
 }

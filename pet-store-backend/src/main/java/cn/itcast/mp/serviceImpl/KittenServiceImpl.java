@@ -1,46 +1,55 @@
 package cn.itcast.mp.serviceImpl;
 
-import cn.itcast.mp.model.Kitten;
-import cn.itcast.mp.service.KittenService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import cn.itcast.mp.mapper.KittenMapper;
+import cn.itcast.mp.model.Kitten;
+import cn.itcast.mp.service.KittenService;
+
 import java.util.List;
 
 @Service
 public class KittenServiceImpl implements KittenService {
-
-    private final List<Kitten> kittens = new ArrayList<>();
-
-    public KittenServiceImpl() {
-        // 初始化模拟数据
-        kittens.add(new Kitten(1L, "/images/cat1.jpg", "ちっちゃいけど元気", "250000円（税込）", "ベンガル", "男の子", "ブラウンスポッテッドタビー", "2024-10-05"));
-        kittens.add(new Kitten(2L, "/images/cat2.jpg", "茶色薄め", "260000円（税込）", "ベンガル", "女の子", "ブラウンスポッテッドタビー", "2024-10-05"));
-        kittens.add(new Kitten(3L, "/images/cat3.jpg", "ぴえん顔", "280000円（税込）", "ベンガル", "女の子", "ブラウンスポッテッドタビー", "2024-10-05"));
-    }
+    // 假设使用一个 Mapper 或 Repository 来操作数据库
+    @Autowired
+    private KittenMapper kittenMapper;
 
     @Override
     public List<Kitten> getAllKittens() {
-        return new ArrayList<>(kittens); // 返回所有子猫数据
+        return kittenMapper.getAllKittens();
     }
 
     @Override
     public void addKitten(Kitten kitten) {
-        kittens.add(kitten); // 添加新子猫
+        kittenMapper.addKitten(kitten);
     }
 
     @Override
-    public void updateKitten(Long id, Kitten kitten) {
-        for (int i = 0; i < kittens.size(); i++) {
-            if (kittens.get(i).getId().equals(id)) {
-                kittens.set(i, kitten); // 更新子猫信息
-                return;
-            }
-        }
+    public Kitten updateKitten(int id, Kitten kitten) {
+        kitten.setId(id);
+        kittenMapper.updateKitten(kitten);
+        return kitten;
     }
 
     @Override
-    public void deleteKitten(Long id) {
-        kittens.removeIf(kitten -> kitten.getId().equals(id)); // 删除指定子猫
+    public boolean deleteKitten(int id) {
+        int rowsAffected = kittenMapper.deleteKitten(id);
+        return rowsAffected > 0;
     }
+    
+//    @Component
+//    public class DatabaseTest implements CommandLineRunner {
+//        @Autowired
+//        private KittenMapper kittenMapper;
+//
+//        @Override
+//        public void run(String... args) throws Exception {
+//            System.out.println("Testing Database Connection...");
+//            List<Kitten> kittens = kittenMapper.getAllKittens();
+//            System.out.println("Kittens: " + kittens);
+//        }
+//    }
 }

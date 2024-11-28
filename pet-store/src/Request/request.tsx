@@ -13,6 +13,7 @@ const axiosInstance: AxiosInstance = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  withCredentials: true, // 跨域时携带认证信息
 });
 
 const axiosInstance2 : AxiosInstance = axios.create({

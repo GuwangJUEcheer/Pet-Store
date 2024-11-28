@@ -6,10 +6,7 @@ import java.util.List;
 
 public interface KittenService {
     List<Kitten> getAllKittens();
-
     void addKitten(Kitten kitten);
-
-    void updateKitten(Long id, Kitten kitten);
-
-    void deleteKitten(Long id);
+    Kitten updateKitten(int id, Kitten kitten);
+    boolean deleteKitten(int id);
 }

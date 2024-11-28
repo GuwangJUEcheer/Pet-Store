@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axiosInstance from "../Request/request";
 import "../css/News.css";
 
 // 定义子猫信息的类型
-type Kitten = {
+interface Kitten {
   id: number;
-  img: string;
   name: string;
-  price: string;
-  breed: string;
-  gender: string;
+  price: number; 
+  gender: string; 
   color: string;
   birthday: string;
-};
+  status: string; 
+  img_url: string | null;
+}
+
 
 const News: React.FC = () => {
   const [kittenData, setKittenData] = useState<Kitten[]>([]); // 子猫数据
@@ -24,55 +25,57 @@ const News: React.FC = () => {
 
   // 获取后端数据
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get<Kitten[]>("http://localhost:8080/api/kittens");
-        setKittenData(response.data);
-        setLoading(false);
-      } catch (err) {
-        setError("子猫情報を読み込めませんでした。");
-        setLoading(false);
-      }
+    const fetchData = () => {
+      axiosInstance
+        .get<Kitten[]>("/api/kittens")
+        .then((response) => {
+          setKittenData(response.data); // 直接使用响应数据
+          setLoading(false);
+        })
+        .catch((err) => {
+          setError(err.message || "子猫情報を読み込めませんでした。");
+          setLoading(false);
+        });
     };
     fetchData();
   }, []);
-
+  
   const handleAddKitten = () => {
     setModalType("add");
     setCurrentKitten({
       id: 0,
-      img: "",
+      img_url: "",
       name: "",
-      price: "",
-      breed: "",
+      price: 0, // 修正为数字类型，符合数据库字段
       gender: "",
       color: "",
       birthday: "",
+      status: "予約受付中",
     });
     setIsModalOpen(true);
   };
-
+  
   const handleEditKitten = (kitten: Kitten) => {
     setModalType("edit");
     setCurrentKitten(kitten);
     setIsModalOpen(true);
   };
-
+  
   const handleDeleteKitten = (kitten: Kitten) => {
     setModalType("delete");
     setCurrentKitten(kitten);
     setIsModalOpen(true);
   };
-
+  
   const handleSaveKitten = async () => {
     if (!currentKitten) return;
-
+  
     try {
       if (modalType === "add") {
-        const response = await axios.post<Kitten>("http://localhost:8080/api/kittens", currentKitten);
+        const response = await axiosInstance.post<Kitten>("/api/kittens", currentKitten);
         setKittenData((prevData) => [...prevData, response.data]);
       } else if (modalType === "edit") {
-        await axios.put(`http://localhost:8080/api/kittens/${currentKitten.id}`, currentKitten);
+        await axiosInstance.put(`/api/kittens/${currentKitten.id}`, currentKitten);
         setKittenData((prevData) =>
           prevData.map((kitten) =>
             kitten.id === currentKitten.id ? currentKitten : kitten
@@ -85,12 +88,12 @@ const News: React.FC = () => {
       setError("保存に失敗しました。");
     }
   };
-
+  
   const handleConfirmDelete = async () => {
     if (!currentKitten) return;
-
+  
     try {
-      await axios.delete(`http://localhost:8080/api/kittens/${currentKitten.id}`);
+      await axiosInstance.delete(`/api/kittens/${currentKitten.id}`);
       setKittenData((prevData) =>
         prevData.filter((kitten) => kitten.id !== currentKitten.id)
       );
@@ -100,42 +103,45 @@ const News: React.FC = () => {
       setError("削除に失敗しました。");
     }
   };
-
+  
   const handleCancel = () => {
     setIsModalOpen(false);
     setCurrentKitten(null);
   };
-
+  
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setCurrentKitten((prevKitten) => (prevKitten ? { ...prevKitten, [name]: value } : null));
+    setCurrentKitten((prevKitten) => {
+      if (prevKitten) {
+        // 处理价格字段为数字类型
+        const updatedValue = name === "price" ? parseFloat(value) || 0 : value;
+        return { ...prevKitten, [name]: updatedValue };
+      }
+      return null;
+    });
   };
-
+  
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
-
+  
   return (
     <div className="news-container">
       <h1>最新子猫紹介</h1>
       <p className="subtitle">Kitten Info</p>
-
+  
       <button className="add-button" onClick={handleAddKitten}>
         新しい子猫を追加
       </button>
-
+  
       <div className="kitten-grid">
         {kittenData.map((kitten) => (
           <div key={kitten.id} className="kitten-card">
-            <img src={kitten.img} alt={kitten.name} className="kitten-image" />
+            <img src={kitten.img_url || "default.jpg"} alt={kitten.name} className="kitten-image" />
             <div className="kitten-info">
               <h2>{kitten.name}</h2>
-              <p className="price">{kitten.price}</p>
+              <p className="price">価格: ¥{kitten.price}</p>
               <table>
                 <tbody>
-                  <tr>
-                    <td>猫種：</td>
-                    <td>{kitten.breed}</td>
-                  </tr>
                   <tr>
                     <td>性別：</td>
                     <td>{kitten.gender}</td>
@@ -147,6 +153,10 @@ const News: React.FC = () => {
                   <tr>
                     <td>誕生日：</td>
                     <td>{kitten.birthday}</td>
+                  </tr>
+                  <tr>
+                    <td>状態：</td>
+                    <td>{kitten.status}</td>
                   </tr>
                 </tbody>
               </table>
@@ -162,7 +172,7 @@ const News: React.FC = () => {
           </div>
         ))}
       </div>
-
+  
       {isModalOpen && (
         <div className="modal">
           <div className="modal-content">
@@ -190,18 +200,9 @@ const News: React.FC = () => {
                 <label>
                   価格：
                   <input
-                    type="text"
+                    type="number"
                     name="price"
-                    value={currentKitten?.price || ""}
-                    onChange={handleInputChange}
-                  />
-                </label>
-                <label>
-                  猫種：
-                  <input
-                    type="text"
-                    name="breed"
-                    value={currentKitten?.breed || ""}
+                    value={currentKitten?.price || 0}
                     onChange={handleInputChange}
                   />
                 </label>
@@ -232,6 +233,24 @@ const News: React.FC = () => {
                     onChange={handleInputChange}
                   />
                 </label>
+                <label>
+                  状態：
+                  <input
+                    type="text"
+                    name="status"
+                    value={currentKitten?.status || ""}
+                    onChange={handleInputChange}
+                  />
+                </label>
+                <label>
+                  画像URL：
+                  <input
+                    type="text"
+                    name="img_url"
+                    value={currentKitten?.img_url || ""}
+                    onChange={handleInputChange}
+                  />
+                </label>
                 <div className="modal-buttons">
                   <button onClick={handleSaveKitten}>保存</button>
                   <button onClick={handleCancel}>キャンセル</button>
@@ -243,6 +262,6 @@ const News: React.FC = () => {
       )}
     </div>
   );
-};
-
+}
+ 
 export default News;
