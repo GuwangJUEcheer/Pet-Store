@@ -41,11 +41,11 @@ axiosInstance.interceptors.request.use(
 
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse<ApiResponse>) => {
-    const { code } = response.data;
-    if (code !== 200) {
-      console.error(`API Error`);
-      return Promise.reject(new Error(`API Error`));
-    }
+    // const code = response.data.code;
+    // if (code !== 200) {
+    //   console.error(`API Error`);
+    //   return Promise.reject(new Error(`API Error`));
+    // }
     return response;
   },
   (error) => {

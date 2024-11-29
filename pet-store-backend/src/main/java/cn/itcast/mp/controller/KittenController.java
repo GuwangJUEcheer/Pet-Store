@@ -10,7 +10,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/kittens")
-@CrossOrigin(origins = "http://localhost:3000") // 允许跨域
 public class KittenController {
 
     @Autowired

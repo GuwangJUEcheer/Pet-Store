@@ -9,9 +9,9 @@ public class RequestConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("*") // 允许所有来源
-                .allowedMethods("*") // 允许所有方法
-                .allowedHeaders("*") // 允许所有头部
-                .allowCredentials(false); // 不允许凭证
+                .allowedOrigins("http://localhost:3000") // 替换为允许的具体来源
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // 明确允许的方法
+                .allowedHeaders("*") // 允许所有请求头
+                .allowCredentials(true); // 允许携带凭证
     }
 }
