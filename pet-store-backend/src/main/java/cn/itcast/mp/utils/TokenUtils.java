@@ -1,12 +1,16 @@
 package cn.itcast.mp.utils;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class TokenUtils {
 
     // 定义密钥（建议长度为 32 字节以上）
@@ -31,12 +35,17 @@ public class TokenUtils {
      * 解析 JWT
      */
     public static Claims parseToken(String token) {
-        return Jwts.parser()
-                .setSigningKey(SECRET_KEY) // 设置密钥
-                .parseClaimsJws(token) // 解析 JWT
-                .getBody(); // 获取声明部分
+        try {
+            return Jwts.parser()
+                    .setSigningKey(SECRET_KEY)
+                    .parseClaimsJws(token)
+                    .getBody();
+        } catch (ExpiredJwtException e) {
+            throw e;
+        } catch (JwtException e) {
+            throw e;
+        }
     }
-
     /**
      * 验证 Token 是否有效
      */

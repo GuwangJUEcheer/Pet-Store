@@ -22,6 +22,6 @@ public class InterCeptorConfig implements WebMvcConfigurer{
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(tokenInterceptor)
 				.addPathPatterns("/**") // 所有路径
-				.excludePathPatterns("/login", "/register"); // 排除 login 和 register
+				.excludePathPatterns("/login", "/register","/api/public/kittens"); // 排除 login 和 register
 	}	
 }

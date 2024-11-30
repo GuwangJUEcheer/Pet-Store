@@ -1,6 +1,6 @@
 import React from 'react';
-import { Form, Input, Button, Card, Typography, Space } from 'antd';
-import '../css/LoginPage.css'; // 自定义样式
+import { Form, Input, Button, Card, Typography, Space, message } from 'antd';
+import '../css/LoginPage.css';
 import axios from '../Request/request';
 import { useUser } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
@@ -10,30 +10,35 @@ const { Title, Text } = Typography;
 const LoginPage: React.FC = () => {
   const { login } = useUser();
   const navigate = useNavigate();
- const  handleLogin = async (values: { username: string; password: string }) => {
-  
+
+  const handleLogin = async (values: { username: string; password: string }) => {
     try {
-      axios.post<{ loginResult: string; token: string; userId: number; userName: string }>("/login", {
+      const response = await axios.post<{ loginResult: string; token: string; userId: number; userName: string }>("/login", {
         userName: values.username,
         passWord: values.password,
-      }).then((response) =>{
-        console.log(response);
-        console.log(response.data);
-        const { loginResult, userName, userId,token} = response.data;
-        if(loginResult == "OK"){
-          login({
-           username: userName,
-           role: "", // 从响应中获取用户角色
-           userId:userId,
-         });
-         if (token) {
-          localStorage.setItem('token', token);
+      });
+
+      const { loginResult, userName, userId, token } = response.data;
+
+      if (loginResult === "OK") {
+        login({
+          username: userName,
+          role: "admin", // 示例角色设置为管理员
+          userId: userId,
+        });
+
+        if (token) {
+          localStorage.setItem("token", token);
         }
-        navigate("/success");
+
+        message.success("登录成功！");
+        navigate("/");
+      } else {
+        message.error("登录失败，请检查用户名或密码！");
       }
-    });
     } catch (error) {
       console.error(error);
+      message.error("登录出错，请稍后再试！");
     }
   };
 
@@ -48,7 +53,7 @@ const LoginPage: React.FC = () => {
           name="login"
           layout="vertical"
           initialValues={{ remember: true }}
-          onFinish={handleLogin} // 提交时触发
+          onFinish={handleLogin}
         >
           <Form.Item
             label="Username"

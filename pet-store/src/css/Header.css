@@ -47,6 +47,51 @@
   color: #fff;
 }
 
+.user-info {
+  margin-top: 8px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px; /* 添加用户名和登出按钮的间距 */
+}
+
+.user-info .ant-typography {
+  font-size: 16px;
+  color: #333;
+}
+
+.user-info .ant-btn-link {
+  color: #007bff;
+  font-size: 14px;
+}
+
+.user-info .ant-btn-link:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.username {
+  font-size: 16px;
+  font-weight: bold;
+  color: #555;
+}
+
+.logout-btn {
+  font-size: 14px;
+  color: #007bff;
+}
+
+.logout-btn:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.guest {
+  font-size: 16px;
+  color: #888;
+}
+
+
 @media screen and (max-width: 896px) {
   .contactBtn {
       position: static;

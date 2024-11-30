@@ -74,19 +74,4 @@ public class Kitten {
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
     }
-    
-    @Override
-    public String toString() {
-        return "Kitten{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", gender='" + gender + '\'' +
-                ", color='" + color + '\'' +
-                ", birthday=" + birthday +
-                ", status='" + status + '\'' +
-                ", imgUrl='" + imgUrl + '\'' +
-                '}';
-    }
-
 }
