@@ -26,7 +26,7 @@ const Sidebar: React.FC = () => {
               <li><Link to="/minuet/">ミヌエットとは<span>What is Minuet Cat</span></Link></li>
               <li><Link to="/buy/">ご購入について<span>Buying info</span></Link></li>
               <li><Link to="/shop/">店舗情報・アクセス<span>Shop info・Access</span></Link></li>
-              <li><Link to="https://www.doriapet.net/" target="_blank" rel="noopener noreferrer">自社ブランドショップサイト<span>Online Shop</span></Link></li>
+              <li><Link to="https://www.nyatorajp.com/" target="_blank" rel="noopener noreferrer">自社ブランドショップサイト<span>Online Shop</span></Link></li>
             </ul>
           </nav>
           <ul className="snsList">

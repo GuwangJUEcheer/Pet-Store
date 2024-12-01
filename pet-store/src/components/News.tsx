@@ -15,6 +15,22 @@ interface Kitten {
 }
 
 const News: React.FC = () => {
+
+  const fetchData = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      setIsAdmin(!!token); // 根据是否存在 token 判断管理员状态
+      const endpoint = token ? "/api/kittens" : "/api/public/kittens";
+      const response = await axiosInstance.get<Kitten[]>(endpoint);
+      setKittenData(response.data);
+    } catch (err) {
+      setError("子猫情報を読み込めませんでした。");
+      console.error("获取子猫信息失败:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const [kittenData, setKittenData] = useState<Kitten[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState<"add" | "edit" | "delete">("add");
@@ -26,20 +42,6 @@ const News: React.FC = () => {
 
   // 获取后端数据
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        setIsAdmin(!!token); // 根据是否存在 token 判断管理员状态
-        const endpoint = token ? "/api/kittens" : "/api/public/kittens";
-        const response = await axiosInstance.get<Kitten[]>(endpoint);
-        setKittenData(response.data);
-      } catch (err) {
-        setError("子猫情報を読み込めませんでした。");
-        console.error("获取子猫信息失败:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
     fetchData();
   }, []);
 
@@ -58,6 +60,27 @@ const News: React.FC = () => {
     setIsModalOpen(true);
   };
 
+  const chooseFile = async (e: any) => {
+    if (e.target.files?.[0]) {
+      const file = e.target.files[0];
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("kittenDvo",JSON.stringify(currentKitten));
+      try {
+        const response = await axiosInstance.post("/api/upload", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+        const relativePath = response.data.path; // 从后端获取的文件访问路径
+        setCurrentKitten((prevKitten) =>
+          prevKitten ? { ...prevKitten, img_url: relativePath } : null
+        );
+      } catch (err) {
+        console.error("图片上传失败:", err);
+      }
+    }
+  }
   const handleEditKitten = (kitten: Kitten) => {
     setModalType("edit");
     setCurrentKitten(kitten);
@@ -130,9 +153,9 @@ const News: React.FC = () => {
     setCurrentKitten((prevKitten) =>
       prevKitten
         ? {
-            ...prevKitten,
-            [name]: name === "price" ? parseFloat(value) || 0 : value,
-          }
+          ...prevKitten,
+          [name]: name === "price" ? parseFloat(value) || 0 : value,
+        }
         : null
     );
   };
@@ -146,7 +169,7 @@ const News: React.FC = () => {
       <p className="subtitle">Kitten Info</p>
 
       {isAdmin && (
-        <button className="add-button" onClick={handleAddKitten}>
+        <button className="add-button" onClick={() => handleAddKitten()}>
           新しい子猫を追加
         </button>
       )}
@@ -310,27 +333,7 @@ const News: React.FC = () => {
                     <input
                       type="file"
                       accept="image/*"
-                      onChange={async (e) => {
-                        if (e.target.files?.[0]) {
-                          const file = e.target.files[0];
-                          const formData = new FormData();
-                          formData.append("file", file);
-
-                          try {
-                            const response = await axiosInstance.post("/api/upload", formData, {
-                              headers: {
-                                "Content-Type": "multipart/form-data",
-                              },
-                            });
-                            const relativePath = response.data.path; // 从后端获取的文件访问路径
-                            setCurrentKitten((prevKitten) =>
-                              prevKitten ? { ...prevKitten, img_url: relativePath } : null
-                            );
-                          } catch (err) {
-                            console.error("图片上传失败:", err);
-                          }
-                        }
-                      }}
+                      onChange={chooseFile}
                     />
                   </label>
                 </div>

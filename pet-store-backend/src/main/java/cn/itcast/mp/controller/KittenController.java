@@ -56,7 +56,7 @@ public class KittenController {
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<?> uploadImage(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<?> uploadImage(@RequestParam("file") MultipartFile file,@RequestParam("kittenDvo")Kitten kitten) {
         if (file.isEmpty()) {
             return ResponseEntity.badRequest().body("File is empty");
         }
