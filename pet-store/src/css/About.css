@@ -116,6 +116,7 @@
 
 /* 文字内容样式 */
 .text-content {
+  font-family: 'MochiyPopOne', sans-serif;
   flex: 1; /* 与图片相同的占用比例 */
   max-width: 50%; /* 最大宽度为父容器的50% */
   line-height: 1.8; /* 增加行高，提高可读性 */
@@ -131,6 +132,7 @@
 
 /* 文字内容中的段落 */
 .text-content p {
+  font-size: 18px;
   margin-bottom: 16px;
   color: #555;
 }
@@ -148,9 +150,12 @@
 
 .text-content ol li,
 .text-content ul li {
+  font-size: 18px;
   margin-bottom: 10px;
 }
-
+h3{
+  font-size: 25px;
+}
 /* 模态框样式 */
 .modal {
   position: fixed;

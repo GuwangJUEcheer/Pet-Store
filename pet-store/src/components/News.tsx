@@ -180,7 +180,7 @@ const News: React.FC = () => {
             <img src={kitten.img_url || "default.jpg"} alt={kitten.name} className="kitten-image" />
             <div className="kitten-info">
               <h2>{kitten.name}</h2>
-              <p className="price">価格: ¥{kitten.price}</p>
+              <p className="price">価格: {kitten.price}円</p>
               <table>
                 <tbody>
                   <tr>

@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
                 <Link to="/">TOP</Link>
               </li>
               <li>
-                <Link to="/about/">Cat Loungeとは</Link>
+                <Link to="/about/">DoriaPetとは</Link>
               </li>
               <li>
                 <Link to="/news/">最新子猫情報</Link>

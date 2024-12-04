@@ -33,6 +33,8 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: left;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  font-family: 'MochiyPopOne', sans-serif;
+  font-size: 18px;
 }
 
 .kitten-card:hover {
@@ -77,12 +79,15 @@
 table {
   width: 100%;
   margin-top: 10px;
+  border-collapse: collapse; /* 移除表格边框间的空隙 */
+  border: none; /* 移除表格的边框 */
 }
 
 table td {
   padding: 3px 5px;
   font-size: 0.9rem;
   color: #666;
+  border: none; /* 确保单元格之间没有边框 */
 }
 
 table td:first-child {
@@ -90,6 +95,7 @@ table td:first-child {
   width: 40%;
   color: #999;
 }
+
 
 /* 弹窗背景遮罩样式 */
 .modal {
@@ -260,3 +266,4 @@ table td:first-child {
   background-color: #d88e8e;
   transform: scale(1.05);
 }
+

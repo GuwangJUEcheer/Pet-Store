@@ -41,7 +41,8 @@
 }
 
 .shopinfo-details p {
-  font-size: 1rem;
+  font-family: 'MochiyPopOne', sans-serif;
+  font-size: 18px;
   color: #555;
   line-height: 1.8;
   margin-bottom: 15px;
