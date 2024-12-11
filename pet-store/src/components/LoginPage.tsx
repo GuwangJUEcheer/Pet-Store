@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Input, Button, Card, Typography, Space, message } from 'antd';
 import '../css/LoginPage.css';
-import axios from '../Request/request';
+import {axiosInstance} from '../Request/request';
 import { useUser } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
 
@@ -13,7 +13,7 @@ const LoginPage: React.FC = () => {
 
   const handleLogin = async (values: { username: string; password: string }) => {
     try {
-      const response = await axios.post<{ loginResult: string; token: string; userId: number; userName: string }>("/login", {
+      const response = await axiosInstance.post<{ loginResult: string; token: string; userId: number; userName: string }>("/login", {
         userName: values.username,
         passWord: values.password,
       });

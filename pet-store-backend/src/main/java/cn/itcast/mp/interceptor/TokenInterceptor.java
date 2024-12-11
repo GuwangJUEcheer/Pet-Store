@@ -12,14 +12,11 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 
 @Component
 public class TokenInterceptor implements HandlerInterceptor {
 
     private static final Logger logger = LoggerFactory.getLogger(TokenInterceptor.class);
-    private static final List<String> EXCLUDE_PATHS = Arrays.asList("/login", "/register", "/api/public/kittens");
 
     private final TokenUtils tokenUtils;
 
@@ -31,11 +28,6 @@ public class TokenInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String uri = request.getRequestURI();
         logger.info("拦截到的路径: {}", uri);
-
-        if (EXCLUDE_PATHS.contains(uri)) {
-            logger.info("该路径被排除，不需要拦截");
-            return true;
-        }
 
         if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
             response.setStatus(HttpServletResponse.SC_OK);
@@ -61,6 +53,7 @@ public class TokenInterceptor implements HandlerInterceptor {
             return false;
         } catch (JwtException e) {
             logger.error("无效的 Token");
+            e.printStackTrace();
             writeErrorResponse(response, HttpServletResponse.SC_UNAUTHORIZED, "Invalid token");
             return false;
         }

@@ -9,7 +9,7 @@ public interface KittenService {
 
     void addKitten(Kitten kitten);
 
-    Kitten updateKitten(int id, Kitten kitten);
+    Kitten updateKitten(Kitten kitten);
 
     boolean deleteKitten(int id);
 }

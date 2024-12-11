@@ -25,8 +25,7 @@ public class KittenServiceImpl implements KittenService {
     }
 
     @Override
-    public Kitten updateKitten(int id, Kitten kitten) {
-        kitten.setId(id);
+    public Kitten updateKitten(Kitten kitten) {
         kittenMapper.updateKitten(kitten);
         return kitten;
     }

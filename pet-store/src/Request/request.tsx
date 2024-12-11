@@ -7,21 +7,23 @@ interface ApiResponse<T = any> {
   success?: boolean; // 可选的业务成功标志
 }
 
-const axiosInstance: AxiosInstance = axios.create({
+
+export const axiosInstance: AxiosInstance = axios.create({
   baseURL: 'http://localhost:8080',
-  timeout: 10000,
+  timeout: 100000,
   headers: {
     'Content-Type': 'application/json',
   },
   withCredentials: true, // 跨域时携带认证信息
 });
 
-const axiosInstance2 : AxiosInstance = axios.create({
-  baseURL: 'http://localhost:8080/file',
+export const axiosInstance2 : AxiosInstance = axios.create({
+  baseURL: 'http://localhost:8080/api/',
   timeout: 10000,
   headers: {
-    'Content-Type': 'form-data/multipart',
+    'Content-Type': 'multipart/form-data',
   },
+  withCredentials: true, // 跨域时携带认证信息
 });
 
 axiosInstance.interceptors.request.use(
@@ -53,8 +55,33 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-export default axiosInstance;
-// export default {
-//   ,
-//   axiosInstance2
-// }
+
+axiosInstance2.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    // 设置 Authorization
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    console.error('Request Error:', error);
+    return Promise.reject(error);
+  }
+);
+
+axiosInstance2.interceptors.response.use(
+  (response: AxiosResponse<ApiResponse>) => {
+    // const code = response.data.code;
+    // if (code !== 200) {
+    //   console.error(`API Error`);
+    //   return Promise.reject(new Error(`API Error`));
+    // }
+    return response;
+  },
+  (error) => {
+    console.error('HTTP Error:', error.response?.data || error.message);
+    return Promise.reject(error);
+  }
+);

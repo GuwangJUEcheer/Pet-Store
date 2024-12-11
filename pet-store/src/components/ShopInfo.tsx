@@ -15,6 +15,7 @@ const ShopInfo: React.FC = () => {
             width="600"
             height="400"
             style={{ border: 0 }}
+            
             allowFullScreen={true}
             loading="lazy"
             title="Google Map"

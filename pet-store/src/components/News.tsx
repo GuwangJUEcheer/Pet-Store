@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import axiosInstance from "../Request/request";
+import { axiosInstance, axiosInstance2 } from "../Request/request";
 import "../css/News.css";
+import { message } from "antd";
 
 // 定义子猫信息的类型
 interface Kitten {
@@ -11,10 +12,11 @@ interface Kitten {
   color: string;
   birthday: string;
   status: string;
-  img_url: string | null;
+  imgUrl: string | null;
 }
 
 const News: React.FC = () => {
+  const formData = new FormData();
 
   const fetchData = async () => {
     try {
@@ -23,14 +25,17 @@ const News: React.FC = () => {
       const endpoint = token ? "/api/kittens" : "/api/public/kittens";
       const response = await axiosInstance.get<Kitten[]>(endpoint);
       setKittenData(response.data);
+      if(formData.get("img")!== null){
+        formData.delete("img"); 
+      }
     } catch (err) {
       setError("子猫情報を読み込めませんでした。");
       console.error("获取子猫信息失败:", err);
     } finally {
       setLoading(false);
+      console.log(kittenData);
     }
   };
-
   const [kittenData, setKittenData] = useState<Kitten[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState<"add" | "edit" | "delete">("add");
@@ -49,7 +54,7 @@ const News: React.FC = () => {
     setModalType("add");
     setCurrentKitten({
       id: 0,
-      img_url: "",
+      imgUrl: "",
       name: "",
       price: 0,
       gender: "",
@@ -62,23 +67,7 @@ const News: React.FC = () => {
 
   const chooseFile = async (e: any) => {
     if (e.target.files?.[0]) {
-      const file = e.target.files[0];
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("kittenDvo",JSON.stringify(currentKitten));
-      try {
-        const response = await axiosInstance.post("/api/upload", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-        const relativePath = response.data.path; // 从后端获取的文件访问路径
-        setCurrentKitten((prevKitten) =>
-          prevKitten ? { ...prevKitten, img_url: relativePath } : null
-        );
-      } catch (err) {
-        console.error("图片上传失败:", err);
-      }
+      formData.set("img", e.target.files[0]);
     }
   }
   const handleEditKitten = (kitten: Kitten) => {
@@ -110,21 +99,24 @@ const News: React.FC = () => {
 
   const handleSaveKitten = async () => {
     if (!currentKitten || !validateInputs()) return;
-
+    formData.set("kittenDvo", JSON.stringify(currentKitten));
     try {
       if (modalType === "add") {
-        const response = await axiosInstance.post<Kitten>("/api/kittens", currentKitten);
-        setKittenData((prevData) => [...prevData, response.data]);
+        if(formData.get("img") === null){
+          message.error("画像を選択してください。");
+          return;
+        }
+        await axiosInstance2.post("test", formData);
+        fetchData();
       } else if (modalType === "edit") {
-        await axiosInstance.put(`/api/kittens/${currentKitten.id}`, currentKitten);
-        setKittenData((prevData) =>
-          prevData.map((kitten) => (kitten.id === currentKitten.id ? currentKitten : kitten))
-        );
+        await axiosInstance2.post(`updateKitten`, formData);
+        fetchData();
       }
       setIsModalOpen(false);
       setCurrentKitten(null);
       setValidationErrors({});
     } catch (err) {
+      console.error("保存子猫信息失败:", err);
       setError("保存に失敗しました。");
     }
   };
@@ -177,7 +169,11 @@ const News: React.FC = () => {
       <div className="kitten-grid">
         {kittenData.map((kitten) => (
           <div key={kitten.id} className="kitten-card">
-            <img src={kitten.img_url || "default.jpg"} alt={kitten.name} className="kitten-image" />
+            <img
+              src={require(`../images/${kitten.imgUrl}`)}
+              alt={kitten.name}
+              className="kitten-image"
+            />
             <div className="kitten-info">
               <h2>{kitten.name}</h2>
               <p className="price">価格: {kitten.price}円</p>
@@ -351,3 +347,4 @@ const News: React.FC = () => {
 };
 
 export default News;
+
