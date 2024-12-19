@@ -21,7 +21,7 @@ KittenController {
     private KittenService kittenService;
 
     // 静态资源文件存储路径
-    private static final String IMAGE_DIRECTORY = "C:\\Users\\17685\\Documents\\Pet-Store\\pet-store\\src\\images";
+    private static final String IMAGE_DIRECTORY = "C:\\Users\\17685\\Documents\\Pet-Store\\pet-store\\src\\images\\";
 
     @GetMapping("/public/kittens")
     public ResponseEntity<List<Kitten>> getPublicKittens() {
