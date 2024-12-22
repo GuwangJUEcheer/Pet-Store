@@ -232,20 +232,63 @@ table td:first-child {
 /* 子猫卡片内的操作按钮容器 */
 .kitten-buttons {
   display: flex;
-  justify-content: center; /* 按钮居中 */
-  gap: 10px;
-  margin-top: 10px;
+  justify-content: space-between; /* 按钮均匀分布 */
+  gap: 10px; /* 按钮间距 */
+  margin-top: 15px; /* 增加顶部间距 */
 }
 
-/* 子猫卡片内按钮样式 */
-.kitten-buttons .edit-button,
+/* 子猫卡片内的详细按钮 */
+.kitten-buttons .details-button {
+  background-color: #007bff; /* 蓝色背景 */
+  color: white; /* 白色文字 */
+  font-size: 1rem; /* 字体大小 */
+  font-weight: bold; /* 字体加粗 */
+  padding: 10px 20px; /* 内边距 */
+  border: none; /* 无边框 */
+  border-radius: 5px; /* 圆角 */
+  cursor: pointer; /* 鼠标样式 */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.kitten-buttons .details-button:hover {
+  background-color: #0056b3; /* 深蓝色背景 */
+  transform: scale(1.05); /* 悬停放大效果 */
+}
+
+/* 编辑按钮样式 */
+.kitten-buttons .edit-button {
+  background-color: #28a745; /* 绿色背景 */
+  color: white; /* 白色文字 */
+  font-size: 1rem; /* 字体大小 */
+  font-weight: bold; /* 字体加粗 */
+  padding: 10px 20px; /* 内边距 */
+  border: none; /* 无边框 */
+  border-radius: 5px; /* 圆角 */
+  cursor: pointer; /* 鼠标样式 */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.kitten-buttons .edit-button:hover {
+  background-color: #218838; /* 深绿色背景 */
+  transform: scale(1.05); /* 悬停放大效果 */
+}
+
+/* 删除按钮样式 */
 .kitten-buttons .delete-button {
-  padding: 8px 15px;
-  font-size: 0.9rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  background-color: #dc3545; /* 红色背景 */
+  color: white; /* 白色文字 */
+  font-size: 1rem; /* 字体大小 */
+  font-weight: bold; /* 字体加粗 */
+  padding: 10px 20px; /* 内边距 */
+  border: none; /* 无边框 */
+  border-radius: 5px; /* 圆角 */
+  cursor: pointer; /* 鼠标样式 */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.kitten-buttons .delete-button:hover {
+  background-color: #c82333; /* 深红色背景 */
+  transform: scale(1.05); /* 悬停放大效果 */
 }
 
 /* 新增按钮样式 */
@@ -253,8 +296,8 @@ table td:first-child {
   display: inline-block;
   background-color: #e3a7a2; /* 按钮背景色 */
   color: white; /* 按钮文字颜色 */
-  padding: 10px 20px; /* 内边距 */
-  font-size: 1rem; /* 字体大小 */
+  padding: 12px 25px; /* 内边距 */
+  font-size: 1.2rem; /* 字体大小 */
   border: none; /* 去掉边框 */
   border-radius: 8px; /* 圆角 */
   cursor: pointer; /* 鼠标样式 */
@@ -263,7 +306,6 @@ table td:first-child {
 }
 
 .add-button:hover {
-  background-color: #d88e8e;
-  transform: scale(1.05);
+  background-color: #d88e8e; /* 悬停时背景颜色 */
+  transform: scale(1.1); /* 悬停放大效果 */
 }
-

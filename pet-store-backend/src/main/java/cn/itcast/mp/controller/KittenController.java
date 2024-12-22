@@ -1,9 +1,11 @@
 package cn.itcast.mp.controller;
 
 import cn.itcast.mp.model.Kitten;
+import cn.itcast.mp.model.KittenParent;
 import cn.itcast.mp.service.KittenService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -11,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -21,7 +24,7 @@ KittenController {
     private KittenService kittenService;
 
     // 静态资源文件存储路径
-    private static final String IMAGE_DIRECTORY = "C:\\Users\\17685\\Documents\\Pet-Store\\pet-store\\src\\images\\";
+    private static final String IMAGE_DIRECTORY = "C:\\Users\\WINDOWS\\Pet-Store\\pet-store\\public\\images\\";
 
     @GetMapping("/public/kittens")
     public ResponseEntity<List<Kitten>> getPublicKittens() {
@@ -33,6 +36,33 @@ KittenController {
     public ResponseEntity<List<Kitten>> getAllKittens() {
         List<Kitten> kittens = kittenService.getAllKittens();
         return ResponseEntity.ok(kittens);
+    }
+
+    @GetMapping("/public/kittens/{id}")
+    public ResponseEntity<?> getKittenById(@PathVariable Long id) {
+        Optional<Kitten> kitten = kittenService.findKittenById(id);
+        if (kitten.isPresent()) {
+            return ResponseEntity.ok(kitten.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Kitten not found");
+        }
+    }
+
+    @GetMapping("/public/kittens/{id}/images")
+    public ResponseEntity<?> getKittenImages(@PathVariable Long id) {
+        try {
+            List<String> images = kittenService.findKittenImagesByKittenId(id);
+            return ResponseEntity.ok(images);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to fetch images");
+        }
+    }
+
+
+    @GetMapping("/public/kittens/{id}/parents")
+    public ResponseEntity<?> getKittenParents(@PathVariable Long id) {
+        List<KittenParent> parents = kittenService.findKittenParentsByKittenId(id);
+        return ResponseEntity.ok(parents);
     }
 
     @PostMapping("/kittens")

@@ -1,0 +1,178 @@
+/* 容器样式 */
+.kitten-details-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* 返回按钮样式 */
+.back-button {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #0056b3;
+}
+
+/* 内容布局 */
+.details-content {
+  display: flex;
+  gap: 20px;
+}
+
+/* 图片展示区域 */
+.image-section {
+  flex: 1;
+  text-align: center; /* 图片居中 */
+}
+
+/* 主图片样式 */
+.main-image {
+  width: 100%;
+  max-width: 400px; /* 最大宽度 */
+  height: 300px; /* 高度固定 */
+  object-fit: cover; /* 保持图片比例 */
+  border-radius: 10px; /* 圆角 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+  margin-bottom: 10px; /* 下边距 */
+}
+
+/* 缩略图容器 */
+.thumbnail-container {
+  display: flex;
+  justify-content: center; /* 水平居中 */
+  gap: 10px; /* 缩略图间距 */
+}
+
+/* 缩略图样式 */
+.thumbnail {
+  width: 70px;
+  height: 70px;
+  border-radius: 5px;
+  object-fit: cover; /* 保持图片比例 */
+  cursor: pointer; /* 鼠标悬浮样式 */
+  transition: transform 0.3s ease, border 0.3s ease; /* 动画效果 */
+}
+
+/* 缩略图悬浮与选中效果 */
+.thumbnail:hover,
+.thumbnail.active {
+  transform: scale(1.1); /* 放大效果 */
+  border: 2px solid #007bff; /* 边框颜色变化 */
+}
+
+/* 详细信息区域 */
+.details-section {
+  flex: 1;
+}
+
+/* 标题样式 */
+.details-section h1 {
+  font-size: 28px; /* 字体大小 */
+  margin-bottom: 10px; /* 与价格间距 */
+  font-weight: bold; /* 加粗 */
+  color: #333;
+  text-transform: capitalize; /* 首字母大写 */
+}
+
+/* 价格样式 */
+.price {
+  font-size: 22px;
+  color: #ff5733;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* 表格样式 */
+.details-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+  color: #555;
+}
+
+/* 表格单元格样式 */
+.details-table th,
+.details-table td {
+  padding: 12px;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid #ddd; /* 底边框 */
+}
+
+/* 表头样式 */
+.details-table th {
+  background-color: #f9f9f9; /* 表头背景色 */
+  font-weight: bold;
+  color: #444;
+}
+
+/* 表格内容样式 */
+.details-table td {
+  background-color: #fff; /* 内容背景色 */
+  color: #333;
+}
+
+/* 父母展示区域 */
+.parents-section {
+  margin-top: 40px;
+  text-align: center; /* 标题居中 */
+}
+
+/* 父母标题样式 */
+.parents-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #333;
+  border-bottom: 2px solid #f0f0f0;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+/* 父母信息布局 */
+.parents-container {
+  display: flex;
+  justify-content: center; /* 父母信息居中排列 */
+  gap: 40px; /* 间距 */
+  flex-wrap: wrap; /* 响应式换行 */
+}
+
+/* 父母图片样式 */
+.parent-image {
+  width: 180px;
+  height: 180px;
+  object-fit: cover; /* 保持图片比例 */
+  border-radius: 50%; /* 圆形 */
+  border: 5px solid #ddd;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* 阴影效果 */
+  margin-bottom: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 父母图片悬浮放大效果 */
+.parent-image:hover {
+  transform: scale(1.2); /* 悬浮放大 */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* 父母名字样式 */
+.parent-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #444;
+  margin-top: 10px;
+}
+
+/* 父母角色样式 */
+.parent-role {
+  font-size: 16px;
+  color: #666;
+}

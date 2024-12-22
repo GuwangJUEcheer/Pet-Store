@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="29.153" viewBox="0 0 25 29.153">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="長方形_1" data-name="長方形 1" width="25" height="29.153" fill="#1f1f1f"/>
+    </clipPath>
+  </defs>
+  <g id="ico_tiktok_blk" transform="translate(0 -0.005)">
+    <g id="グループ_1" data-name="グループ 1" transform="translate(0 0.005)" clip-path="url(#clip-path)">
+      <path id="パス_1" data-name="パス 1" d="M18.195,0c.481,4.137,2.79,6.6,6.8,6.866v4.653c-2.326.227-4.364-.534-6.735-1.968v8.7c0,11.055-12.052,14.51-16.9,6.586-3.114-5.1-1.207-14.046,8.781-14.4v4.907a14.451,14.451,0,0,0-2.318.568c-2.222.752-3.481,2.16-3.131,4.644.673,4.758,9.4,6.166,8.676-3.131V.014h4.819Z" transform="translate(0.001 -0.005)" fill="#1f1f1f" fill-rule="evenodd"/>
+    </g>
+  </g>
+</svg>

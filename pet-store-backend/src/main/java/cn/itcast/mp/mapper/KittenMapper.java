@@ -21,4 +21,11 @@ public interface KittenMapper {
 
     @Delete("DELETE FROM kittens WHERE id=#{id}")
     int deleteKitten(int id);
+
+    @Select("SELECT * FROM kittens WHERE id = #{id}")
+    Kitten findKittenById(Long id);
+
+    @Select("SELECT img_url FROM kitten_images WHERE kitten_id = #{kittenId}")
+    List<String> findKittenImagesByKittenId(Long kittenId);
+
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { axiosInstance, axiosInstance2 } from "../Request/request";
 import "../css/News.css";
 import { message } from "antd";
+import { useNavigate } from "react-router-dom"; // 导入 useNavigate
 
 // 定义子猫信息的类型
 interface Kitten {
@@ -23,11 +24,15 @@ const News: React.FC = () => {
       const token = localStorage.getItem("token");
       setIsAdmin(!!token); // 根据是否存在 token 判断管理员状态
       const endpoint = token ? "/api/kittens" : "/api/public/kittens";
-      const response = await axiosInstance.get<Kitten[]>(endpoint);
-      setKittenData(response.data);
-      if(formData.get("img")!== null){
-        formData.delete("img"); 
-      }
+      const response = await axiosInstance
+        .get<Kitten[]>(endpoint)
+        .then((response) => {
+          setKittenData(response.data);
+
+          if (formData.get("img") !== null) {
+            formData.delete("img");
+          }
+        });
     } catch (err) {
       setError("子猫情報を読み込めませんでした。");
       console.error("获取子猫信息失败:", err);
@@ -43,8 +48,14 @@ const News: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isAdmin, setIsAdmin] = useState(false); // 是否为管理员
-  const [validationErrors, setValidationErrors] = useState<{ [key: string]: string }>({});
+  const navigate = useNavigate(); // 初始化 useNavigate
+  const [validationErrors, setValidationErrors] = useState<{
+    [key: string]: string;
+  }>({});
 
+  const handleViewDetails = (kittenId: number) => {
+    navigate(`/kitten-details/${kittenId}`); // 跳转到详细页面
+  };
   // 获取后端数据
   useEffect(() => {
     fetchData();
@@ -69,7 +80,7 @@ const News: React.FC = () => {
     if (e.target.files?.[0]) {
       formData.set("img", e.target.files[0]);
     }
-  }
+  };
   const handleEditKitten = (kitten: Kitten) => {
     setModalType("edit");
     setCurrentKitten(kitten);
@@ -87,10 +98,13 @@ const News: React.FC = () => {
 
     const errors: { [key: string]: string } = {};
     if (!currentKitten.name.trim()) errors.name = "名前は必須です。";
-    if (currentKitten.price <= 0) errors.price = "価格は正の数でなければなりません。";
-    if (!["男の子", "女の子"].includes(currentKitten.gender)) errors.gender = "性別を選択してください。";
+    if (currentKitten.price <= 0)
+      errors.price = "価格は正の数でなければなりません。";
+    if (!["男の子", "女の子"].includes(currentKitten.gender))
+      errors.gender = "性別を選択してください。";
     if (!currentKitten.color.trim()) errors.color = "毛色は必須です。";
-    if (new Date(currentKitten.birthday) > new Date()) errors.birthday = "誕生日は現在の日付より前である必要があります。";
+    if (new Date(currentKitten.birthday) > new Date())
+      errors.birthday = "誕生日は現在の日付より前である必要があります。";
     if (!currentKitten.status.trim()) errors.status = "状態は必須です。";
 
     setValidationErrors(errors);
@@ -102,12 +116,11 @@ const News: React.FC = () => {
     formData.set("kittenDvo", JSON.stringify(currentKitten));
     try {
       if (modalType === "add") {
-        if(formData.get("img") === null){
+        if (formData.get("img") === null) {
           message.error("画像を選択してください。");
           return;
         }
-        await axiosInstance2.post("test", formData);
-        fetchData();
+        await axiosInstance2.post("test", formData).then(fetchData);
       } else if (modalType === "edit") {
         await axiosInstance2.post(`updateKitten`, formData);
         fetchData();
@@ -126,7 +139,9 @@ const News: React.FC = () => {
 
     try {
       await axiosInstance.delete(`/api/kittens/${currentKitten.id}`);
-      setKittenData((prevData) => prevData.filter((kitten) => kitten.id !== currentKitten.id));
+      setKittenData((prevData) =>
+        prevData.filter((kitten) => kitten.id !== currentKitten.id)
+      );
       setIsModalOpen(false);
       setCurrentKitten(null);
     } catch (err) {
@@ -145,9 +160,9 @@ const News: React.FC = () => {
     setCurrentKitten((prevKitten) =>
       prevKitten
         ? {
-          ...prevKitten,
-          [name]: name === "price" ? parseFloat(value) || 0 : value,
-        }
+            ...prevKitten,
+            [name]: name === "price" ? parseFloat(value) || 0 : value,
+          }
         : null
     );
   };
@@ -170,9 +185,10 @@ const News: React.FC = () => {
         {kittenData.map((kitten) => (
           <div key={kitten.id} className="kitten-card">
             <img
-              src={require(`../images/${kitten.imgUrl}`)}
+              src={`/images/${kitten.imgUrl}`}
               alt={kitten.name}
               className="kitten-image"
+              onError={(e) => (e.currentTarget.src = "../images/cat5.jpg")}
             />
             <div className="kitten-info">
               <h2>{kitten.name}</h2>
@@ -197,16 +213,30 @@ const News: React.FC = () => {
                   </tr>
                 </tbody>
               </table>
-              {isAdmin && (
-                <div className="kitten-buttons">
-                  <button className="edit-button" onClick={() => handleEditKitten(kitten)}>
-                    編集
-                  </button>
-                  <button className="delete-button" onClick={() => handleDeleteKitten(kitten)}>
-                    削除
-                  </button>
-                </div>
-              )}
+              <div className="kitten-buttons">
+                <button
+                  className="details-button"
+                  onClick={() => handleViewDetails(kitten.id)}
+                >
+                  詳細
+                </button>
+                {isAdmin && (
+                  <>
+                    <button
+                      className="edit-button"
+                      onClick={() => handleEditKitten(kitten)}
+                    >
+                      編集
+                    </button>
+                    <button
+                      className="delete-button"
+                      onClick={() => handleDeleteKitten(kitten)}
+                    >
+                      削除
+                    </button>
+                  </>
+                )}
+              </div>
             </div>
           </div>
         ))}
@@ -226,7 +256,9 @@ const News: React.FC = () => {
               </>
             ) : (
               <>
-                <h2>{modalType === "add" ? "子猫情報を追加" : "子猫情報を編集"}</h2>
+                <h2>
+                  {modalType === "add" ? "子猫情報を追加" : "子猫情報を編集"}
+                </h2>
                 <div style={{ textAlign: "left" }}>
                   <label>
                     名前：
@@ -236,7 +268,9 @@ const News: React.FC = () => {
                       value={currentKitten?.name || ""}
                       onChange={handleInputChange}
                     />
-                    {validationErrors.name && <p className="error">{validationErrors.name}</p>}
+                    {validationErrors.name && (
+                      <p className="error">{validationErrors.name}</p>
+                    )}
                   </label>
                   <label>
                     価格：
@@ -250,7 +284,9 @@ const News: React.FC = () => {
                       />
                       <span style={{ marginLeft: "8px" }}>円</span>
                     </div>
-                    {validationErrors.price && <p className="error">{validationErrors.price}</p>}
+                    {validationErrors.price && (
+                      <p className="error">{validationErrors.price}</p>
+                    )}
                   </label>
                   <label>
                     性別：
@@ -276,7 +312,9 @@ const News: React.FC = () => {
                         女の子
                       </label>
                     </div>
-                    {validationErrors.gender && <p className="error">{validationErrors.gender}</p>}
+                    {validationErrors.gender && (
+                      <p className="error">{validationErrors.gender}</p>
+                    )}
                   </label>
                   <label>
                     毛色：
@@ -286,7 +324,9 @@ const News: React.FC = () => {
                       value={currentKitten?.color || ""}
                       onChange={handleInputChange}
                     />
-                    {validationErrors.color && <p className="error">{validationErrors.color}</p>}
+                    {validationErrors.color && (
+                      <p className="error">{validationErrors.color}</p>
+                    )}
                   </label>
                   <label>
                     誕生日：
@@ -296,7 +336,9 @@ const News: React.FC = () => {
                       value={currentKitten?.birthday || ""}
                       onChange={handleInputChange}
                     />
-                    {validationErrors.birthday && <p className="error">{validationErrors.birthday}</p>}
+                    {validationErrors.birthday && (
+                      <p className="error">{validationErrors.birthday}</p>
+                    )}
                   </label>
                   <label>
                     状態：
@@ -322,15 +364,13 @@ const News: React.FC = () => {
                         予約済み
                       </label>
                     </div>
-                    {validationErrors.status && <p className="error">{validationErrors.status}</p>}
+                    {validationErrors.status && (
+                      <p className="error">{validationErrors.status}</p>
+                    )}
                   </label>
                   <label>
                     画像：
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={chooseFile}
-                    />
+                    <input type="file" accept="image/*" onChange={chooseFile} />
                   </label>
                 </div>
                 <div className="modal-buttons">
@@ -347,4 +387,3 @@ const News: React.FC = () => {
 };
 
 export default News;
-
