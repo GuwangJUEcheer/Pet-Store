@@ -31,10 +31,10 @@ public class KittenServiceImpl implements KittenService {
     }
 
     @Override
-    public Kitten updateKitten(Kitten kitten) {
-        kittenMapper.updateKitten(kitten);
-        return kitten;
+    public void updateKitten(Kitten kitten) {
+        kittenMapper.updateKitten(kitten); // 更新数据库记录
     }
+
 
     @Override
     public boolean deleteKitten(int id) {

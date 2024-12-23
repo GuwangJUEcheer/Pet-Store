@@ -5,22 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2e49c3ae-9e16-418c-94c4-4be7eb6844c3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/mapper/KittenParentMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/model/KittenParent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/controller/KittenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/controller/KittenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/mapper/KittenMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/mapper/KittenMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/service/KittenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/service/KittenService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/serviceImpl/KittenServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/serviceImpl/KittenServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application-prod.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-prod.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/datasource.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/datasource.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pet-store/src/components/News.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/components/News.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pet-store/src/css/News.css" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/css/News.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pet-store/src/routes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/routes.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -221,7 +210,8 @@
       <workItem from="1734669127267" duration="7340000" />
       <workItem from="1734679360628" duration="5193000" />
       <workItem from="1734751225500" duration="9645000" />
-      <workItem from="1734835564580" duration="1201000" />
+      <workItem from="1734835564580" duration="3003000" />
+      <workItem from="1734919564076" duration="7377000" />
     </task>
     <servers />
   </component>

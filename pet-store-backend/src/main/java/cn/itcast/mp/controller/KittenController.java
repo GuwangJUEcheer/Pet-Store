@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.List;
 import java.util.Optional;
@@ -81,65 +80,88 @@ KittenController {
     }
 
     @PostMapping("/test")
-    public ResponseEntity<?> addKitten(@RequestPart("img") MultipartFile file,  // 文件字段名为 "img"
-                                       @RequestPart("kittenDvo") String kittenDvoJson, // JSON 参数
-                                       HttpServletRequest request) {
-        if (file.isEmpty()) {
-            return ResponseEntity.badRequest().body("File is empty");
-        }
-
+    public ResponseEntity<?> addKitten(
+            @RequestPart(value = "img", required = false) MultipartFile file, // 文件可以为空
+            @RequestPart("kittenDvo") String kittenDvoJson // JSON 参数
+    ) {
         try {
             // 反序列化 JSON
             Kitten kitten = new ObjectMapper().readValue(kittenDvoJson, Kitten.class);
 
-            // 创建存储目录（如果不存在）
-            File directory = new File(IMAGE_DIRECTORY);
-            if (!directory.exists()) {
-                directory.mkdirs();
-            }
-
-            // 生成唯一文件名
-            String originalFilename = file.getOriginalFilename();
-
-            // 保存文件
-            File destinationFile = new File(IMAGE_DIRECTORY + originalFilename);
-            file.transferTo(destinationFile);
-            kitten.setImgUrl(originalFilename);
-            kittenService.addKitten(kitten);
-            return ResponseEntity.ok("{\"path\":\"" + originalFilename + "\"}");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(500).body("Failed to upload image");
-        }
-    }
-
-    @PostMapping("/updateKitten")
-    public int updateKitten(@RequestPart(value = "img",required = false) MultipartFile file,  // 文件字段名为 "img"
-                            @RequestPart("kittenDvo") String kittenDvoJson, // JSON 参数
-                            HttpServletRequest request) {
-        try {
-            // 反序列化 JSON
-            Kitten kitten = new ObjectMapper().readValue(kittenDvoJson, Kitten.class);
-
-            if (file!=null && !file.isEmpty()) {
+            // 检查是否上传了图片文件
+            if (file != null && !file.isEmpty()) {
                 // 创建存储目录（如果不存在）
                 File directory = new File(IMAGE_DIRECTORY);
                 if (!directory.exists()) {
                     directory.mkdirs();
                 }
 
-                // 生成唯一文件名
-                String originalFilename = file.getOriginalFilename();
-                kitten.setImgUrl(originalFilename);
-                // 保存文件
+                // 图片文件处理
+                String originalFilename = file.getOriginalFilename(); // 获取上传文件名
                 File destinationFile = new File(IMAGE_DIRECTORY + originalFilename);
-                file.transferTo(destinationFile);
+
+                // 如果文件已存在，则直接使用，不再重复写入
+                if (!destinationFile.exists()) {
+                    file.transferTo(destinationFile); // 保存新文件
+                }
+
+                // 将图片文件名设置到数据库中
+                kitten.setImgUrl(originalFilename);
             }
-            kittenService.updateKitten(kitten);
-            return 1;
+
+            // 保存到数据库
+            kittenService.addKitten(kitten);
+
+            // 返回成功响应
+            return ResponseEntity.ok("{\"message\":\"Kitten added successfully\", \"path\":\"" + kitten.getImgUrl() + "\"}");
         } catch (Exception e) {
             e.printStackTrace();
-            return -1;
+            // 返回错误响应
+            return ResponseEntity.status(500).body("Failed to save kitten or upload image");
         }
     }
+
+
+    @PostMapping("/updateKitten")
+    public ResponseEntity<?> updateKitten(
+            @RequestPart(value = "img", required = false) MultipartFile file,
+            @RequestPart("kittenDvo") String kittenDvoJson) {
+        try {
+            // 解析 JSON 数据
+            Kitten kitten = new ObjectMapper().readValue(kittenDvoJson, Kitten.class);
+
+            // 检查是否上传了新图片
+            if (file != null && !file.isEmpty()) {
+                // 检查目标目录是否存在
+                File directory = new File(IMAGE_DIRECTORY);
+                if (!directory.exists()) {
+                    directory.mkdirs(); // 如果不存在，则创建目录
+                }
+
+                // 获取上传文件名
+                String originalFilename = file.getOriginalFilename();
+                File destinationFile = new File(IMAGE_DIRECTORY + originalFilename);
+
+                // 判断文件是否已存在于目录中
+                if (destinationFile.exists()) {
+                    System.out.println("文件已存在：" + originalFilename);
+                    // 如果文件已经存在，直接使用原文件名
+                    kitten.setImgUrl(originalFilename);
+                } else {
+                    // 如果文件不存在，则保存新文件
+                    file.transferTo(destinationFile);
+                    kitten.setImgUrl(originalFilename); // 更新数据库路径
+                }
+            }
+
+            // 更新数据库记录
+            kittenService.updateKitten(kitten);
+            return ResponseEntity.ok("更新成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("更新失败: " + e.getMessage());
+        }
+    }
+
 }

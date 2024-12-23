@@ -11,7 +11,7 @@ public interface KittenService {
 
     void addKitten(Kitten kitten);
 
-    Kitten updateKitten(Kitten kitten);
+    void updateKitten(Kitten kitten);
 
     boolean deleteKitten(int id);
 

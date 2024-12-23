@@ -49,6 +49,7 @@ const News: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [isAdmin, setIsAdmin] = useState(false); // 是否为管理员
   const navigate = useNavigate(); // 初始化 useNavigate
+  const [selectedFile, setSelectedFile] = useState<File | null>(null); // 添加状态
   const [validationErrors, setValidationErrors] = useState<{
     [key: string]: string;
   }>({});
@@ -76,11 +77,12 @@ const News: React.FC = () => {
     setIsModalOpen(true);
   };
 
-  const chooseFile = async (e: any) => {
-    if (e.target.files?.[0]) {
-      formData.set("img", e.target.files[0]);
+  const chooseFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setSelectedFile(e.target.files[0]); // 更新选中的文件
     }
   };
+  
   const handleEditKitten = (kitten: Kitten) => {
     setModalType("edit");
     setCurrentKitten(kitten);
@@ -111,28 +113,42 @@ const News: React.FC = () => {
     return Object.keys(errors).length === 0;
   };
 
-  const handleSaveKitten = async () => {
-    if (!currentKitten || !validateInputs()) return;
-    formData.set("kittenDvo", JSON.stringify(currentKitten));
-    try {
-      if (modalType === "add") {
-        if (formData.get("img") === null) {
-          message.error("画像を選択してください。");
-          return;
-        }
-        await axiosInstance2.post("test", formData).then(fetchData);
-      } else if (modalType === "edit") {
-        await axiosInstance2.post(`updateKitten`, formData);
-        fetchData();
-      }
+const handleSaveKitten = async () => {
+  if (!currentKitten || !validateInputs()) return;
+
+  const formData = new FormData();
+  formData.append("kittenDvo", JSON.stringify(currentKitten));
+
+  // 添加图片
+  if (selectedFile) {
+    formData.append("img", selectedFile);
+  }
+
+  try {
+    const response = await axiosInstance2.post("/updateKitten", formData);
+
+    if (response.status === 200) {
+      message.success("保存成功！");
+      
+      // 自动关闭弹窗
       setIsModalOpen(false);
+
+      // 清空当前选中项，避免状态残留
       setCurrentKitten(null);
       setValidationErrors({});
-    } catch (err) {
-      console.error("保存子猫信息失败:", err);
-      setError("保存に失敗しました。");
+      setSelectedFile(null); // 清空已选图片
+
+      // 刷新页面或重新获取数据
+      fetchData(); // 调用 fetchData 方法更新数据
+    } else {
+      message.error("保存失败！");
     }
-  };
+  } catch (err) {
+    console.error("保存失败:", err);
+    message.error("保存に失敗しました。");
+  }
+};
+
 
   const handleConfirmDelete = async () => {
     if (!currentKitten) return;
@@ -185,11 +201,12 @@ const News: React.FC = () => {
         {kittenData.map((kitten) => (
           <div key={kitten.id} className="kitten-card">
             <img
-              src={`/images/${kitten.imgUrl}`}
+              src={`/images/${kitten.imgUrl}?t=${Date.now()}`} // 强制刷新图片缓存
               alt={kitten.name}
               className="kitten-image"
               onError={(e) => (e.currentTarget.src = "../images/cat5.jpg")}
             />
+
             <div className="kitten-info">
               <h2>{kitten.name}</h2>
               <p className="price">価格: {kitten.price}円</p>
