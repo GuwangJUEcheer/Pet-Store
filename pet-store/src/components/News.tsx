@@ -113,43 +113,51 @@ const News: React.FC = () => {
     return Object.keys(errors).length === 0;
   };
 
-const handleSaveKitten = async () => {
-  if (!currentKitten || !validateInputs()) return;
-
-  const formData = new FormData();
-  formData.append("kittenDvo", JSON.stringify(currentKitten));
-
-  // 添加图片
-  if (selectedFile) {
-    formData.append("img", selectedFile);
-  }
-
-  try {
-    const response = await axiosInstance2.post("/updateKitten", formData);
-
-    if (response.status === 200) {
-      message.success("保存成功！");
-      
-      // 自动关闭弹窗
-      setIsModalOpen(false);
-
-      // 清空当前选中项，避免状态残留
-      setCurrentKitten(null);
-      setValidationErrors({});
-      setSelectedFile(null); // 清空已选图片
-
-      // 刷新页面或重新获取数据
-      fetchData(); // 调用 fetchData 方法更新数据
-    } else {
-      message.error("保存失败！");
+  const handleSaveKitten = async () => {
+    if (!currentKitten || !validateInputs()) return;
+  
+    const formData = new FormData();
+    formData.append("kittenDvo", JSON.stringify(currentKitten));
+  
+    // 添加图片
+    if (selectedFile) {
+      formData.append("img", selectedFile);
     }
-  } catch (err) {
-    console.error("保存失败:", err);
-    message.error("保存に失敗しました。");
-  }
-};
-
-
+  
+    try {
+      let response;
+  
+      // 区分新增和编辑操作
+      if (modalType === "add") {
+        // 新增子猫
+        response = await axiosInstance2.post("/test", formData);
+      } else if (modalType === "edit") {
+        // 编辑子猫
+        response = await axiosInstance2.post("/updateKitten", formData);
+      }
+  
+      if (response && response.status === 200) {
+        message.success("保存成功！");
+        
+        // 自动关闭弹窗
+        setIsModalOpen(false);
+  
+        // 清空状态和数据
+        setCurrentKitten(null);
+        setValidationErrors({});
+        setSelectedFile(null); // 清空已选图片
+  
+        // 刷新页面数据
+        fetchData();
+      } else {
+        message.error("保存失败！");
+      }
+    } catch (err) {
+      console.error("保存失败:", err);
+      message.error("保存に失敗しました。");
+    }
+  };
+  
   const handleConfirmDelete = async () => {
     if (!currentKitten) return;
 
