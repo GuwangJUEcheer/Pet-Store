@@ -17,51 +17,53 @@ interface Kitten {
 }
 
 const News: React.FC = () => {
-  const formData = new FormData();
-
-  const fetchData = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      setIsAdmin(!!token); // 根据是否存在 token 判断管理员状态
-      const endpoint = token ? "/api/kittens" : "/api/public/kittens";
-      const response = await axiosInstance
-        .get<Kitten[]>(endpoint)
-        .then((response) => {
-          setKittenData(response.data);
-
-          if (formData.get("img") !== null) {
-            formData.delete("img");
-          }
-        });
-    } catch (err) {
-      setError("子猫情報を読み込めませんでした。");
-      console.error("获取子猫信息失败:", err);
-    } finally {
-      setLoading(false);
-      console.log(kittenData);
-    }
-  };
   const [kittenData, setKittenData] = useState<Kitten[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState<"add" | "edit" | "delete">("add");
   const [currentKitten, setCurrentKitten] = useState<Kitten | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [isAdmin, setIsAdmin] = useState(false); // 是否为管理员
-  const navigate = useNavigate(); // 初始化 useNavigate
-  const [selectedFile, setSelectedFile] = useState<File | null>(null); // 添加状态
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [isAdmin, setIsAdmin] = useState<boolean>(false); // 是否为管理员
   const [validationErrors, setValidationErrors] = useState<{
     [key: string]: string;
   }>({});
+  const navigate = useNavigate(); // 初始化 useNavigate
 
-  const handleViewDetails = (kittenId: number) => {
-    navigate(`/kitten-details/${kittenId}`); // 跳转到详细页面
+  // 获取数据
+  const fetchData = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      setIsAdmin(!!token); // 根据是否存在 token 判断管理员状态
+
+      const endpoint = "/api/public/kittens"; // 游客和管理员都访问公共接口
+      const response = await axiosInstance.get<Kitten[]>(endpoint);
+      setKittenData(response.data); // 设置数据
+    } catch (err) {
+      setError("子猫情報を読み込めませんでした。");
+      console.error("获取子猫信息失败:", err);
+    } finally {
+      setLoading(false);
+    }
   };
-  // 获取后端数据
+
   useEffect(() => {
     fetchData();
   }, []);
 
+  // 文件选择
+  const chooseFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setSelectedFile(e.target.files[0]); // 设置文件
+    }
+  };
+
+  // 查看详情
+  const handleViewDetails = (kittenId: number) => {
+    navigate(`/kitten-details/${kittenId}`); // 跳转到详细页面
+  };
+
+  // 添加子猫
   const handleAddKitten = () => {
     setModalType("add");
     setCurrentKitten({
@@ -77,24 +79,21 @@ const News: React.FC = () => {
     setIsModalOpen(true);
   };
 
-  const chooseFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setSelectedFile(e.target.files[0]); // 更新选中的文件
-    }
-  };
-  
+  // 编辑子猫
   const handleEditKitten = (kitten: Kitten) => {
     setModalType("edit");
     setCurrentKitten(kitten);
     setIsModalOpen(true);
   };
 
+  // 删除子猫
   const handleDeleteKitten = (kitten: Kitten) => {
     setModalType("delete");
     setCurrentKitten(kitten);
     setIsModalOpen(true);
   };
 
+  // 输入验证
   const validateInputs = (): boolean => {
     if (!currentKitten) return false;
 
@@ -113,42 +112,30 @@ const News: React.FC = () => {
     return Object.keys(errors).length === 0;
   };
 
+  // 保存子猫信息
   const handleSaveKitten = async () => {
     if (!currentKitten || !validateInputs()) return;
-  
+
     const formData = new FormData();
     formData.append("kittenDvo", JSON.stringify(currentKitten));
-  
-    // 添加图片
+
     if (selectedFile) {
       formData.append("img", selectedFile);
     }
-  
+
     try {
       let response;
-  
-      // 区分新增和编辑操作
+
       if (modalType === "add") {
-        // 新增子猫
         response = await axiosInstance2.post("/test", formData);
       } else if (modalType === "edit") {
-        // 编辑子猫
         response = await axiosInstance2.post("/updateKitten", formData);
       }
-  
+
       if (response && response.status === 200) {
         message.success("保存成功！");
-        
-        // 自动关闭弹窗
         setIsModalOpen(false);
-  
-        // 清空状态和数据
-        setCurrentKitten(null);
-        setValidationErrors({});
-        setSelectedFile(null); // 清空已选图片
-  
-        // 刷新页面数据
-        fetchData();
+        fetchData(); // 刷新数据
       } else {
         message.error("保存失败！");
       }
@@ -157,7 +144,8 @@ const News: React.FC = () => {
       message.error("保存に失敗しました。");
     }
   };
-  
+
+  // 删除确认
   const handleConfirmDelete = async () => {
     if (!currentKitten) return;
 
@@ -167,10 +155,17 @@ const News: React.FC = () => {
         prevData.filter((kitten) => kitten.id !== currentKitten.id)
       );
       setIsModalOpen(false);
-      setCurrentKitten(null);
     } catch (err) {
       setError("削除に失敗しました。");
     }
+  };
+
+  // 退出登录
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsAdmin(false); // 设置为游客模式
+    message.success("已登出！");
+    fetchData(); // 刷新数据
   };
 
   const handleCancel = () => {
@@ -199,22 +194,26 @@ const News: React.FC = () => {
       <h1>最新子猫紹介</h1>
       <p className="subtitle">Kitten Info</p>
 
+      {/* 管理员权限下显示添加按钮 */}
       {isAdmin && (
-        <button className="add-button" onClick={() => handleAddKitten()}>
+        <button className="add-button" onClick={handleAddKitten}>
           新しい子猫を追加
         </button>
       )}
 
+      {/* 子猫信息展示 */}
       <div className="kitten-grid">
         {kittenData.map((kitten) => (
           <div key={kitten.id} className="kitten-card">
+            {/* 子猫图片 */}
             <img
               src={`/images/${kitten.imgUrl}?t=${Date.now()}`} // 强制刷新图片缓存
               alt={kitten.name}
               className="kitten-image"
-              onError={(e) => (e.currentTarget.src = "../images/cat5.jpg")}
+              onError={(e) => (e.currentTarget.src = "../images/cat5.jpg")} // 图片加载失败时显示默认图
             />
 
+            {/* 子猫基本信息 */}
             <div className="kitten-info">
               <h2>{kitten.name}</h2>
               <p className="price">価格: {kitten.price}円</p>
@@ -238,13 +237,18 @@ const News: React.FC = () => {
                   </tr>
                 </tbody>
               </table>
+
+              {/* 按钮区域 */}
               <div className="kitten-buttons">
+                {/* 查看详情按钮（所有人可见） */}
                 <button
                   className="details-button"
                   onClick={() => handleViewDetails(kitten.id)}
                 >
                   詳細
                 </button>
+
+                {/* 管理员操作按钮 */}
                 {isAdmin && (
                   <>
                     <button

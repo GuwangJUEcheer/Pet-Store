@@ -28,4 +28,19 @@ public interface KittenMapper {
     @Select("SELECT img_url FROM kitten_images WHERE kitten_id = #{kittenId}")
     List<String> findKittenImagesByKittenId(Long kittenId);
 
+    // 新增图片
+    @Insert("INSERT INTO kitten_images (kitten_id, img_url) VALUES (#{kittenId}, #{imgUrl})")
+    void addKittenImage(@Param("kittenId") Long kittenId, @Param("imgUrl") String imgUrl);
+
+    // 删除图片
+    @Delete("DELETE FROM kitten_images WHERE kitten_id = #{kittenId} AND img_url = #{imgUrl}")
+    void deleteKittenImage(@Param("kittenId") Long kittenId, @Param("imgUrl") String imgUrl);
+
+    // 更新图片链接
+    @Update("UPDATE kitten_images SET img_url = #{newImgUrl} WHERE kitten_id = #{kittenId} AND img_url = #{oldImgUrl}")
+    void updateKittenImage(@Param("kittenId") Long kittenId,
+                           @Param("oldImgUrl") String oldImgUrl,
+                           @Param("newImgUrl") String newImgUrl);
+
 }
+

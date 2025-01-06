@@ -37,7 +37,7 @@ const Footer: React.FC = () => {
                 <Link to="/history/">過去子猫紹介</Link>
               </li>
               <li>
-                <Link to="/breed/">取扱猫種紹介</Link>
+                <Link to="/minuet/">ミヌエットとは</Link>
               </li>
               <li>
                 <Link to="/buy/">ご購入について</Link>
@@ -56,9 +56,9 @@ const Footer: React.FC = () => {
           </div>           
         <p className="copyright">© Cat Lounge. All rights reserved.</p>
       </footer>
-      <div className="bnr__insta">
+      {/* <div className="bnr__insta">
       <Link to="https://www.instagram.com/cat_lounge0418/" target="_blank"><img src={ins} alt="CHECK!! INATAGRAM"/></Link>
-     </div> 
+     </div>  */}
     </section>
   );
 };

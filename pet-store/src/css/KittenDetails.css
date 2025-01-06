@@ -1,4 +1,4 @@
-/* 容器样式 */
+/* 主容器样式 */
 .kitten-details-container {
   padding: 20px;
   font-family: Arial, sans-serif;
@@ -21,7 +21,7 @@
   background-color: #0056b3;
 }
 
-/* 内容布局 */
+/* 内容区域布局 */
 .details-content {
   display: flex;
   gap: 20px;
@@ -30,25 +30,29 @@
 /* 图片展示区域 */
 .image-section {
   flex: 1;
-  text-align: center; /* 图片居中 */
+  text-align: center;
 }
 
 /* 主图片样式 */
 .main-image {
   width: 100%;
-  max-width: 400px; /* 最大宽度 */
-  height: 300px; /* 高度固定 */
-  object-fit: cover; /* 保持图片比例 */
-  border-radius: 10px; /* 圆角 */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加阴影 */
-  margin-bottom: 10px; /* 下边距 */
+  max-width: 400px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
 }
 
 /* 缩略图容器 */
 .thumbnail-container {
-  display: flex;
-  justify-content: center; /* 水平居中 */
-  gap: 10px; /* 缩略图间距 */
+  display: flex; /* 使用 flex 布局横向排列图片 */
+  overflow-x: auto; /* 横向滚动条 */
+  justify-content: center;
+  white-space: nowrap; /* 防止图片换行 */
+  gap: 10px; /* 图片之间的间距 */
+  max-width: 100%; /* 限制最大宽度 */
+  padding: 10px;
 }
 
 /* 缩略图样式 */
@@ -56,30 +60,28 @@
   width: 70px;
   height: 70px;
   border-radius: 5px;
-  object-fit: cover; /* 保持图片比例 */
-  cursor: pointer; /* 鼠标悬浮样式 */
-  transition: transform 0.3s ease, border 0.3s ease; /* 动画效果 */
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.3s ease, border 0.3s ease;
 }
 
-/* 缩略图悬浮与选中效果 */
 .thumbnail:hover,
 .thumbnail.active {
-  transform: scale(1.1); /* 放大效果 */
-  border: 2px solid #007bff; /* 边框颜色变化 */
+  transform: scale(1.1);
+  border: 2px solid #007bff;
 }
 
-/* 详细信息区域 */
+/* 右侧详细信息 */
 .details-section {
   flex: 1;
 }
 
-/* 标题样式 */
+/* 子猫名称 */
 .details-section h1 {
-  font-size: 28px; /* 字体大小 */
-  margin-bottom: 10px; /* 与价格间距 */
-  font-weight: bold; /* 加粗 */
+  font-size: 28px;
+  margin-bottom: 10px;
+  font-weight: bold;
   color: #333;
-  text-transform: capitalize; /* 首字母大写 */
 }
 
 /* 价格样式 */
@@ -104,75 +106,349 @@
   padding: 12px;
   text-align: left;
   vertical-align: middle;
-  border-bottom: 1px solid #ddd; /* 底边框 */
+  border-bottom: 1px solid #ddd;
 }
 
 /* 表头样式 */
 .details-table th {
-  background-color: #f9f9f9; /* 表头背景色 */
+  background-color: #f9f9f9;
   font-weight: bold;
   color: #444;
-}
-
-/* 表格内容样式 */
-.details-table td {
-  background-color: #fff; /* 内容背景色 */
-  color: #333;
 }
 
 /* 父母展示区域 */
 .parents-section {
   margin-top: 40px;
-  text-align: center; /* 标题居中 */
+  text-align: center;
 }
 
-/* 父母标题样式 */
+/* 父母信息标题 */
 .parents-title {
   font-size: 24px;
   margin-bottom: 20px;
   font-weight: bold;
   color: #333;
   border-bottom: 2px solid #f0f0f0;
-  display: inline-block;
   padding-bottom: 10px;
 }
 
-/* 父母信息布局 */
+/* 父母展示容器 */
 .parents-container {
   display: flex;
-  justify-content: center; /* 父母信息居中排列 */
-  gap: 40px; /* 间距 */
-  flex-wrap: wrap; /* 响应式换行 */
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
 }
 
 /* 父母图片样式 */
 .parent-image {
   width: 180px;
   height: 180px;
-  object-fit: cover; /* 保持图片比例 */
-  border-radius: 50%; /* 圆形 */
+  object-fit: cover;
+  border-radius: 50%;
   border: 5px solid #ddd;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* 阴影效果 */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   margin-bottom: 10px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* 父母图片悬浮放大效果 */
 .parent-image:hover {
-  transform: scale(1.2); /* 悬浮放大 */
+  transform: scale(1.2);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
-/* 父母名字样式 */
-.parent-name {
+/* 父母猫名字 */
+.parent-card h3 {
   font-size: 18px;
   font-weight: bold;
   color: #444;
+  margin-top: 5px;
+}
+
+/* 父母描述 */
+.parent-card p {
+  font-size: 14px;
+  color: #666;
+}
+
+/* 父母猫图片管理容器 */
+.parent-image-management {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   margin-top: 10px;
 }
 
-/* 父母角色样式 */
-.parent-role {
-  font-size: 16px;
-  color: #666;
+/* 文件选择框样式 */
+.parent-image-management input[type="file"] {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* 按钮组 */
+.button-group {
+  display: flex; /* 保持按钮横向排列 */
+  gap: 10px;
+  align-items: center; /* 垂直居中对齐 */
+}
+
+/* 按钮样式 */
+.update-btn,
+.delete-btn,
+.add-btn,
+.close-btn {
+  display: inline-flex; /* 使用 flex 确保按钮文字横向排列 */
+  align-items: center; /* 垂直居中 */
+  justify-content: center; /* 水平居中 */
+  padding: 8px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  white-space: nowrap; /* 防止按钮文字换行 */
+}
+
+/* 修改按钮 */
+.update-btn {
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  transition: background-color 0.3s;
+}
+
+.update-btn:hover {
+  background-color: #0056b3;
+}
+
+/* 删除按钮 */
+.delete-btn {
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #dc3545;
+  color: white;
+  transition: background-color 0.3s;
+}
+
+.delete-btn:hover {
+  background-color: #c82333;
+}
+
+/* 模态框整体样式 */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 600px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column; /* 垂直排列 */
+  gap: 20px;
+  max-height: 100%;
+}
+
+/* 标题样式 */
+.modal-title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 10px;
+}
+
+/* 图片管理模块支持滚动条 */
+.image-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  overflow-y: auto; /* 支持滚动条 */
+  max-height: 300px; /* 限制高度 */
+  padding-right: 10px;
+}
+
+/* 图片预览区域 */
+.image-preview {
+  width: 100%;
+  height: 300px; /* 固定高度 */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* 图片预览中的图片样式 */
+.preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* 图片管理列表 */
+.image-list {
+  display: flex;
+  flex-direction: column; /* 列排列 */
+  gap: 15px; /* 每个管理项之间的间距 */
+}
+
+/* 每个图片管理项 */
+.image-item {
+  display: flex;
+  flex-direction: column; /* 垂直排列 */
+  gap: 10px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  transition: box-shadow 0.3s ease;
+}
+
+.image-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 操作区域 */
+.image-actions {
+  display: flex;
+  flex-direction: row; /* 保持横向排列 */
+  gap: 10px;
+  align-items: center;
+}
+
+/* 文件选择框 */
+.image-actions input[type="file"] {
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  flex-grow: 1; /* 拉伸填充剩余空间 */
+}
+
+
+/* 按钮组 */
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+/* 按钮样式 */
+.update-btn,
+.delete-btn,
+.add-btn,
+.close-btn {
+  padding: 8px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+/* 更新按钮 */
+.update-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.update-btn:hover {
+  background-color: #0056b3;
+}
+
+/* 删除按钮 */
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #c82333;
+}
+
+/* 新增部分 */
+.add-section {
+  display: flex; /* 横向排列 */
+  align-items: center; /* 垂直居中对齐 */
+  gap: 10px; /* 元素之间的间距 */
+  margin-top: 10px;
+}
+
+/* 新增按钮 */
+.add-btn {
+  background-color: #28a745;
+  color: white;
+  padding: 8px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.add-btn:hover {
+  background-color: #218838;
+}
+
+/* 文件选择框 */
+.add-section input[type="file"] {
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  flex-grow: 1; /* 占满剩余空间 */
+}
+
+/* 关闭按钮 */
+.close-section {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.close-btn {
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+}
+
+.close-btn:hover {
+  background-color: #0056b3;
+}
+
+/* 响应式支持 */
+@media (max-width: 768px) {
+  .modal {
+    width: 95%;
+  }
+
+  .image-actions {
+    flex-direction: column; /* 小屏幕改为竖向排列 */
+    gap: 10px;
+  }
+
+  .add-section {
+    flex-direction: column; /* 小屏幕改为竖向排列 */
+  }
+
+  .close-btn {
+    width: 100%;
+  }
 }

@@ -35,7 +35,6 @@ public class KittenServiceImpl implements KittenService {
         kittenMapper.updateKitten(kitten); // 更新数据库记录
     }
 
-
     @Override
     public boolean deleteKitten(int id) {
         return kittenMapper.deleteKitten(id) > 0;
@@ -56,4 +55,30 @@ public class KittenServiceImpl implements KittenService {
         return kittenMapper.findKittenImagesByKittenId(kittenId);
     }
 
+    @Override
+    public void addKittenImage(Long kittenId, String imageUrl) {
+        kittenMapper.addKittenImage(kittenId, imageUrl);
+    }
+
+    @Override
+    public void deleteKittenImage(Long kittenId, String imageUrl) {
+        kittenMapper.deleteKittenImage(kittenId, imageUrl);
+    }
+
+    // 更新父母猫图片
+    @Override
+    public void updateParentImage(Long id, String filename) {
+        kittenParentMapper.updateParentImage(id, filename);
+    }
+
+    // 删除父母猫图片
+    @Override
+    public void deleteParentImage(Long id) {
+        kittenParentMapper.deleteParentImage(id);
+    }
+
+    @Override
+    public void updateKittenImage(Long kittenId, String oldImageUrl, String newImageUrl) {
+        kittenMapper.updateKittenImage(kittenId, oldImageUrl, newImageUrl);
+    }
 }

@@ -21,5 +21,13 @@ public interface KittenService {
 
     List<String> findKittenImagesByKittenId(Long kittenId);
 
+    void updateKittenImage(Long kittenId, String oldImageUrl, String newImageUrl);
 
+    void addKittenImage(Long id, String fileName);
+
+    void deleteKittenImage(Long id, String imgUrl);
+
+    void deleteParentImage(Long id);
+
+    void updateParentImage(Long id, String filename);
 }

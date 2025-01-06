@@ -8,20 +8,26 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import cn.itcast.mp.interceptor.TokenInterceptor;
 
 @Configuration
-public class InterCeptorConfig implements WebMvcConfigurer{
+public class InterCeptorConfig implements WebMvcConfigurer {
 
-	@Autowired
-	private TokenInterceptor tokenInterceptor;
+    @Autowired
+    private TokenInterceptor tokenInterceptor;
 
 //	// 使用构造函数注入拦截器
 //	public InterCeptorConfig(TokenInterceptor tokenInterceptor) {
 //		this.tokenInterceptor = tokenInterceptor;
 //	}
 
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(tokenInterceptor)
-				.addPathPatterns("/**") // 所有路径
-				.excludePathPatterns("/login", "/register","/api/public/kittens"); // 排除 login 和 register
-	}	
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(tokenInterceptor)
+                .addPathPatterns("/**") // 拦截所有路径
+                .excludePathPatterns(
+                        "/login",
+                        "/register",
+                        "/api/public/kittens/**", // 允许匿名访问 kittens 接口
+                        "/api/public/kittens/*/parents",// 允许匿名访问 kittens 的 parents 接口
+                        "/api/kittens/images/**"  // 图片接口开放
+                );
+    }
 }

@@ -81,43 +81,27 @@ KittenController {
 
     @PostMapping("/test")
     public ResponseEntity<?> addKitten(
-            @RequestPart(value = "img", required = false) MultipartFile file, // 文件可以为空
-            @RequestPart("kittenDvo") String kittenDvoJson // JSON 参数
-    ) {
+            @RequestPart(value = "img", required = false) MultipartFile file,
+            @RequestPart("kittenDvo") String kittenDvoJson) {
         try {
-            // 反序列化 JSON
             Kitten kitten = new ObjectMapper().readValue(kittenDvoJson, Kitten.class);
 
-            // 检查是否上传了图片文件
             if (file != null && !file.isEmpty()) {
-                // 创建存储目录（如果不存在）
-                File directory = new File(IMAGE_DIRECTORY);
-                if (!directory.exists()) {
-                    directory.mkdirs();
-                }
-
-                // 图片文件处理
-                String originalFilename = file.getOriginalFilename(); // 获取上传文件名
-                File destinationFile = new File(IMAGE_DIRECTORY + originalFilename);
-
-                // 如果文件已存在，则直接使用，不再重复写入
+                String filename = file.getOriginalFilename();
+                File destinationFile = new File(IMAGE_DIRECTORY + filename);
                 if (!destinationFile.exists()) {
-                    file.transferTo(destinationFile); // 保存新文件
+                    file.transferTo(destinationFile);
                 }
-
-                // 将图片文件名设置到数据库中
-                kitten.setImgUrl(originalFilename);
+                kitten.setImgUrl(filename);
+            } else if (kitten.getImgUrl() == null || kitten.getImgUrl().isEmpty()) {
+                kitten.setImgUrl("default.jpg");
             }
 
-            // 保存到数据库
             kittenService.addKitten(kitten);
-
-            // 返回成功响应
-            return ResponseEntity.ok("{\"message\":\"Kitten added successfully\", \"path\":\"" + kitten.getImgUrl() + "\"}");
+            return ResponseEntity.ok("子猫追加成功！");
         } catch (Exception e) {
             e.printStackTrace();
-            // 返回错误响应
-            return ResponseEntity.status(500).body("Failed to save kitten or upload image");
+            return ResponseEntity.status(500).body("子猫追加失敗！");
         }
     }
 
@@ -127,40 +111,135 @@ KittenController {
             @RequestPart(value = "img", required = false) MultipartFile file,
             @RequestPart("kittenDvo") String kittenDvoJson) {
         try {
-            // 解析 JSON 数据
             Kitten kitten = new ObjectMapper().readValue(kittenDvoJson, Kitten.class);
 
-            // 检查是否上传了新图片
             if (file != null && !file.isEmpty()) {
-                // 检查目标目录是否存在
-                File directory = new File(IMAGE_DIRECTORY);
-                if (!directory.exists()) {
-                    directory.mkdirs(); // 如果不存在，则创建目录
-                }
-
-                // 获取上传文件名
-                String originalFilename = file.getOriginalFilename();
-                File destinationFile = new File(IMAGE_DIRECTORY + originalFilename);
-
-                // 判断文件是否已存在于目录中
-                if (destinationFile.exists()) {
-                    System.out.println("文件已存在：" + originalFilename);
-                    // 如果文件已经存在，直接使用原文件名
-                    kitten.setImgUrl(originalFilename);
-                } else {
-                    // 如果文件不存在，则保存新文件
+                String filename = file.getOriginalFilename();
+                File destinationFile = new File(IMAGE_DIRECTORY + filename);
+                if (!destinationFile.exists()) {
                     file.transferTo(destinationFile);
-                    kitten.setImgUrl(originalFilename); // 更新数据库路径
                 }
+                kitten.setImgUrl(filename);
             }
 
-            // 更新数据库记录
             kittenService.updateKitten(kitten);
-            return ResponseEntity.ok("更新成功");
+            return ResponseEntity.ok("更新成功！");
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("更新失败: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("更新失敗！");
+        }
+    }
+
+    @PostMapping("/kittens/images/{id}/add")
+    public ResponseEntity<?> addKittenImage(
+            @PathVariable Long id,
+            @RequestParam(value = "img", required = false) MultipartFile file,
+            @RequestParam(value = "imgName", required = false) String imgName
+    ) {
+        try {
+            String finalImageName;
+
+            if (file != null && !file.isEmpty()) {
+                String originalFilename = file.getOriginalFilename();
+                File destinationFile = new File(IMAGE_DIRECTORY + originalFilename);
+                if (!destinationFile.exists()) {
+                    file.transferTo(destinationFile);
+                }
+                finalImageName = originalFilename;
+            } else if (imgName != null && !imgName.trim().isEmpty()) {
+                File existingFile = new File(IMAGE_DIRECTORY + imgName);
+                if (!existingFile.exists()) {
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("指定された画像が存在しません！");
+                }
+                finalImageName = imgName;
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("画像が選択されていません！");
+            }
+
+            kittenService.addKittenImage(id, finalImageName);
+            return ResponseEntity.ok("画像追加成功！");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("画像追加に失敗しました。");
+        }
+    }
+
+    @PostMapping("/kittens/images/{id}/update")
+    public ResponseEntity<?> updateKittenImage(
+            @PathVariable Long id,
+            @RequestParam("oldImgUrl") String oldImgUrl,
+            @RequestParam(value = "img", required = false) MultipartFile file,
+            @RequestParam(value = "newImgUrl", required = false) String newImgUrl
+    ) {
+        try {
+            String finalImageName;
+
+            if (file != null && !file.isEmpty()) {
+                String originalFilename = file.getOriginalFilename();
+                File destinationFile = new File(IMAGE_DIRECTORY + originalFilename);
+                if (!destinationFile.exists()) {
+                    file.transferTo(destinationFile);
+                }
+                finalImageName = originalFilename;
+            } else if (newImgUrl != null && !newImgUrl.trim().isEmpty()) {
+                File existingFile = new File(IMAGE_DIRECTORY + newImgUrl);
+                if (!existingFile.exists()) {
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("指定された画像が存在しません！");
+                }
+                finalImageName = newImgUrl;
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("新しい画像が選択されていません！");
+            }
+
+            kittenService.updateKittenImage(id, oldImgUrl, finalImageName);
+            return ResponseEntity.ok("画像変更成功！");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("画像変更に失敗しました。");
+        }
+    }
+
+    @DeleteMapping("/kittens/images/{id}")
+    public ResponseEntity<?> deleteKittenImage(
+            @PathVariable Long id,
+            @RequestParam("imgUrl") String imgUrl) {
+        try {
+            kittenService.deleteKittenImage(id, imgUrl);
+            System.out.println("画像削除：" + imgUrl);
+            return ResponseEntity.ok("画像削除成功！");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("画像削除に失敗しました。");
+        }
+    }
+
+    @PostMapping("/kittens/parents/{id}/update")
+    public ResponseEntity<?> updateParentImage(
+            @PathVariable Long id,
+            @RequestParam("img") MultipartFile file) {
+        try {
+            // 保存图片到服务器
+            String filename = file.getOriginalFilename();
+            File destination = new File(IMAGE_DIRECTORY + filename);
+            file.transferTo(destination);
+
+            // 更新数据库记录
+            kittenService.updateParentImage(id, filename);
+            return ResponseEntity.ok("画像変更成功！");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("画像変更失敗！");
+        }
+    }
+    @DeleteMapping("/kittens/parents/{id}/delete")
+    public ResponseEntity<?> deleteParentImage(@PathVariable Long id) {
+        try {
+            // 删除数据库记录
+            kittenService.deleteParentImage(id);
+            return ResponseEntity.ok("画像削除成功！");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("画像削除失敗！");
         }
     }
 

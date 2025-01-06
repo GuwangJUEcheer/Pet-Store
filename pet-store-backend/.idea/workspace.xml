@@ -6,10 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="2e49c3ae-9e16-418c-94c4-4be7eb6844c3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/config/InterCeptorConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/config/InterCeptorConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/controller/KittenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/controller/KittenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/mapper/KittenMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/mapper/KittenMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/mapper/KittenParentMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/mapper/KittenParentMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/service/KittenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/service/KittenService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/serviceImpl/KittenServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/serviceImpl/KittenServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/src/components/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/components/Footer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/src/components/KittenDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/components/KittenDetails.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pet-store/src/components/News.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/components/News.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/src/css/KittenDetails.css" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/css/KittenDetails.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +40,7 @@
     <setting file="file://$PROJECT_DIR$/src/main/java/cn/itcast/mp/interceptor/TokenInterceptor.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -211,7 +217,18 @@
       <workItem from="1734679360628" duration="5193000" />
       <workItem from="1734751225500" duration="9645000" />
       <workItem from="1734835564580" duration="3003000" />
-      <workItem from="1734919564076" duration="7377000" />
+      <workItem from="1734919564076" duration="8050000" />
+      <workItem from="1735005947603" duration="3951000" />
+      <workItem from="1735103057774" duration="1069000" />
+      <workItem from="1735178331257" duration="12487000" />
+      <workItem from="1735275159816" duration="4684000" />
+      <workItem from="1735365719307" duration="639000" />
+      <workItem from="1735615146804" duration="3648000" />
+      <workItem from="1735783724396" duration="3775000" />
+      <workItem from="1735874803498" duration="3760000" />
+      <workItem from="1735970493118" duration="2414000" />
+      <workItem from="1736046847572" duration="1811000" />
+      <workItem from="1736127184071" duration="602000" />
     </task>
     <servers />
   </component>
