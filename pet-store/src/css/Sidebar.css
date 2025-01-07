@@ -107,14 +107,76 @@
   }
 }
 
+/* 响应式样式 */
 @media screen and (max-width: 896px) {
+  .sidebar {
+    width: 100vw; /* 移动端占满屏幕宽度 */
+    position: relative;
+  }
+
   .gNav {
-      position: fixed;
-      top: 60px;
-      z-index: 80;
-      display: none;
-      overflow: hidden;
-      width: 100%;
-      background: #E0B4B5;
+    position: relative;
+    z-index: 80;
+    overflow: hidden;
+    background: #E0B4B5;
+  }
+
+  .gNav nav ul li {
+    margin-bottom: 30px; /* 减小间距以适应移动端 */
+  }
+
+  .gNav nav ul li a {
+    font-size: 16px; /* 调整字体大小 */
+  }
+
+  .gNav nav ul li a span {
+    margin-top: 5px;
+    font-size: 14px;
+  }
+
+  .gNav .snsList {
+    margin: 30px 0;
+  }
+
+  .snsList li a {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* 针对宽度小于 350px 的屏幕 */
+@media screen and (max-width: 400px) {
+  .sidebar {
+    width: 100vw; /* 确保侧边栏占满屏幕宽度 */
+    height: 100vh; /* 全屏高度 */
+    padding: 10px 0; /* 添加内边距，避免内容贴边 */
+  }
+
+  .gNav nav ul li {
+    margin-bottom: 20px; /* 减小菜单项间距 */
+  }
+
+  .gNav nav ul li a {
+    font-size: 14px; /* 缩小字体大小 */
+  }
+
+  .gNav nav ul li a span {
+    margin-top: 5px; /* 减少二级文字的间距 */
+    font-size: 12px; /* 缩小二级文字的字体 */
+  }
+
+  .snsList {
+    margin: 10px 0; /* 减小社交图标与其他内容的间距 */
+  }
+
+  .snsList li a {
+    width: 30px; /* 缩小图标尺寸 */
+    height: 30px;
+  }
+
+  .contactBtn a {
+    font-size: 12px; /* 按钮字体更小 */
+    padding: 8px 15px; /* 按钮的内边距更紧凑 */
+    border-radius: 15px; /* 缩小按钮圆角 */
   }
 }
