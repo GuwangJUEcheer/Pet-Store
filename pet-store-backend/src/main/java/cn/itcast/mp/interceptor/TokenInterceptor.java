@@ -28,6 +28,9 @@ public class TokenInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String uri = request.getRequestURI();
         logger.info("拦截到的路径: {}", uri);
+        if ("/".equals(uri) || "/favicon.ico".equals(uri) || uri.startsWith("/static/") || uri.startsWith("/public/")) {
+            return true; // 放行
+        }
 
         if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
             response.setStatus(HttpServletResponse.SC_OK);
