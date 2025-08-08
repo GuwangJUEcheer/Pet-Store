@@ -2,6 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Noto Sans JP', sans-serif;
+    background-color: #faf9f7;
   }
   
   a {
@@ -12,5 +13,42 @@ body {
   
   a:hover {
     opacity: 0.7;
+  }
+
+  /* 响应式父母卡片样式 */
+  @media (max-width: 768px) {
+    .parent-cards-container {
+      gap: 20px !important;
+      flex-direction: column !important;
+      align-items: center !important;
+    }
+
+    .admin-controls {
+      flex-direction: column !important;
+      gap: 12px !important;
+    }
+
+    .add-button, .management-button {
+      width: 200px !important;
+      margin-bottom: 8px !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .parent-cards-container {
+      padding: 10px !important;
+    }
+
+    h1, h2, h3 {
+      font-size: 1.5rem !important;
+    }
+  }
+
+  /* 确保所有主要内容区域都有米白色背景 */
+  .main-content, 
+  .page-container, 
+  .content-wrapper,
+  [class*="container"]:not(.sidebar):not(.menu-container):not(.gNav) {
+    background-color: #faf9f7 !important;
   }
   

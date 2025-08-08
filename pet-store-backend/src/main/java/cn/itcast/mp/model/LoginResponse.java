@@ -4,15 +4,17 @@ import lombok.Data;
 
 @Data
 public class LoginResponse {
-	
-	public enum LoginResult{
-		OK,NG
+
+	public enum LoginResult {
+		OK, NG
 	}
+
 	private int code;
-    private String token;
-    private int userId;
-    private String userName;
-    private String loginResult;
+	private String token;
+	private int userId;
+	private String username;
+	private String loginResult;
+	private int role;
 }
 
 

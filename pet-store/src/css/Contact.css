@@ -4,6 +4,8 @@
     margin: 0 auto;
     font-family: 'Arial', sans-serif;
     text-align: center;
+    background-color: #faf9f7;
+    min-height: 100vh;
   }
   
   h1 {

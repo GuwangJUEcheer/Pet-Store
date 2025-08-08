@@ -1,418 +1,291 @@
-import React, { useState, useEffect } from "react";
-import { axiosInstance, axiosInstance2 } from "../Request/request";
+import React, {useState, useEffect, useMemo} from "react";
 import "../css/News.css";
-import { message } from "antd";
-import { useNavigate } from "react-router-dom"; // 导入 useNavigate
-
+import {deleteKittenUsingDelete, getPublicKittensUsingGet} from "../api/kittenController";
+import {useNavigate, useParams} from "react-router-dom";
+import {getUser} from "../other/userStore";
+import EditModal from "../pages/EditModal";
+import {Pagination, Button, Space} from "antd";
+import {EyeOutlined, EditOutlined, DeleteOutlined, CameraOutlined, PlusOutlined, UserOutlined} from "@ant-design/icons";
+import {Image, Tag} from "antd";
 // 定义子猫信息的类型
-interface Kitten {
-  id: number;
-  name: string;
-  price: number;
-  gender: string;
-  color: string;
-  birthday: string;
-  status: string;
-  imgUrl: string | null;
-}
-
 const News: React.FC = () => {
-  const [kittenData, setKittenData] = useState<Kitten[]>([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalType, setModalType] = useState<"add" | "edit" | "delete">("add");
-  const [currentKitten, setCurrentKitten] = useState<Kitten | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [isAdmin, setIsAdmin] = useState<boolean>(false); // 是否为管理员
-  const [validationErrors, setValidationErrors] = useState<{
-    [key: string]: string;
-  }>({});
-  const navigate = useNavigate(); // 初始化 useNavigate
+    const [kittenData, setKittenData] = useState<API.Kitten[]>([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalType, setModalType] = useState<"add" | "edit" | "delete">("add");
+    const [currentKitten, setCurrentKitten] = useState<API.Kitten | null>(null);
+    const [editModalOpen, setEditModalOpen] = useState(false);
+    const [editMode, setEditMode] = useState<'add' | 'edit'>('add');
+    const [editKittenId, setEditKittenId] = useState<number | undefined>(undefined);
 
-  // 获取数据
-  const fetchData = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      setIsAdmin(!!token); // 根据是否存在 token 判断管理员状态
+    // 分页相关状态
+    const [currentPage, setCurrentPage] = useState(1);
+    const [pageSize] = useState(8);
 
-      const endpoint = "/api/public/kittens"; // 游客和管理员都访问公共接口
-      const response = await axiosInstance.get<Kitten[]>(endpoint);
-      setKittenData(response.data); // 设置数据
-    } catch (err) {
-      setError("子猫情報を読み込めませんでした。");
-      console.error("获取子猫信息失败:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+    const isAdmin = useMemo(() => {
+        return getUser()?.role === 0
+    }, []);
+    const [validationErrors, setValidationErrors] = useState<{
+        [key: string]: string;
+    }>({});
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+    // 获取状态标签颜色
+    const getStatusColor = (status: string) => {
+        switch (status) {
+            case '予約受付中':
+                return 'green';
+            case '予約済み':
+                return 'orange';
+            default:
+                return 'default';
+        }
+    };
+    // 获取数据
+    const fetchData = async () => {
+        try {
+            const response = await getPublicKittensUsingGet();
+            setKittenData(response.data); // 设置数据
+        } catch (err) {
+            setError("子猫情報を読み込めませんでした。");
+            console.error("获取子猫信息失败:", err);
+        } finally {
+            setLoading(false);
+        }
+    };
 
-  // 文件选择
-  const chooseFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setSelectedFile(e.target.files[0]); // 设置文件
-    }
-  };
+    useEffect(() => {
+        void fetchData();
+    }, []);
 
-  // 查看详情
-  const handleViewDetails = (kittenId: number) => {
-    navigate(`/kitten-details/${kittenId}`); // 跳转到详细页面
-  };
 
-  // 添加子猫
-  const handleAddKitten = () => {
-    setModalType("add");
-    setCurrentKitten({
-      id: 0,
-      imgUrl: "",
-      name: "",
-      price: 0,
-      gender: "",
-      color: "",
-      birthday: "",
-      status: "予約受付中",
-    });
-    setIsModalOpen(true);
-  };
+    // 查看详情
+    const handleViewDetails = (kittenId: number) => {
 
-  // 编辑子猫
-  const handleEditKitten = (kitten: Kitten) => {
-    setModalType("edit");
-    setCurrentKitten(kitten);
-    setIsModalOpen(true);
-  };
+        navigate(`/kitten-details/${kittenId}`); // 跳转到详细页面
+    };
 
-  // 删除子猫
-  const handleDeleteKitten = (kitten: Kitten) => {
-    setModalType("delete");
-    setCurrentKitten(kitten);
-    setIsModalOpen(true);
-  };
+    // 添加子猫
+    const handleAddKitten = () => {
+        setEditMode('add');
+        setEditKittenId(undefined);
+        setEditModalOpen(true);
+    };
 
-  // 输入验证
-  const validateInputs = (): boolean => {
-    if (!currentKitten) return false;
+    // 编辑子猫
+    const handleEditKitten = (kitten: API.Kitten) => {
+        setEditMode('edit');
+        setEditKittenId(kitten.id);
+        setEditModalOpen(true);
+    };
 
-    const errors: { [key: string]: string } = {};
-    if (!currentKitten.name.trim()) errors.name = "名前は必須です。";
-    if (currentKitten.price <= 0)
-      errors.price = "価格は正の数でなければなりません。";
-    if (!["男の子", "女の子"].includes(currentKitten.gender))
-      errors.gender = "性別を選択してください。";
-    if (!currentKitten.color.trim()) errors.color = "毛色は必須です。";
-    if (new Date(currentKitten.birthday) > new Date())
-      errors.birthday = "誕生日は現在の日付より前である必要があります。";
-    if (!currentKitten.status.trim()) errors.status = "状態は必須です。";
+    // 照片管理
+    const handlePhotoManagement = (kitten: API.Kitten) => {
+        navigate(`/photo-manager/${kitten.id}`);
+    };
 
-    setValidationErrors(errors);
-    return Object.keys(errors).length === 0;
-  };
+    // 删除子猫
+    const handleDeleteKitten = async (kitten: API.Kitten) => {
+        await deleteKittenUsingDelete({id: kitten?.id} as API.deleteKittenUsingDELETEParams)
+        setModalType("delete");
+        setCurrentKitten(kitten);
+        setIsModalOpen(true);
+    };
 
-  // 保存子猫信息
-  const handleSaveKitten = async () => {
-    if (!currentKitten || !validateInputs()) return;
+    // 删除确认
+    const handleConfirmDelete = async () => {
+        if (!currentKitten) return;
 
-    const formData = new FormData();
-    formData.append("kittenDvo", JSON.stringify(currentKitten));
+        try {
+            await deleteKittenUsingDelete({id: currentKitten.id} as API.deleteKittenUsingDELETEParams);
+            setKittenData((prevData) =>
+                prevData.filter((kitten) => kitten.id !== currentKitten.id)
+            );
+            setIsModalOpen(false);
+        } catch (err) {
+            setError("削除に失敗しました。");
+        }
+    };
 
-    if (selectedFile) {
-      formData.append("img", selectedFile);
-    }
-
-    try {
-      let response;
-
-      if (modalType === "add") {
-        response = await axiosInstance2.post("/test", formData);
-      } else if (modalType === "edit") {
-        response = await axiosInstance2.post("/updateKitten", formData);
-      }
-
-      if (response && response.status === 200) {
-        message.success("保存成功！");
+    const handleCancel = () => {
         setIsModalOpen(false);
-        fetchData(); // 刷新数据
-      } else {
-        message.error("保存失败！");
-      }
-    } catch (err) {
-      console.error("保存失败:", err);
-      message.error("保存に失敗しました。");
-    }
-  };
+        setCurrentKitten(null);
+        setValidationErrors({});
+    };
 
-  // 删除确认
-  const handleConfirmDelete = async () => {
-    if (!currentKitten) return;
+    // 分页逻辑
+    const startIndex = (currentPage - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    const currentKittens = kittenData.slice(startIndex, endIndex);
 
-    try {
-      await axiosInstance.delete(`/api/kittens/${currentKitten.id}`);
-      setKittenData((prevData) =>
-        prevData.filter((kitten) => kitten.id !== currentKitten.id)
-      );
-      setIsModalOpen(false);
-    } catch (err) {
-      setError("削除に失敗しました。");
-    }
-  };
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+    };
 
-  // 退出登录
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    setIsAdmin(false); // 设置为游客模式
-    message.success("已登出！");
-    fetchData(); // 刷新数据
-  };
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>{error}</div>;
 
-  const handleCancel = () => {
-    setIsModalOpen(false);
-    setCurrentKitten(null);
-    setValidationErrors({});
-  };
+    return (
+        <div className="news-container">
+            <h1>最新子猫紹介</h1>
+            <p className="subtitle">Kitten Info</p>
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setCurrentKitten((prevKitten) =>
-      prevKitten
-        ? {
-            ...prevKitten,
-            [name]: name === "price" ? parseFloat(value) || 0 : value,
-          }
-        : null
-    );
-  };
+            {/* 管理员权限下显示添加按钮 */}
+            {isAdmin && (
+                <div className="admin-controls" style={{ marginBottom: 20 }}>
+                    <Space>
+                        <Button 
+                            type="primary"
+                            icon={<PlusOutlined />}
+                            onClick={handleAddKitten}
+                            size="large"
+                        >
+                            新しい子猫を追加
+                        </Button>
+                        <Button
+                            icon={<UserOutlined />}
+                            onClick={() => navigate('/parent-management')}
+                            size="large"
+                        >
+                            父母管理
+                        </Button>
+                    </Space>
+                </div>
+            )}
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
+            {/* 子猫信息展示 */}
+            <div className="kitten-grid">
+                {currentKittens.map((kitten) => (
+                    <div key={kitten.id} className="kitten-card">
+                        {/* 状态标签 */}
+                        <div className="status-tag">
+                            <Tag color={getStatusColor(kitten.status || '')}>
+                                {kitten.status || '-'}
+                            </Tag>
+                        </div>
 
-  return (
-    <div className="news-container">
-      <h1>最新子猫紹介</h1>
-      <p className="subtitle">Kitten Info</p>
+                        {/* 子猫图片 */}
+                        <div className="image-container">
+                            <Image
+                                src={kitten.imgUrl}
+                                alt={kitten.name}
+                                className="kitten-image"
+                                preview={false}
+                            />
+                        </div>
 
-      {/* 管理员权限下显示添加按钮 */}
-      {isAdmin && (
-        <button className="add-button" onClick={handleAddKitten}>
-          新しい子猫を追加
-        </button>
-      )}
+                        {/* 子猫基本信息 */}
+                        <div className="kitten-info">
+                            <h2>{kitten.name}</h2>
+                            <div className="price-container">
+                                <span className="yen-symbol">¥</span>
+                                <span className="price-amount">{kitten.price?.toLocaleString()}</span>
+                            </div>
 
-      {/* 子猫信息展示 */}
-      <div className="kitten-grid">
-        {kittenData.map((kitten) => (
-          <div key={kitten.id} className="kitten-card">
-            {/* 子猫图片 */}
-            <img
-              src={`/images/${kitten.imgUrl}?t=${Date.now()}`} // 强制刷新图片缓存
-              alt={kitten.name}
-              className="kitten-image"
-              onError={(e) => (e.currentTarget.src = "../images/cat5.jpg")} // 图片加载失败时显示默认图
+                            {/* 按钮区域 */}
+                            <div className="kitten-buttons">
+                                <Space wrap>
+                                    {/* 查看详情按钮（所有人可见） */}
+                                    <Button
+                                        type="primary"
+                                        icon={<EyeOutlined />}
+                                        onClick={() => {
+                                            if (!kitten.id) return;
+                                            handleViewDetails(kitten.id);
+                                        }}
+                                        size="small"
+                                    >
+                                        詳細
+                                    </Button>
+
+                                    {/* 管理员操作按钮 */}
+                                    {isAdmin && (
+                                        <>
+                                            <Button
+                                                icon={<EditOutlined />}
+                                                onClick={() => handleEditKitten(kitten)}
+                                                size="small"
+                                            >
+                                                編集
+                                            </Button>
+                                            <Button
+                                                icon={<CameraOutlined />}
+                                                onClick={() => handlePhotoManagement(kitten)}
+                                                size="small"
+                                                type="dashed"
+                                            >
+                                                写真管理
+                                            </Button>
+                                            <Button
+                                                danger
+                                                icon={<DeleteOutlined />}
+                                                onClick={() => handleDeleteKitten(kitten)}
+                                                size="small"
+                                            >
+                                                削除
+                                            </Button>
+                                        </>
+                                    )}
+                                </Space>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            {/* 分页组件 */}
+            <div style={{display: 'flex', justifyContent: 'center', marginTop: 32}}>
+                <Pagination
+                    current={currentPage}
+                    total={kittenData.length}
+                    pageSize={pageSize}
+                    onChange={handlePageChange}
+                    showSizeChanger={false}
+                    showQuickJumper={false}
+                    showTotal={(total, range) =>
+                        `${range[0]}-${range[1]} / ${total} 匹の子猫`
+                    }
+                />
+            </div>
+
+            {/* 删除确认模态框 */}
+            {isModalOpen && modalType === "delete" && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <h2>本当に削除しますか？</h2>
+                        <p style={{textAlign: "center"}}>{currentKitten?.name}</p>
+                        <div className="modal-buttons">
+                            <Space>
+                                <Button 
+                                    danger
+                                    onClick={handleConfirmDelete}
+                                >
+                                    はい
+                                </Button>
+                                <Button onClick={handleCancel}>
+                                    いいえ
+                                </Button>
+                            </Space>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* EditModal 用于添加和编辑 */}
+            <EditModal
+                isOpen={editModalOpen}
+                close={() => setEditModalOpen(false)}
+                id={editKittenId}
+                mode={editMode}
+                onSuccess={() => {
+                    setEditModalOpen(false);
+                    fetchData(); // 刷新数据
+                }}
             />
 
-            {/* 子猫基本信息 */}
-            <div className="kitten-info">
-              <h2>{kitten.name}</h2>
-              <p className="price">価格: {kitten.price}円</p>
-              <table>
-                <tbody>
-                  <tr>
-                    <td>性別：</td>
-                    <td>{kitten.gender}</td>
-                  </tr>
-                  <tr>
-                    <td>毛色：</td>
-                    <td>{kitten.color}</td>
-                  </tr>
-                  <tr>
-                    <td>誕生日：</td>
-                    <td>{kitten.birthday}</td>
-                  </tr>
-                  <tr>
-                    <td>状態：</td>
-                    <td>{kitten.status}</td>
-                  </tr>
-                </tbody>
-              </table>
-
-              {/* 按钮区域 */}
-              <div className="kitten-buttons">
-                {/* 查看详情按钮（所有人可见） */}
-                <button
-                  className="details-button"
-                  onClick={() => handleViewDetails(kitten.id)}
-                >
-                  詳細
-                </button>
-
-                {/* 管理员操作按钮 */}
-                {isAdmin && (
-                  <>
-                    <button
-                      className="edit-button"
-                      onClick={() => handleEditKitten(kitten)}
-                    >
-                      編集
-                    </button>
-                    <button
-                      className="delete-button"
-                      onClick={() => handleDeleteKitten(kitten)}
-                    >
-                      削除
-                    </button>
-                  </>
-                )}
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {isModalOpen && (
-        <div className="modal">
-          <div className="modal-content">
-            {modalType === "delete" ? (
-              <>
-                <h2>本当に削除しますか？</h2>
-                <p style={{ textAlign: "center" }}>{currentKitten?.name}</p>
-                <div className="modal-buttons">
-                  <button onClick={handleConfirmDelete}>はい</button>
-                  <button onClick={handleCancel}>いいえ</button>
-                </div>
-              </>
-            ) : (
-              <>
-                <h2>
-                  {modalType === "add" ? "子猫情報を追加" : "子猫情報を編集"}
-                </h2>
-                <div style={{ textAlign: "left" }}>
-                  <label>
-                    名前：
-                    <input
-                      type="text"
-                      name="name"
-                      value={currentKitten?.name || ""}
-                      onChange={handleInputChange}
-                    />
-                    {validationErrors.name && (
-                      <p className="error">{validationErrors.name}</p>
-                    )}
-                  </label>
-                  <label>
-                    価格：
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                      <input
-                        type="text"
-                        name="price"
-                        value={currentKitten?.price.toString() || ""}
-                        onChange={handleInputChange}
-                        style={{ flex: 1 }}
-                      />
-                      <span style={{ marginLeft: "8px" }}>円</span>
-                    </div>
-                    {validationErrors.price && (
-                      <p className="error">{validationErrors.price}</p>
-                    )}
-                  </label>
-                  <label>
-                    性別：
-                    <div style={{ display: "flex", gap: "8px" }}>
-                      <label>
-                        <input
-                          type="radio"
-                          name="gender"
-                          value="男の子"
-                          checked={currentKitten?.gender === "男の子"}
-                          onChange={handleInputChange}
-                        />
-                        男の子
-                      </label>
-                      <label>
-                        <input
-                          type="radio"
-                          name="gender"
-                          value="女の子"
-                          checked={currentKitten?.gender === "女の子"}
-                          onChange={handleInputChange}
-                        />
-                        女の子
-                      </label>
-                    </div>
-                    {validationErrors.gender && (
-                      <p className="error">{validationErrors.gender}</p>
-                    )}
-                  </label>
-                  <label>
-                    毛色：
-                    <input
-                      type="text"
-                      name="color"
-                      value={currentKitten?.color || ""}
-                      onChange={handleInputChange}
-                    />
-                    {validationErrors.color && (
-                      <p className="error">{validationErrors.color}</p>
-                    )}
-                  </label>
-                  <label>
-                    誕生日：
-                    <input
-                      type="date"
-                      name="birthday"
-                      value={currentKitten?.birthday || ""}
-                      onChange={handleInputChange}
-                    />
-                    {validationErrors.birthday && (
-                      <p className="error">{validationErrors.birthday}</p>
-                    )}
-                  </label>
-                  <label>
-                    状態：
-                    <div style={{ display: "flex", gap: "8px" }}>
-                      <label>
-                        <input
-                          type="radio"
-                          name="status"
-                          value="予約受付中"
-                          checked={currentKitten?.status === "予約受付中"}
-                          onChange={handleInputChange}
-                        />
-                        予約受付中
-                      </label>
-                      <label>
-                        <input
-                          type="radio"
-                          name="status"
-                          value="予約済み"
-                          checked={currentKitten?.status === "予約済み"}
-                          onChange={handleInputChange}
-                        />
-                        予約済み
-                      </label>
-                    </div>
-                    {validationErrors.status && (
-                      <p className="error">{validationErrors.status}</p>
-                    )}
-                  </label>
-                  <label>
-                    画像：
-                    <input type="file" accept="image/*" onChange={chooseFile} />
-                  </label>
-                </div>
-                <div className="modal-buttons">
-                  <button onClick={handleSaveKitten}>保存</button>
-                  <button onClick={handleCancel}>キャンセル</button>
-                </div>
-              </>
-            )}
-          </div>
         </div>
-      )}
-    </div>
-  );
+    );
 };
 
 export default News;

@@ -12,6 +12,9 @@ import Buy from "./components/Buy";
 import ShopInfo from "./components/ShopInfo";
 import Contact from "./components/Contact";
 import SuccessPage from "./components/LoginSuccess";
+import ParentTest from "./components/ParentTest";
+import ParentManagement from "./pages/ParentManagement";
+import PhotoManagerPage from "./pages/PhotoManagerPage";
 
 // 使用 RouteObject 类型来指定路由
 const routes: RouteObject[] = [
@@ -60,6 +63,18 @@ const routes: RouteObject[] = [
   {
     path: "/success",
     element: <SuccessPage />, // 指定渲染的组件
+  },
+  {
+    path: "/showTest",
+    element: <ParentTest />, // 指定渲染的组件
+  },
+  {
+    path: "/parent-management",
+    element: <ParentManagement />, // 父母管理页面（仅管理员可访问）
+  },
+  {
+    path: "/photo-manager/:kittenId",
+    element: <PhotoManagerPage />, // 照片管理页面（仅管理员可访问）
   },
 ];
 

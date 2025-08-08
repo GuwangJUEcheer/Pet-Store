@@ -1,5 +1,5 @@
 .header {
-  background-color: #fff;
+  background-color: #faf9f7;
   display: flex;
   justify-content: space-between;
   padding: 20px;
@@ -43,7 +43,7 @@
 .contactBtn a {
   display: inline-block;
   padding: 28px 35px;
-  background: #BC87BB;
+  background: #a7a88b;
   color: #fff;
 }
 

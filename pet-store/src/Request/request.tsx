@@ -1,87 +1,25 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, {type AxiosInstance, type InternalAxiosRequestConfig} from "axios";
 
-interface ApiResponse<T = any> {
-  code: number; // 状态码
-  message: string; // 响应信息
-  data: T; // 业务数据
-  success?: boolean; // 可选的业务成功标志
-}
-
-
-export const axiosInstance: AxiosInstance = axios.create({
-  baseURL: 'http://localhost:8080',
-  timeout: 100000,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  withCredentials: true, // 跨域时携带认证信息
+// 创建 Axios 实例
+const request: AxiosInstance = axios.create({
+    baseURL: '/api/',
+    timeout: 60000,
 });
 
-export const axiosInstance2 : AxiosInstance = axios.create({
-  baseURL: 'http://localhost:8080/api/',
-  timeout: 10000,
-  headers: {
-    'Content-Type': 'multipart/form-data',
-  },
-  withCredentials: true, // 跨域时携带认证信息
-});
-
-axiosInstance.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem('token');
-    // 设置 Authorization
-    if (token) {
-      config.headers['Authorization'] = `Bearer ${token}`;
+// 请求拦截器
+request.interceptors.request.use(
+    (config: InternalAxiosRequestConfig) => {
+        // 获取token并添加到请求头
+        const token = localStorage.getItem('token');
+        if (token) {
+            config.headers = config.headers || {};
+            config.headers['Authorization'] = `Bearer ${token}`;
+        }
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
     }
-    return config;
-  },
-  (error) => {
-    console.error('Request Error:', error);
-    return Promise.reject(error);
-  }
 );
 
-axiosInstance.interceptors.response.use(
-  (response: AxiosResponse<ApiResponse>) => {
-    // const code = response.data.code;
-    // if (code !== 200) {
-    //   console.error(`API Error`);
-    //   return Promise.reject(new Error(`API Error`));
-    // }
-    return response;
-  },
-  (error) => {
-    console.error('HTTP Error:', error.response?.data || error.message);
-    return Promise.reject(error);
-  }
-);
-
-axiosInstance2.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem('token');
-    // 设置 Authorization
-    if (token) {
-      config.headers['Authorization'] = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => {
-    console.error('Request Error:', error);
-    return Promise.reject(error);
-  }
-);
-
-axiosInstance2.interceptors.response.use(
-  (response: AxiosResponse<ApiResponse>) => {
-    // const code = response.data.code;
-    // if (code !== 200) {
-    //   console.error(`API Error`);
-    //   return Promise.reject(new Error(`API Error`));
-    // }
-    return response;
-  },
-  (error) => {
-    console.error('HTTP Error:', error.response?.data || error.message);
-    return Promise.reject(error);
-  }
-);
+export default request;

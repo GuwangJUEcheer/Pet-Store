@@ -1,53 +1,50 @@
 package cn.itcast.mp.model;
 
-public class User {
-    private Integer id;
+import lombok.Data;
 
-    private String username;
+import java.io.Serializable;
 
-    private String password;
+/**
+ * 用户表
+ *
+ * @TableName user
+ */
+@Data
+public class User implements Serializable {
 
-    private String addTime;
+	/**
+	 * 用户ID
+	 */
+	private Integer id;
 
-    private String updateTime;
+	/**
+	 * 用户名
+	 */
+	private String username;
 
-    public Integer getId() {
-        return id;
-    }
+	/**
+	 * 密码
+	 */
+	private String password;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	/**
+	 * JWT令牌
+	 */
+	private String jwtToken;
 
-    public String getUsername() {
-        return username;
-    }
+	/**
+	 * 是否登录
+	 */
+	private Integer isLogin;
 
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
-    }
+	/**
+	 * 是否锁定
+	 */
+	private Integer isLocked;
 
-    public String getPassword() {
-        return password;
-    }
+	/**
+	 * 角色ID
+	 */
+	private Integer roleId;
 
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
-    }
-
-    public String getAddTime() {
-        return addTime;
-    }
-
-    public void setAddTime(String addTime) {
-        this.addTime = addTime == null ? null : addTime.trim();
-    }
-
-    public String getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(String updateTime) {
-        this.updateTime = updateTime == null ? null : updateTime.trim();
-    }
 }

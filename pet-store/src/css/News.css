@@ -2,12 +2,13 @@
 .news-container {
   padding: 20px;
   text-align: center;
+  background-color: #faf9f7;
 }
 
 .news-container h1 {
   font-size: 2.5rem;
   margin-bottom: 10px;
-  color: #d48888;
+  color: #908663;
 }
 
 .news-container .subtitle {
@@ -18,10 +19,35 @@
 
 /* 子猫网格布局 */
 .kitten-grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
-  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (min-width: 1200px) {
+  .kitten-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 1199px) and (min-width: 900px) {
+  .kitten-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 899px) and (min-width: 600px) {
+  .kitten-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 599px) {
+  .kitten-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .kitten-card {
@@ -35,6 +61,7 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   font-family: 'MochiyPopOne', sans-serif;
   font-size: 18px;
+  position: relative;
 }
 
 .kitten-card:hover {
@@ -42,9 +69,23 @@
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
+/* 状态标签 */
+.status-tag {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+}
+
+/* 图片容器 */
+.image-container {
+  height: 250px;
+  overflow: hidden;
+}
+
 .kitten-image {
   width: 100%;
-  height: 200px;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -64,15 +105,27 @@
 
 .kitten-info h2 {
   font-size: 1.5rem;
-  color: #d48888;
+  color: #908663;
   margin: 10px 0;
 }
 
-.kitten-info .price {
-  font-size: 1.2rem;
+/* 价格容器样式 */
+.price-container {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
   font-weight: bold;
-  color: #f56c6c;
-  margin-bottom: 10px;
+}
+
+.yen-symbol {
+  font-size: 1.5rem;
+  color: #f4c430;
+  margin-right: 5px;
+}
+
+.price-amount {
+  font-size: 1.3rem;
+  color: #a7a88b;
 }
 
 /* 表格样式 */
@@ -96,6 +149,73 @@ table td:first-child {
   color: #999;
 }
 
+
+/* 管理员控制按钮样式 */
+.admin-controls {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+/* 小猫卡片按钮样式 */
+.kitten-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+/* 响应式样式 */
+@media (max-width: 768px) {
+  .admin-controls {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .kitten-card {
+    width: 100%;
+    max-width: 350px;
+  }
+  
+  .image-container {
+    height: 200px;
+  }
+  
+  .kitten-info h2 {
+    font-size: 1.3rem;
+  }
+  
+  .yen-symbol {
+    font-size: 1.3rem;
+  }
+  
+  .price-amount {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .news-container {
+    padding: 15px;
+  }
+  
+  .news-container h1 {
+    font-size: 2rem;
+  }
+  
+  .kitten-card {
+    width: 100%;
+  }
+  
+  .image-container {
+    height: 180px;
+  }
+  
+  .kitten-info {
+    padding: 12px;
+  }
+}
 
 /* 弹窗背景遮罩样式 */
 .modal {
@@ -183,38 +303,12 @@ table td:first-child {
   font-size: 0.9rem;
 }
 
-/* 弹窗按钮样式 */
+/* 模态框按钮区域 */
 .modal-buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 10px;
   margin-top: 20px;
-}
-
-.modal-buttons button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.modal-buttons button:first-child {
-  background-color: #4caf50;
-  color: white;
-}
-
-.modal-buttons button:first-child:hover {
-  background-color: #45a049;
-}
-
-.modal-buttons button:last-child {
-  background-color: #f44336;
-  color: white;
-}
-
-.modal-buttons button:last-child:hover {
-  background-color: #d32f2f;
 }
 
 /* 弹窗动画效果 */
@@ -229,83 +323,3 @@ table td:first-child {
   }
 }
 
-/* 子猫卡片内的操作按钮容器 */
-.kitten-buttons {
-  display: flex;
-  justify-content: space-between; /* 按钮均匀分布 */
-  gap: 10px; /* 按钮间距 */
-  margin-top: 15px; /* 增加顶部间距 */
-}
-
-/* 子猫卡片内的详细按钮 */
-.kitten-buttons .details-button {
-  background-color: #007bff; /* 蓝色背景 */
-  color: white; /* 白色文字 */
-  font-size: 1rem; /* 字体大小 */
-  font-weight: bold; /* 字体加粗 */
-  padding: 10px 20px; /* 内边距 */
-  border: none; /* 无边框 */
-  border-radius: 5px; /* 圆角 */
-  cursor: pointer; /* 鼠标样式 */
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.kitten-buttons .details-button:hover {
-  background-color: #0056b3; /* 深蓝色背景 */
-  transform: scale(1.05); /* 悬停放大效果 */
-}
-
-/* 编辑按钮样式 */
-.kitten-buttons .edit-button {
-  background-color: #28a745; /* 绿色背景 */
-  color: white; /* 白色文字 */
-  font-size: 1rem; /* 字体大小 */
-  font-weight: bold; /* 字体加粗 */
-  padding: 10px 20px; /* 内边距 */
-  border: none; /* 无边框 */
-  border-radius: 5px; /* 圆角 */
-  cursor: pointer; /* 鼠标样式 */
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.kitten-buttons .edit-button:hover {
-  background-color: #218838; /* 深绿色背景 */
-  transform: scale(1.05); /* 悬停放大效果 */
-}
-
-/* 删除按钮样式 */
-.kitten-buttons .delete-button {
-  background-color: #dc3545; /* 红色背景 */
-  color: white; /* 白色文字 */
-  font-size: 1rem; /* 字体大小 */
-  font-weight: bold; /* 字体加粗 */
-  padding: 10px 20px; /* 内边距 */
-  border: none; /* 无边框 */
-  border-radius: 5px; /* 圆角 */
-  cursor: pointer; /* 鼠标样式 */
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.kitten-buttons .delete-button:hover {
-  background-color: #c82333; /* 深红色背景 */
-  transform: scale(1.05); /* 悬停放大效果 */
-}
-
-/* 新增按钮样式 */
-.add-button {
-  display: inline-block;
-  background-color: #e3a7a2; /* 按钮背景色 */
-  color: white; /* 按钮文字颜色 */
-  padding: 12px 25px; /* 内边距 */
-  font-size: 1.2rem; /* 字体大小 */
-  border: none; /* 去掉边框 */
-  border-radius: 8px; /* 圆角 */
-  cursor: pointer; /* 鼠标样式 */
-  transition: background-color 0.3s ease, transform 0.2s ease; /* 动画效果 */
-  margin-bottom: 20px; /* 底部间距 */
-}
-
-.add-button:hover {
-  background-color: #d88e8e; /* 悬停时背景颜色 */
-  transform: scale(1.1); /* 悬停放大效果 */
-}

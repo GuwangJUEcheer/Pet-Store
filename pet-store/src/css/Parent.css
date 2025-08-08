@@ -3,13 +3,14 @@
   padding: 20px;
   text-align: center;
   font-family: 'MochiyPopOne', sans-serif;
+  background-color: #faf9f7;
 }
 
 /* 标题部分 */
 .parentlist-container header h1 {
   font-size: 2.5rem;
   margin-bottom: 10px;
-  color: #d48888;
+  color: #908663;
   font-weight: bold;
 }
 
@@ -64,7 +65,7 @@
 
 .parent-info-horizontal h2 {
   font-size: 1.8rem; /* 增大标题字体 */
-  color: #d48888;
+  color: #908663;
   margin-bottom: 10px;
 }
 

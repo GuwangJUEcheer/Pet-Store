@@ -1,58 +1,14 @@
 package cn.itcast.mp.model;
 
+import lombok.Data;
+
+@Data
 public class KittenParent {
-    private Long id;
-    private Long kittenId;
-    private String parentName;
-    private String role; // "father" or "mother"
-    private String imgUrl;
-    private String description;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getKittenId() {
-        return kittenId;
-    }
-
-    public void setKittenId(Long kittenId) {
-        this.kittenId = kittenId;
-    }
-
-    public String getParentName() {
-        return parentName;
-    }
-
-    public void setParentName(String parentName) {
-        this.parentName = parentName;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public String getImgUrl() {
-        return imgUrl;
-    }
-
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	private Long id;
+	private Long kittenId;
+	private int parentId;
+	private String parentRole; // "父" 或 "母"
+	private String parentName; // 父母姓名（从Parent表关联获取）
+	private String imgUrl; // 父母图片（从Parent表关联获取）
+	private String description; // 父母描述（从Parent表关联获取）
 }

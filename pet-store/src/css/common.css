@@ -288,8 +288,8 @@ a:hover img {
 }
 
 .header {
-    min-width: 220px;
-    width: 20%;
+    min-width: 180px;
+    width: 15%;
     background: #E0B4B5;
 }
 
@@ -309,18 +309,21 @@ a:hover img {
 }
 
 .contentRightBox {
-    width: 80%;
+    width: 85%;
+    padding: 0 20px;
 }
 
 @media screen and (max-width: 1024px) {
     .contentRightBox {
-        width: 75%;
+        width: 80%;
+        padding: 0 15px;
     }
 }
 
 @media screen and (max-width: 896px) {
     .contentRightBox {
         width: 100%;
+        padding: 0 10px;
     }
 }
 

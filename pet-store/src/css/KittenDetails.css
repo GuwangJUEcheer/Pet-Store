@@ -2,6 +2,15 @@
 .kitten-details-container {
   padding: 20px;
   font-family: Arial, sans-serif;
+  background-color: #faf9f7;
+}
+
+#pictureDetailPage {
+  background-color: #faf9f7;
+  min-height: 100vh;
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 /* 返回按钮样式 */
@@ -433,6 +442,102 @@
   background-color: #0056b3;
 }
 
+/* 轮播图相关样式 */
+.carousel-slide {
+  height: 443px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: #f5f5f5;
+  overflow: hidden;
+}
+
+.carousel-dots {
+  bottom: 16px !important;
+}
+
+.carousel-dots .slick-dots li button {
+  background-color: rgba(255, 255, 255, 0.6) !important;
+  border-radius: 50% !important;
+  border: 2px solid rgba(167, 168, 139, 0.3) !important;
+  width: 12px !important;
+  height: 12px !important;
+  transition: all 0.3s ease !important;
+}
+
+.carousel-dots .slick-dots li button:hover {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  border-color: rgba(167, 168, 139, 0.6) !important;
+  transform: scale(1.2) !important;
+}
+
+.carousel-dots .slick-dots li.slick-active button {
+  background-color: rgba(167, 168, 139, 0.9) !important;
+  border-color: rgba(167, 168, 139, 1) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* 轮播图箭头样式 */
+.ant-carousel .slick-prev,
+.ant-carousel .slick-next {
+  z-index: 2 !important;
+  width: 50px !important;
+  height: 50px !important;
+  background: rgba(167, 168, 139, 0.8) !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  border: 2px solid rgba(255, 255, 255, 0.8) !important;
+}
+
+.ant-carousel .slick-prev {
+  left: 15px !important;
+}
+
+.ant-carousel .slick-next {
+  right: 15px !important;
+}
+
+.ant-carousel .slick-prev:hover,
+.ant-carousel .slick-next:hover {
+  background: rgba(167, 168, 139, 1) !important;
+  transform: scale(1.1) !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2) !important;
+  border-color: rgba(255, 255, 255, 1) !important;
+}
+
+.ant-carousel .slick-prev::before,
+.ant-carousel .slick-next::before {
+  font-size: 24px !important;
+  color: #fff !important;
+  font-weight: bold !important;
+}
+
+.ant-carousel .slick-prev:hover::before,
+.ant-carousel .slick-next:hover::before {
+  color: #fff !important;
+}
+
+/* Antd Carousel 轮播图样式修复 */
+.ant-carousel .slick-slide {
+  height: 443px !important;
+}
+
+.ant-carousel .slick-slide > div {
+  height: 100% !important;
+}
+
+.ant-carousel .slick-track {
+  height: 443px !important;
+}
+
+.ant-carousel .slick-list {
+  height: 443px !important;
+}
+
 /* 响应式支持 */
 @media (max-width: 768px) {
   .modal {
@@ -450,5 +555,291 @@
 
   .close-btn {
     width: 100%;
+  }
+
+  .carousel-slide {
+    height: 300px !important;
+  }
+  
+  .ant-carousel .slick-slide,
+  .ant-carousel .slick-slide > div,
+  .ant-carousel .slick-track,
+  .ant-carousel .slick-list {
+    height: 300px !important;
+  }
+}
+
+/* 父母情报区域样式 */
+.parent-info-section {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.parent-info-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #a7a88b;
+  text-align: center;
+  margin-bottom: 24px;
+  font-family: 'MochiyPopOne', sans-serif, '可爱字体', 'Comic Sans MS', cursive;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.parent-cards-container {
+  margin-top: 20px;
+}
+
+/* 新的全宽父母情报区域样式 */
+.parent-info-section-fullwidth {
+  background: linear-gradient(135deg, #fff 0%, #faf9f7 100%);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border: 2px solid #f0f0f0;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.parent-info-title-cute {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #a7a88b;
+  text-align: center;
+  margin-bottom: 32px;
+  font-family: 'MochiyPopOne', sans-serif, '可爱字体', 'Comic Sans MS', cursive;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+  letter-spacing: 2px;
+  background: linear-gradient(45deg, #a7a88b, #d4af7a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.parent-cards-container-flex {
+  width: 100%;
+}
+
+/* ParentCards组件样式 */
+.parent-cards-wrapper {
+  width: 100%;
+}
+
+.parent-cards-grid {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 40px;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.parent-card-large {
+  background: #fff;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  border: 3px solid #f5f5f5;
+  flex: 1;
+  min-width: 350px;
+  max-width: 500px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.parent-card-large::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #a7a88b 0%, #d4af7a 100%);
+}
+
+.parent-card-large:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  border-color: #a7a88b;
+}
+
+.parent-avatar-large {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 6px solid #a7a88b;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  margin: 0 auto 24px;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #faf9f7, #f0f0f0);
+}
+
+.parent-avatar-large:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.parent-image-large {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.parent-image-large:hover {
+  transform: scale(1.1);
+}
+
+.parent-placeholder-large {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+}
+
+.parent-info-large {
+  text-align: center;
+}
+
+.parent-name-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.parent-name-large {
+  font-size: 24px;
+  color: #333;
+  font-weight: bold;
+  font-family: 'MochiyPopOne', sans-serif, '可爱字体', 'Comic Sans MS', cursive;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.parent-gender-tag {
+  font-size: 16px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.parent-details-large {
+  background: #faf9f7;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+  border: 2px solid #f0f0f0;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 16px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.detail-row:last-child {
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.detail-label {
+  font-weight: bold;
+  color: #666;
+  font-family: 'MochiyPopOne', sans-serif, '可爱字体', 'Comic Sans MS', cursive;
+}
+
+.detail-value {
+  color: #333;
+  font-weight: 500;
+}
+
+.parent-description-large {
+  background: #f8f8f8;
+  border-radius: 8px;
+  padding: 16px;
+  font-style: italic;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.6;
+  border-left: 4px solid #a7a88b;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .parent-info-section {
+    padding: 16px;
+    margin: 0 10px;
+  }
+  
+  .parent-info-title {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+  }
+  
+  .parent-info-section-fullwidth {
+    padding: 20px;
+    margin: 0 10px;
+  }
+  
+  .parent-info-title-cute {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+  }
+  
+  .parent-cards-grid {
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+  }
+  
+  .parent-card-large {
+    min-width: 300px;
+    max-width: 400px;
+    padding: 24px;
+  }
+  
+  .parent-avatar-large {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 16px;
+  }
+  
+  .parent-name-large {
+    font-size: 20px;
+  }
+  
+  .parent-gender-tag {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+  
+  .parent-details-large {
+    padding: 16px;
+  }
+  
+  .detail-row {
+    font-size: 14px;
+    padding: 6px 0;
+  }
+  
+  #pictureDetailPage {
+    padding: 16px;
   }
 }

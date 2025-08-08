@@ -2,32 +2,39 @@ package cn.itcast.mp.service;
 
 import cn.itcast.mp.model.Kitten;
 import cn.itcast.mp.model.KittenParent;
+import cn.itcast.mp.model.kitten.AddKittenRequest;
+import cn.itcast.mp.model.kitten.UpdateKittenRequest;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface KittenService {
-    List<Kitten> getAllKittens();
+	List<Kitten> getAllKittens();
 
-    void addKitten(Kitten kitten);
+	void addKitten(MultipartFile file, AddKittenRequest kitten);
 
-    void updateKitten(Kitten kitten);
+	void updateKitten(Kitten kitten);
 
-    boolean deleteKitten(int id);
+	void updateKittenWithParents(UpdateKittenRequest updateRequest);
 
-    Optional<Kitten> findKittenById(Long id);
+	boolean deleteKitten(int id);
 
-    List<KittenParent> findKittenParentsByKittenId(Long kittenId);
+	Optional<Kitten> findKittenById(Long id);
 
-    List<String> findKittenImagesByKittenId(Long kittenId);
+	List<KittenParent> findKittenParentsByKittenId(Long kittenId);
 
-    void updateKittenImage(Long kittenId, String oldImageUrl, String newImageUrl);
+	List<String> findKittenImagesByKittenId(Long kittenId);
 
-    void addKittenImage(Long id, String fileName);
+	void addKittenImage(Long id, String fileName);
 
-    void deleteKittenImage(Long id, String imgUrl);
+	void deleteKittenImage(Long id, String imgUrl);
 
-    void deleteParentImage(Long id);
+	void deleteParentImage(Long id);
 
-    void updateParentImage(Long id, String filename);
+	void updateParentImage(Long id, String filename);
+
+	String changeKittenPhoto(Long id, MultipartFile file);
+
+	void updateKittenImage(Long kittenId, String newImageUrl);
 }

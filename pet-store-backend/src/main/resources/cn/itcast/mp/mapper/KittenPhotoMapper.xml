@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.itcast.mp.mapper.KittenPhotoMapper">
+
+    <resultMap id="KittenPhotoResultMap" type="cn.itcast.mp.model.KittenPhoto">
+        <id column="id" property="id"/>
+        <result column="kitten_id" property="kittenId"/>
+        <result column="photo_url" property="photoUrl"/>
+        <result column="file_name" property="fileName"/>
+        <result column="file_size" property="fileSize"/>
+        <result column="upload_date" property="uploadDate"/>
+        <result column="display_order" property="displayOrder"/>
+        <result column="is_primary" property="isPrimary"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+    </resultMap>
+
+    <!-- 根据小猫ID获取所有照片，按显示顺序排序 -->
+    <select id="selectByKittenIdOrderByDisplayOrder" resultMap="KittenPhotoResultMap">
+        SELECT id, kitten_id, photo_url, file_name, file_size, upload_date, 
+               display_order, is_primary, created_at, updated_at
+        FROM kitten_photos 
+        WHERE kitten_id = #{kittenId}
+        ORDER BY display_order ASC, created_at ASC
+    </select>
+
+    <!-- 根据小猫ID删除所有照片 -->
+    <delete id="deleteByKittenId">
+        DELETE FROM kitten_photos WHERE kitten_id = #{kittenId}
+    </delete>
+
+    <!-- 清除小猫的所有主要照片标记 -->
+    <update id="clearPrimaryFlags">
+        UPDATE kitten_photos 
+        SET is_primary = FALSE, updated_at = NOW()
+        WHERE kitten_id = #{kittenId}
+    </update>
+
+    <!-- 设置主要照片标记 -->
+    <update id="setPrimaryFlag">
+        UPDATE kitten_photos 
+        SET is_primary = #{isPrimary}, updated_at = NOW()
+        WHERE id = #{photoId}
+    </update>
+
+    <!-- 获取小猫照片的最大显示顺序 -->
+    <select id="getMaxDisplayOrder" resultType="java.lang.Integer">
+        SELECT MAX(display_order) FROM kitten_photos WHERE kitten_id = #{kittenId}
+    </select>
+
+    <!-- 根据ID查询照片 -->
+    <select id="selectById" resultMap="KittenPhotoResultMap">
+        SELECT id, kitten_id, photo_url, file_name, file_size, upload_date, 
+               display_order, is_primary, created_at, updated_at
+        FROM kitten_photos 
+        WHERE id = #{id}
+    </select>
+
+    <!-- 根据ID删除照片 -->
+    <delete id="deleteById">
+        DELETE FROM kitten_photos WHERE id = #{id}
+    </delete>
+
+    <!-- 清除小猫的所有主要照片标记（兼容方法名） -->
+    <update id="clearPrimaryStatus">
+        UPDATE kitten_photos 
+        SET is_primary = FALSE, updated_at = NOW()
+        WHERE kitten_id = #{kittenId}
+    </update>
+
+    <!-- 设置主要照片（先清除所有，再设置指定的） -->
+    <update id="updatePrimaryStatus">
+        UPDATE kitten_photos 
+        SET is_primary = CASE 
+            WHEN id = #{photoId} THEN TRUE 
+            ELSE FALSE 
+        END,
+        updated_at = NOW()
+        WHERE kitten_id = #{kittenId}
+    </update>
+
+    <!-- 更新照片显示顺序 -->
+    <update id="updateDisplayOrder">
+        UPDATE kitten_photos 
+        SET display_order = #{displayOrder}, updated_at = NOW()
+        WHERE id = #{photoId}
+    </update>
+
+    <!-- 获取小猫的主要照片 -->
+    <select id="selectPrimaryByKittenId" resultMap="KittenPhotoResultMap">
+        SELECT id, kitten_id, photo_url, file_name, file_size, upload_date, 
+               display_order, is_primary, created_at, updated_at
+        FROM kitten_photos 
+        WHERE kitten_id = #{kittenId} AND is_primary = TRUE
+        LIMIT 1
+    </select>
+
+    <!-- 获取小猫照片总数 -->
+    <select id="countByKittenId" resultType="int">
+        SELECT COUNT(*) FROM kitten_photos WHERE kitten_id = #{kittenId}
+    </select>
+
+</mapper>

@@ -1,0 +1,99 @@
+.photo-manager {
+  padding: 16px;
+}
+
+.upload-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  border: 1px dashed #d9d9d9;
+  border-radius: 8px;
+  background-color: #fafafa;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.upload-button:hover {
+  border-color: #1890ff;
+  background-color: #f0f9ff;
+}
+
+.photo-card {
+  position: relative;
+  cursor: move;
+  transition: all 0.3s ease;
+}
+
+.photo-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.photo-card .ant-card-cover {
+  position: relative;
+  overflow: hidden;
+}
+
+.photo-card .ant-card-cover img {
+  transition: transform 0.3s ease;
+}
+
+.photo-card:hover .ant-card-cover img {
+  transform: scale(1.05);
+}
+
+.primary-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 1;
+}
+
+.photo-actions {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.photo-actions .ant-btn {
+  border: none;
+  box-shadow: none;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .photo-manager {
+    padding: 8px;
+  }
+  
+  .upload-button {
+    min-height: 80px;
+  }
+}
+
+/* 拖拽时的样式 */
+.photo-card.dragging {
+  opacity: 0.5;
+  transform: rotate(5deg);
+}
+
+/* 加载状态 */
+.photo-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+/* 空状态样式 */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.empty-state .ant-empty-description {
+  color: #999;
+  font-size: 14px;
+}

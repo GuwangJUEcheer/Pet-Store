@@ -2,7 +2,7 @@
   height: 100vh;
   display: flex;
   position: fixed;
-  background-color: #e3a7a2;
+  background-color: #a7a88b;
   overflow: auto !important; /* 保持滚动功能 */
   scrollbar-width: none !important; /* Firefox: 隐藏滚动条 */
   -ms-overflow-style: none !important; /* IE 和 Edge */
@@ -118,7 +118,7 @@
     position: relative;
     z-index: 80;
     overflow: hidden;
-    background: #E0B4B5;
+    background: #a7a88b;
   }
 
   .gNav nav ul li {

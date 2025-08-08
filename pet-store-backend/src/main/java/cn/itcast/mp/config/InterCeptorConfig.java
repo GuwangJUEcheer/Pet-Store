@@ -1,33 +1,41 @@
 package cn.itcast.mp.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import cn.itcast.mp.interceptor.TokenInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import cn.itcast.mp.interceptor.TokenInterceptor;
+import javax.annotation.Resource;
 
 @Configuration
 public class InterCeptorConfig implements WebMvcConfigurer {
 
-    @Autowired
-    private TokenInterceptor tokenInterceptor;
+	@Resource
+	private TokenInterceptor tokenInterceptor;
 
-//	// 使用构造函数注入拦截器
-//	public InterCeptorConfig(TokenInterceptor tokenInterceptor) {
-//		this.tokenInterceptor = tokenInterceptor;
-//	}
-
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(tokenInterceptor)
-                .addPathPatterns("/**") // 拦截所有路径
-                .excludePathPatterns(
-                        "/login",
-                        "/register",
-                        "/api/public/kittens/**", // 允许匿名访问 kittens 接口
-                        "/api/public/kittens/*/parents",// 允许匿名访问 kittens 的 parents 接口
-                        "/api/kittens/images/**"  // 图片接口开放
-                );
-    }
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(tokenInterceptor)
+				.addPathPatterns("/**") // 拦截所有路径
+				.excludePathPatterns(
+						"/login",
+						"/register",
+						"/public/kittens/**",
+						"/public/kittens/*/parents",
+						"/kittens/images/**",
+						"/kittens/**",
+						"/swagger-ui/**",
+						"/parents/**",
+						"/list",
+						"/swagger-ui.html",
+						"/v2/api-docs/**",
+						"/v2/api-docs",
+						"/swagger-resources/**",
+						"/webjars/**",
+						"/doc.html",                // ✅ Knife4j UI 页面
+						"/favicon.ico",
+						"/get/**",
+						"/list"// ✅ Knife4j 页面图标
+				);
+	}
 }

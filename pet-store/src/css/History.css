@@ -2,13 +2,14 @@
 .history-page-container {
   padding: 20px; /* 页面内边距 */
   text-align: center; /* 居中对齐 */
+  background-color: #faf9f7;
 }
 
 /* 页面标题样式 */
 .history-page-title {
   font-size: 2.5rem; /* 标题字体大小 */
   margin-bottom: 10px; /* 标题与下方间距 */
-  color: #d48888; /* 标题颜色 */
+  color: #908663; /* 标题颜色 */
 }
 
 /* 页面副标题样式 */

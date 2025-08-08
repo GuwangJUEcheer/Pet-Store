@@ -3,7 +3,7 @@
   text-align: center;
   color: #555;
   line-height: 1.8;
-  background-color: #f9f9f9; /* 添加浅背景 */
+  background-color: #faf9f7; /* 添加米白色背景 */
   border-radius: 10px; /* 圆角效果 */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* 添加阴影，增加层次感 */
 }

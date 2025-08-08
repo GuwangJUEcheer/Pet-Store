@@ -5,17 +5,180 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2e49c3ae-9e16-418c-94c4-4be7eb6844c3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/17685.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/mybatisx/templates.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/itcast-mp-springboot.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/config/S3ClientConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/exception/BizException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/exception/ErrorCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/exception/ErrorResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/exception/ExceptionHandle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/exception/ThrowUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/model/kitten/AddKittenRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/model/kitten/UpdateKittenRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/model/kitten/UploadKittenPictueDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/model/myenum/CatParentRole.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/model/myenum/UserRole.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/model/vo/KittenVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/s3/S3Manager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/S3Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pet-store/openapi.config.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pet-store/src/css/parentCard.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pet-store/src/enum/User.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pet-store/src/other/userStore.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pet-store/src/pages/EditModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5269c7e8-d6dd-48ce-aaaa-e76298ed9f3c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/5269c7e8-d6dd-48ce-aaaa-e76298ed9f3c.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/config/InterCeptorConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/config/InterCeptorConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/config/RequestConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/config/RequestConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/controller/IndexController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/controller/KittenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/controller/KittenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/controller/TestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/controller/UploadController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/controller/UploadController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/mapper/KittenMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/mapper/KittenMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/mapper/KittenParentMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/mapper/KittenParentMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/model/Kitten.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/model/Kitten.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/model/KittenParent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/model/KittenParent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/model/LoginResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/model/LoginResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/model/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/service/KittenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/service/KittenService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/serviceImpl/KittenServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/serviceImpl/KittenServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pet-store/src/components/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/components/Footer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/serviceImpl/TokenServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/serviceImpl/TokenServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/serviceImpl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/itcast/mp/serviceImpl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-prod.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-prod.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/datasource.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/datasource.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/cm/itcast/mp/test/TestConnection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/.idea/pet-store.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/.idea/pet-store.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/74284b16-4fca-4f39-9e3f-34b30eff5735.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/DB.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/IMG_4140.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/IMG_4545.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/IMG_4653.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/IMG_4755.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/IMG_4764.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/IMG_4890.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/MV2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/MV3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/MV4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/Toffee.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/VINCI.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/agree.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/apple-touch-icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/banner1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/banner2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/banner3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/bengal.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/bg2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/birthingroom.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/breed05.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/breed07.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/butter.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/buy.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/cargo01.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/cat1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/cat2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/cat3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/cat4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/cat5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/catbathroom.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/catkitchen.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/certificate.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/cheese.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/cream.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/dadroom.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/favicon-16x16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/favicon-32x32.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/flag_left.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/flag_right.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/ico_insta.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/ico_insta_02.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/ico_star.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/ico_tiktok_blk.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/img01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/kindergarten1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/line.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/logo_sp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/logo_sp1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/milk.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/milo.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/milo1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/milo2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/minuet1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/minuet12311.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/minuet2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/minuet3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/mochi.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/mochi1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/mochi2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/momroom.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/munchkin.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/mvTtl.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/photostudio.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/scottish.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/service.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/shop.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/slw一.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/visitation.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/wechat.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/zm.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/こま.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/ペンペン.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/メイ.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/嘉嘉.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/短足1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/短足2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/短足3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/短足4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/長足1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/長足2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/長足3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/長足4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/images/音音.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/src/Request/request.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/Request/request.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/src/components/Contact(old).tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../pet-store/src/components/KittenDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/components/KittenDetails.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/src/components/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/components/LoginPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pet-store/src/components/News.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/components/News.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/src/components/Parent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/components/Parent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/src/css/Buy.css" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/css/Buy.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/src/css/Contact.css" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/css/Contact.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/src/css/Footer.css" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/css/Footer.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/src/css/Header.css" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/css/Header.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/src/css/History.css" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/css/History.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pet-store/src/css/KittenDetails.css" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/css/KittenDetails.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/src/css/Minuet.css" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/css/Minuet.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/src/css/News.css" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/css/News.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/src/css/Parent.css" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/css/Parent.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/src/css/ShopInfo.css" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/css/ShopInfo.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/src/css/Sidebar.css" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/css/Sidebar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/src/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/css/common.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/src/imagesQQ图片20240408093104.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/src/imagesbuy.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/src/imagescargo01.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/src/imagesmanage.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/src/imageswechat.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/src/other/a.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/src/other/index_httpscatloungecom.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/src/routes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/routes.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pet-store/src/style/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/../pet-store/src/style/global.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +192,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="Kotlin Enum" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -82,10 +247,61 @@
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
-  <component name="RunManager" selected="应用程序.start">
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="cn.itcast.mp.model" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.MyApplication">
+    <configuration name="S3Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="S3Test" />
+      <module name="itcast-mp-springboot" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="start" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="cn.itcast.mp.MyApplication" />
       <module name="itcast-mp-springboot" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MyTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="itcast-mp-springboot" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="MyTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="S3Test.testConnect (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="itcast-mp-springboot" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="S3Test" />
+      <option name="METHOD_NAME" value="testConnect" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="S3Test.testConnect" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="itcast-mp-springboot" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="S3Test" />
+      <option name="METHOD_NAME" value="testConnect([Ljava.lang.String;)" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="S3Test.testUpload" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="itcast-mp-springboot" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="S3Test" />
+      <option name="METHOD_NAME" value="testUpload" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -115,6 +331,36 @@
             </option>
             <option name="resolveToWorkspace" value="false" />
             <option name="workingDirPath" value="" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="clean" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="cmdOptions" />
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+              </list>
+            </option>
+            <option name="multimoduleDir" />
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="projectsCmdOptionValues">
+              <list />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
           </MavenRunnerParameters>
         </option>
       </MavenSettings>
@@ -181,17 +427,73 @@
       </MavenSettings>
       <method v="2" />
     </configuration>
+    <configuration name="package" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="cmdOptions" />
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+                <option value="package" />
+                <option value="-Dmaven.test.skip=true" />
+              </list>
+            </option>
+            <option name="multimoduleDir" />
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="projectsCmdOptionValues">
+              <list />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="MyApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="itcast-mp-springboot" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cn.itcast.mp.MyApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
+      <item itemvalue="JUnit.S3Test.testUpload" />
+      <item itemvalue="JUnit.MyTest" />
+      <item itemvalue="JUnit.S3Test.testConnect" />
+      <item itemvalue="JUnit.S3Test.testConnect (1)" />
+      <item itemvalue="Maven.clean" />
+      <item itemvalue="Maven.package" />
       <item itemvalue="Maven.itcast-mp-springboot [mybatis-generator:generate]" />
       <item itemvalue="Maven.itcast-mp-springboot [clean,install]" />
+      <item itemvalue="Spring Boot.MyApplication" />
       <item itemvalue="应用程序.start" />
+      <item itemvalue="应用程序.S3Test" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.S3Test.testUpload" />
+        <item itemvalue="JUnit.S3Test.testConnect (1)" />
+        <item itemvalue="JUnit.S3Test.testConnect" />
+        <item itemvalue="应用程序.S3Test" />
+        <item itemvalue="JUnit.MyTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
-        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218" />
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23726.103" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23726.103" />
       </set>
     </attachedChunks>
   </component>
@@ -229,6 +531,25 @@
       <workItem from="1735970493118" duration="2414000" />
       <workItem from="1736046847572" duration="1811000" />
       <workItem from="1736127184071" duration="602000" />
+      <workItem from="1736330610138" duration="1703000" />
+      <workItem from="1736332340200" duration="7075000" />
+      <workItem from="1736484933392" duration="30000" />
+      <workItem from="1736496184131" duration="8000" />
+      <workItem from="1736496835461" duration="7116000" />
+      <workItem from="1744710454409" duration="284000" />
+      <workItem from="1744711737203" duration="2253000" />
+      <workItem from="1745296688335" duration="24000" />
+      <workItem from="1753839179877" duration="9797000" />
+      <workItem from="1753850346467" duration="146000" />
+      <workItem from="1753850504799" duration="76000" />
+      <workItem from="1753850594473" duration="7677000" />
+      <workItem from="1753861806260" duration="191000" />
+      <workItem from="1754288208785" duration="2408000" />
+      <workItem from="1754290847200" duration="6608000" />
+      <workItem from="1754446335702" duration="17529000" />
+      <workItem from="1754473090962" duration="1143000" />
+      <workItem from="1754529395297" duration="24878000" />
+      <workItem from="1754618890897" duration="6954000" />
     </task>
     <servers />
   </component>
