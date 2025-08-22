@@ -37,4 +37,16 @@ public interface KittenService {
 	String changeKittenPhoto(Long id, MultipartFile file);
 
 	void updateKittenImage(Long kittenId, String newImageUrl);
+
+	// 分页相关方法
+	List<Kitten> getKittensByPage(int page, int size);
+	
+	int getAvailableKittensCount();
+	
+	// 过去小猫相关方法
+	List<Kitten> getSoldKittens(int page, int size);
+	
+	int getSoldKittensCount();
+	
+	void markKittenAsSold(Long kittenId);
 }

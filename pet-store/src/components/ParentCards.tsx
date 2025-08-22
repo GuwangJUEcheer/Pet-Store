@@ -51,7 +51,7 @@ const ParentCards: React.FC<ParentCardsProps> = ({kittenId}) => {
     return (
         <div className="parent-cards-wrapper">
             <div className="parent-cards-grid">
-                {parents.map((parent) => (
+                {parents && parents.map((parent) => (
                     <div key={parent.id} className="parent-card-large">
                         <div className="parent-avatar-large">
                             {parent.imgUrl ? (
@@ -89,11 +89,16 @@ const ParentCards: React.FC<ParentCardsProps> = ({kittenId}) => {
                                     <span className="detail-label">色:</span>
                                     <span className="detail-value">{parent.color || '-'}</span>
                                 </div>
-                                <div className="detail-row">
-                                    <span className="detail-label">誕生日:</span>
-                                    <span className="detail-value">
-                                        {parent.birthday ? dayjs(parent.birthday).format('YYYY/MM/DD') : '-'}
-                                    </span>
+                                <div className="genetic-testing">
+                                    <div className="detail-label">遺伝子検査結果:</div>
+                                    <div className="genetic-results">
+                                        <div className="genetic-item">α-マンノシドーシス ✅クリア</div>
+                                        <div className="genetic-item">多発性嚢胞腎（PKD） ✅クリア</div>
+                                        <div className="genetic-item">ピルビン酸キナーゼ欠乏症（PK Deficiency） ✅クリア</div>
+                                        <div className="genetic-item">進行性網膜萎縮症 -b（PRA-b） ✅クリア</div>
+                                        <div className="genetic-item">肥大型心筋症 -MC（HCM-MC） ✅クリア</div>
+                                        <div className="genetic-item">肥大型心筋症 -RD （HCM-RD） ✅クリア</div>
+                                    </div>
                                 </div>
                             </div>
 

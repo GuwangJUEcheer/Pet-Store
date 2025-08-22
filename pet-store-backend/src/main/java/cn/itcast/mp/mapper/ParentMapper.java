@@ -11,13 +11,13 @@ public interface ParentMapper {
     @Select("SELECT * FROM parents")
     List<Parent> getAllParents();
 
-    @Insert("INSERT INTO parents (name, gender, breed, color, birthday, description, img_url) " +
-            "VALUES (#{name}, #{gender}, #{breed}, #{color}, #{birthday}, #{description}, #{imgUrl})")
+    @Insert("INSERT INTO parents (name, gender, breed, color, birthday,description, img_url) " +
+			"VALUES (#{name}, #{gender}, #{breed}, #{color}, '1900-01-01',#{description}, #{imgUrl})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void addParent(Parent parent);
 
     @Update("UPDATE parents SET name=#{name}, gender=#{gender}, breed=#{breed}, color=#{color}, " +
-            "birthday=#{birthday}, description=#{description}, img_url=#{imgUrl} WHERE id=#{id}")
+            "birthday='1900-01-01', description=#{description}, img_url=#{imgUrl} WHERE id=#{id}")
     void updateParent(Parent parent);
 
     @Delete("DELETE FROM parents WHERE id=#{id}")

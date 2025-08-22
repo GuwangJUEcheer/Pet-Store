@@ -52,6 +52,7 @@ public class KittenServiceImpl implements KittenService {
 		try {
 			Kitten kitten = new Kitten();
 			BeanUtils.copyProperties(addKittenRequest, kitten);
+			kitten.setImgUrl("");
 			kittenMapper.addKitten(kitten);
 			int id = kitten.getId();
 			String key = String.format("%s/%s", kittenFolder, String.valueOf(id));
@@ -60,6 +61,7 @@ public class KittenServiceImpl implements KittenService {
 			kitten.setImgUrl(decodedUrl);
 			kittenMapper.updateKittenImage((long) id, decodedUrl);
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new BizException(ErrorCode.OPER_ERROR, "新增小猫失败");
 		}
 	}
@@ -189,5 +191,34 @@ public class KittenServiceImpl implements KittenService {
 	@Override
 	public void updateKittenImage(Long kittenId, String newImageUrl) {
 		kittenMapper.updateKittenImage(kittenId, newImageUrl);
+	}
+
+	// 分页相关方法实现
+	@Override
+	public List<Kitten> getKittensByPage(int page, int size) {
+		int offset = (page - 1) * size;
+		return kittenMapper.getAvailableKittensByPage(offset, size);
+	}
+	
+	@Override
+	public int getAvailableKittensCount() {
+		return kittenMapper.getAvailableKittensCount();
+	}
+
+	// 过去小猫相关方法实现
+	@Override
+	public List<Kitten> getSoldKittens(int page, int size) {
+		int offset = (page - 1) * size;
+		return kittenMapper.getSoldKittens(offset, size);
+	}
+
+	@Override
+	public int getSoldKittensCount() {
+		return kittenMapper.getSoldKittensCount();
+	}
+
+	@Override
+	public void markKittenAsSold(Long kittenId) {
+		kittenMapper.updateKittenStatus(kittenId, "已出售");
 	}
 }

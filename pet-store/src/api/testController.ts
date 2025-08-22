@@ -33,7 +33,7 @@ export async function testUploadFileUsingPost(
   return request<any>("test/upload", {
     method: "POST",
     data: formData,
-   
+    
     ...(options || {}),
   });
 }

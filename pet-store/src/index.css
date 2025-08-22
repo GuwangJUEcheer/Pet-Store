@@ -14,7 +14,7 @@ body {
     Roboto, 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
     'Helvetica Neue', sans-serif;
   color: #333;
-  background-color: #f8f8f8;
+  background-color: #fefbea;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -100,7 +100,7 @@ input:focus, select:focus, textarea:focus {
 
 /* 页脚样式 */
 footer {
-  background-color: #f8f9fa;
+  background-color: #fefbea;
   text-align: center;
   padding: 20px 0;
   font-size: 0.9rem;

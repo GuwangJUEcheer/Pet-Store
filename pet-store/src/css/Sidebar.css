@@ -87,10 +87,10 @@
 }
 
 .gNav .snsList li {
-  margin: 0 10px;
+  margin: 0 8px;
 }
 
-.gNav .snsList li a {
+.gNav .snsList li a, .gNav .snsList li button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -98,7 +98,12 @@
   height: 60px;
   border-radius: 50%;
   background-color: #fff;
+  transition: transform 0.2s ease;
   /* font-size: 171.4%; */
+}
+
+.gNav .snsList li button:hover {
+  transform: scale(1.05);
 }
 
 @media screen and (max-width: 896px) {
@@ -138,7 +143,7 @@
     margin: 30px 0;
   }
 
-  .snsList li a {
+  .snsList li a, .snsList li button {
     width: 40px;
     height: 40px;
   }
@@ -169,7 +174,7 @@
     margin: 10px 0; /* 减小社交图标与其他内容的间距 */
   }
 
-  .snsList li a {
+  .snsList li a, .snsList li button {
     width: 30px; /* 缩小图标尺寸 */
     height: 30px;
   }

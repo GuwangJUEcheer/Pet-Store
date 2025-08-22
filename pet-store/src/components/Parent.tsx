@@ -1,62 +1,27 @@
 import React, {useEffect, useState} from "react";
 import "../css/Parent.css";
-import Milo from "../images/milo.jpg";
-import Mochi from "../images/mochi.png";
-import Milo1 from "../images/milo1.jpg";
-import Milo2 from "../images/milo2.jpg";
-import Mochi1 from "../images/mochi1.jpg";
-import Mochi2 from "../images/mochi2.jpg";
-import Kitten1 from "../images/ペンペン.jpg";
-import Kitten2 from "../images/Toffee.jpg";
-import Kitten3 from "../images/嘉嘉.jpg";
-import Kitten4 from "../images/音音.png";
-import Kitten5 from "../images/milk.jpg";
-import Kitten6 from "../images/cream.jpg";
-import Kitten7 from "../images/cheese.jpg";
-import Kitten8 from "../images/butter.jpg";
-import Kitten9 from "../images/こま.jpg";
-import Kitten10 from "../images/VINCI.jpg";
-import Kitten11 from "../images/メイ.jpg";
-import Kitten12 from "../images/DB.jpg";
-import Kitten13 from "../images/zm.jpg";
-import Kitten14 from "../images/slw一.jpg";
 import {getAllParentsUsingGet} from "../api/parentController";
-
-// 父母猫数据
-const parentData = [
-    {
-        id: 1,
-        img: Milo,
-        name: "Miloちゃん",
-        breed: "Minuet (SL) ミヌエット",
-        color: "Shaded Golden & White",
-        relatedImages: [Milo, Milo1, Milo2],
-    },
-    {
-        id: 2,
-        img: Mochi,
-        name: "もちちゃん",
-        breed: "Minuet (SL) ミヌエット",
-        color: "クリーム ホワイト",
-        relatedImages: [Mochi, Mochi1, Mochi2],
-    },
-];
+import {Image} from "antd";
 
 
 const Parent: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentImages, setCurrentImages] = useState<string[]>([]);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const [kittenData, setKittenData] = useState<API.Parent[]>()
+    const [allParents, setAllParents] = useState<API.Parent[]>([])
 
     const fetchData = async () => {
         const response = await getAllParentsUsingGet();
-        setKittenData(response.data ?? []);
+        setAllParents(response.data ?? []);
     }
 
     useEffect(() => {
         void fetchData();
     }, []);
+
+    // Separate parents by gender
+    const papaCats = allParents.filter(parent => parent.gender === '父');
+    const mamaCats = allParents.filter(parent => parent.gender === '母');
 
     const openModal = (images: string[]) => {
         setCurrentImages(images);
@@ -88,26 +53,76 @@ const Parent: React.FC = () => {
                 <p className="subtitle">子猫たちの素敵な親猫をご紹介します。</p>
             </header>
 
+            {/* パパ猫セクション */}
             <section className="parent-section">
+                <h2 className="section-title">🐾 パパたち</h2>
                 <div className="parent-row">
-                    {kittenData && kittenData.map((parent) => (
-                        <div
-                            key={parent.id}
-                            className="parent-card-horizontal parent-parent-card"
-                        >
-                            <img
-                                src={parent.imgUrl}
-                                alt={parent.name}
-                                className="parent-image-horizontal"
-                            />
+                    {papaCats.map((papa) => (
+                        <div key={papa.id} className="parent-card-horizontal parent-parent-card">
+                            <div className="parent-image-container">
+                                <Image
+                                    src={papa.imgUrl}
+                                    alt={papa.name}
+                                    className="parent-image-horizontal"
+                                    preview={true}
+                                />
+                            </div>
                             <div className="parent-info-horizontal">
-                                <h2>{parent.name}</h2>
-                                <p>
-                                    <strong>Breed:</strong> {parent.breed}
-                                </p>
-                                <p>
-                                    <strong>Color:</strong> {parent.color}
-                                </p>
+                                <h2>{papa.name}</h2>
+                                <p><strong>Breed:</strong> {papa.breed}</p>
+                                <p><strong>Color:</strong> {papa.color}</p>
+                                <div className="genetic-testing-section">
+                                    <p><strong>遺伝子検査結果:</strong></p>
+                                    <div className="genetic-list">
+                                        <span className="genetic-item">α-マンノシドーシス ✅クリア</span>
+                                        <span className="genetic-item">多発性嚢胞腎（PKD） ✅クリア</span>
+                                        <span className="genetic-item">ピルビン酸キナーゼ欠乏症（PK Deficiency） ✅クリア</span>
+                                        <span className="genetic-item">進行性網膜萎縮症 -b（PRA-b） ✅クリア</span>
+                                        <span className="genetic-item">肥大型心筋症 -MC（HCM-MC） ✅クリア</span>
+                                        <span className="genetic-item">肥大型心筋症 -RD （HCM-RD） ✅クリア</span>
+                                    </div>
+                                </div>
+                                {papa.description && (
+                                    <p><strong>Description:</strong> {papa.description}</p>
+                                )}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            {/* ママ猫セクション */}
+            <section className="parent-section">
+                <h2 className="section-title">💕 ママたち</h2>
+                <div className="parent-row">
+                    {mamaCats.map((mama) => (
+                        <div key={mama.id} className="parent-card-horizontal parent-parent-card">
+                            <div className="parent-image-container">
+                                <Image
+                                    src={mama.imgUrl}
+                                    alt={mama.name}
+                                    className="parent-image-horizontal"
+                                    preview={true}
+                                />
+                            </div>
+                            <div className="parent-info-horizontal">
+                                <h2>{mama.name}</h2>
+                                <p><strong>Breed:</strong> {mama.breed}</p>
+                                <p><strong>Color:</strong> {mama.color}</p>
+                                <div className="genetic-testing-section">
+                                    <p><strong>遺伝子検査結果:</strong></p>
+                                    <div className="genetic-list">
+                                        <span className="genetic-item">α-マンノシドーシス ✅クリア</span>
+                                        <span className="genetic-item">多発性嚢胞腎（PKD） ✅クリア</span>
+                                        <span className="genetic-item">ピルビン酸キナーゼ欠乏症（PK Deficiency） ✅クリア</span>
+                                        <span className="genetic-item">進行性網膜萎縮症 -b（PRA-b） ✅クリア</span>
+                                        <span className="genetic-item">肥大型心筋症 -MC（HCM-MC） ✅クリア</span>
+                                        <span className="genetic-item">肥大型心筋症 -RD （HCM-RD） ✅クリア</span>
+                                    </div>
+                                </div>
+                                {mama.description && (
+                                    <p><strong>Description:</strong> {mama.description}</p>
+                                )}
                             </div>
                         </div>
                     ))}

@@ -12,7 +12,6 @@ import photoStudio from "../images/photostudio.jpg";
 import catKitchen from "../images/catkitchen.jpg";
 import catBathroom from "../images/catbathroom.png";
 import service from "../images/service.jpg";
-import certificate from "../images/certificate.jpg";
 
 const About: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -414,42 +413,23 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      {/* 资格与执照 */}
-      <section className="qualifications">
-        <h2 className="room-title">資格 & 免許</h2>
-        <div className="room-section">
-          {/* 左侧图片 */}
-          <div className="image-content">
-            <img
-              src={certificate}
-              alt="Certification Document"
-              className="certification-image"
-              onClick={() => openModal(certificate)}
-              style={{ cursor: "pointer" }}
-            />
-          </div>
 
-          {/* 中间文字描述 */}
-          <div className="text-content">
-            <h3>資格</h3>
-            <ul>
-              <li>家庭動物管理士3級</li>
-              <li>愛玩動物看護士</li>
-              <li>動物飼養助手</li>
-              <li>動物専門学校 看護コース卒業</li>
-            </ul>
+      {/* 重要なお知らせ - サービス案内 */}
+      <section className="important-notices">
+        <h2 className="room-title">重要なお知らせ</h2>
+        <div className="notices-grid">
+          <div className="notice-card">
+            <div className="notice-icon">🎁</div>
+            <h3>5大特典サービス</h3>
+            <p>ご成約のお客様限定の特別なサービスをご用意しております。詳細をご確認ください。</p>
+            <a href="/services" className="notice-link">詳細を見る →</a>
           </div>
-
-          {/* 右侧文字描述 */}
-          <div className="text-content">
-            <h3>免許＆責任者</h3>
-            <p>第一種動物取扱業　第71-0388号</p>
-            <p>事業所の名称: Doria pet</p>
-            <p>事業所の所在地: 運田市黒浜3536-2</p>
-            <p>登録に動物取扱業の種別: 販売</p>
-            <p>動物取扱責任者の氏名: 尾崎由倖</p>
-            <p>登録の年月日: 令和5年3月22日</p>
-            <p>有効期限の末日: 令和10年3月21日</p>
+          
+          <div className="notice-card">
+            <div className="notice-icon">🏥</div>
+            <h3>生体保証制度</h3>
+            <p>子猫の健康を保証する充実した保証制度について詳しくご説明いたします。</p>
+            <a href="/health-guarantee" className="notice-link">詳細を見る →</a>
           </div>
         </div>
       </section>

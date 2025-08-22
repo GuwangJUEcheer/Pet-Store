@@ -1,0 +1,374 @@
+/* 宠物店信息样式 */
+.pet-store-info {
+  margin: 10px auto;
+  padding: 0;
+  width: 100%; /* 整体占据80%宽度，与上面卡片一样宽 */
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+/* 响应式布局 */
+@media (max-width: 768px) {
+  .pet-store-info {
+    width: 95%; /* 移动端占据更多宽度 */
+    margin: 20px auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .pet-store-info {
+    width: 98%; /* 小屏幕占据更多宽度 */
+  }
+}
+
+.pet-store-info-title {
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+  color: #a7a88b;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.pet-store-info-title::before,
+.pet-store-info-title::after {
+  content: '🎀';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+}
+
+.pet-store-info-title::before {
+  left: -50px;
+}
+
+.pet-store-info-title::after {
+  right: -50px;
+}
+
+/* antd Collapse 自定义样式 */
+.pet-store-collapse {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  width: 100%; /* 在pet-store-info容器内完全铺开 */
+}
+
+.pet-store-collapse .ant-collapse-item {
+  border-bottom: none;
+}
+
+.pet-store-collapse .ant-collapse-header {
+  padding: 8px 16px !important;
+  font-size: 12px !important;
+  font-weight: normal !important;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important; /* 添加居中对齐 */
+  height: auto !important;
+}
+
+.pet-store-collapse .ant-collapse-header:hover {
+  background: #f0f0f0 !important;
+}
+
+.pet-store-collapse .ant-collapse-content-box {
+  padding: 16px;
+}
+
+/* 标题区域样式 */
+.collapse-header-content {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.collapse-icon {
+  font-size: 14px;
+  display: inline-block;
+}
+
+.collapse-text {
+  font-size: 12px;
+  font-weight: normal;
+  display: inline-block;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .pet-store-collapse .ant-collapse-header {
+    padding: 6px 12px !important;
+    font-size: 11px !important;
+  }
+  
+  .collapse-icon {
+    font-size: 12px;
+  }
+  
+  .collapse-text {
+    font-size: 11px;
+  }
+}
+
+
+.content-inner {
+  line-height: 1.8;
+  color: #444;
+  font-size: 15px;
+  text-align: left;
+}
+
+.content-inner h3 {
+  color: #333;
+  font-size: 16px;
+  margin: 16px 0 8px 0;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 6px;
+  position: relative;
+}
+
+.content-inner h3::before {
+  content: '✨';
+  margin-right: 8px;
+}
+
+.content-inner p {
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.content-inner strong {
+  color: #555;
+  font-weight: bold;
+}
+
+.highlight-box {
+  background: #f9f9f9;
+  border-left: 3px solid #007bff;
+  padding: 16px;
+  margin: 16px 0;
+  border-radius: 4px;
+  position: relative;
+}
+
+.highlight-box::before {
+  content: '💝';
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 20px;
+}
+
+.benefits-list {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0;
+  text-align: left;
+}
+
+.benefits-list li {
+  background: #ffffff;
+  margin: 8px 0;
+  padding: 12px 16px;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+  position: relative;
+  padding-left: 40px;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.benefits-list li:hover {
+  background: #f8f9fa;
+  border-color: #d0d0d0;
+}
+
+.benefits-list li::before {
+  content: '•';
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #007bff;
+}
+
+
+.table-container {
+  margin: 20px 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.cute-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.cute-table th {
+  background: #f8f9fa;
+  color: #333;
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.cute-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.cute-table tr:nth-child(even) {
+  background: #fcfcfc;
+}
+
+.cute-table tr:hover {
+  background: #f8f9fa;
+}
+
+.warning-section {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 4px;
+  padding: 16px;
+  margin: 16px 0;
+  position: relative;
+}
+
+.warning-section::before {
+  content: '⚠️';
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 24px;
+}
+
+.guarantee-section {
+  background: #d4edda;
+  border: 1px solid #c3e6cb;
+  border-radius: 4px;
+  padding: 16px;
+  margin: 16px 0;
+  position: relative;
+}
+
+.guarantee-section::before {
+  content: '🛡️';
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 24px;
+}
+
+.price-highlight {
+  background: linear-gradient(135deg, #fff9c4 0%, #ffecb3 100%);
+  border: 2px solid #ffd54f;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 16px 0;
+  text-align: center;
+  position: relative;
+}
+
+.price-highlight::before {
+  content: '💰';
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 20px;
+}
+
+.vaccine-schedule {
+  background: linear-gradient(135deg, #e8f5e8 0%, #f0fff0 100%);
+  border: 2px solid #90ee90;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.vaccine-schedule h4 {
+  color: #228b22;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.vaccine-schedule ul {
+  list-style: none;
+  padding: 0;
+}
+
+.vaccine-schedule li {
+  background: #fff;
+  padding: 10px 16px;
+  margin: 8px 0;
+  border-radius: 20px;
+  border-left: 4px solid #90ee90;
+  position: relative;
+  padding-left: 40px;
+}
+
+.vaccine-schedule li::before {
+  content: '💉';
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .pet-store-info-title {
+    font-size: 24px;
+  }
+  
+  .pet-store-info-title::before,
+  .pet-store-info-title::after {
+    display: none;
+  }
+  
+  .section-title {
+    font-size: 18px;
+  }
+  
+  .section-content.expanded {
+    padding: 16px;
+  }
+  
+  .cute-table th,
+  .cute-table td {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+}
+
+/* 滚动动画 */
+.collapsible-section {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideInUp 0.6s ease forwards;
+}
+
+.collapsible-section:nth-child(2) { animation-delay: 0.1s; }
+.collapsible-section:nth-child(3) { animation-delay: 0.2s; }
+.collapsible-section:nth-child(4) { animation-delay: 0.3s; }
+.collapsible-section:nth-child(5) { animation-delay: 0.4s; }
+.collapsible-section:nth-child(6) { animation-delay: 0.5s; }
+.collapsible-section:nth-child(7) { animation-delay: 0.6s; }
+
+@keyframes slideInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.collapse-text{
+  font-weight: bolder;
+}

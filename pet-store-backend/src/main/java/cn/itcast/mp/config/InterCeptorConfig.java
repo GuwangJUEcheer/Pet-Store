@@ -26,6 +26,7 @@ public class InterCeptorConfig implements WebMvcConfigurer {
 						"/kittens/**",
 						"/swagger-ui/**",
 						"/parents/**",
+						"/past/**",
 						"/list",
 						"/swagger-ui.html",
 						"/v2/api-docs/**",

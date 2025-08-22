@@ -233,3 +233,120 @@ h3{
   border-radius: 10px; /* 添加圆角 */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加阴影 */
 }
+
+/* 重要なお知らせセクション */
+.important-notices {
+  margin-bottom: 80px;
+  margin-top: 60px;
+}
+
+.notices-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.notice-card {
+  background: linear-gradient(135deg, #fff 0%, #fafafa 100%);
+  border-radius: 20px;
+  padding: 30px;
+  border: 3px solid #f0f0f0;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.notice-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #a7a88b 0%, #d4af7a 100%);
+}
+
+.notice-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+  border-color: #d4af7a;
+}
+
+.notice-icon {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { transform: scale(1); }
+  to { transform: scale(1.1); }
+}
+
+.notice-card h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.notice-card p {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.7;
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.notice-link {
+  display: inline-block;
+  background: linear-gradient(135deg, #a7a88b, #d4af7a);
+  color: #fff;
+  padding: 12px 25px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(167, 168, 139, 0.3);
+}
+
+.notice-link:hover {
+  background: linear-gradient(135deg, #d4af7a, #a7a88b);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(167, 168, 139, 0.4);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .notices-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .notice-card {
+    padding: 25px 20px;
+  }
+
+  .notice-icon {
+    font-size: 3rem;
+  }
+
+  .notice-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .notice-card p {
+    font-size: 0.95rem;
+  }
+
+  .notice-link {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+

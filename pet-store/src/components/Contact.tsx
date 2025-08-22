@@ -30,7 +30,7 @@ const Contact: React.FC = () => {
 
     // Send data to the backend (example implementation)
     try {
-      const response = await fetch("/api/send-email", {
+      const response = await fetch("send-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

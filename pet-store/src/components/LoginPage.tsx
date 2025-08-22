@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Form, Input, Button, Card, Typography, Space, message} from 'antd';
 import {useNavigate} from "react-router-dom";
 import {loginUsingPost} from "../api/loginController";
 import {setUser, User} from "../other/userStore";
+import {useUser} from "../context/UserContext";
 
 const {Title, Text} = Typography;
 
 const LoginPage: React.FC = () => {
     const [form] = Form.useForm();
     const navigate = useNavigate();
+    const {login} = useUser();
+    const [loading, setLoading] = useState(false);
 
     const handleLogin = async (values: { username: string; password: string }) => {
+        setLoading(true);
         try {
             const response = await loginUsingPost(values);
             const {loginResult, username, userId, token, role = 2} = response.data;
@@ -27,7 +31,15 @@ const LoginPage: React.FC = () => {
                     role: role
                 };
 
+                // 保存到userStore
                 setUser(user);
+
+                // 同时更新UserContext
+                login({
+                    username: username ?? "",
+                    role: role === 1 ? 'admin' : 'user',
+                    userId: userId ?? 0
+                });
                 message.success("登录成功！");
                 navigate("/");
             } else {
@@ -36,6 +48,8 @@ const LoginPage: React.FC = () => {
         } catch (error) {
             console.error(error);
             message.error("登录出错，请稍后再试！");
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -74,7 +88,7 @@ const LoginPage: React.FC = () => {
                     </Form.Item>
 
                     <Form.Item style={{marginTop: '1.5rem'}}>
-                        <Button type="primary" htmlType="submit" block size="large">
+                        <Button type="primary" htmlType="submit" block size="large" loading={loading}>
                             Sign In
                         </Button>
                     </Form.Item>

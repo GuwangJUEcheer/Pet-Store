@@ -1,154 +1,233 @@
 declare namespace API {
-    type addKittenUsingPOSTParams = {
-        birthday?: string;
-        color?: string;
-        description?: string;
-        gender?: string;
-        name?: string;
-        price?: number;
-        status?: string;
-        fatherId?: number;
-        motherId?: number;
-    };
+  type addKittenUsingPOSTParams = {
+    birthday?: string;
+    color?: string;
+    description?: string;
+    gender?: string;
+    name?: string;
+    price?: number;
+    status?: string;
+  };
 
-    type addParentUsingPOSTParams = {
-        birthday?: string;
-        breed?: string;
-        color?: string;
-        description?: string;
-        gender?: string;
-        name?: string;
-    };
+  type addParentUsingPOSTParams = {
+    breed?: string;
+    color?: string;
+    description?: string;
+    gender?: string;
+    name?: string;
+  };
 
-    type assignParentToKittenUsingPOSTParams = {
-        /** kittenId */
-        kittenId: number;
-        /** parentId */
-        parentId: number;
-        /** parentRole */
-        parentRole: string;
-    };
+  type assignParentToKittenUsingPOSTParams = {
+    /** kittenId */
+    kittenId: number;
+    /** parentId */
+    parentId: number;
+    /** parentRole */
+    parentRole: string;
+  };
 
-    type changeKittenPhotoUsingPOSTParams = {
-        /** id */
-        id: number;
-    };
+  type bulkUploadPhotosUsingPOSTParams = {
+    /** kittenId */
+    kittenId: number;
+  };
 
-    type changeParentPhotoUsingPOSTParams = {
-        /** id */
-        id: number;
-    };
+  type changeKittenPhotoUsingPOSTParams = {
+    /** id */
+    id: number;
+  };
 
-    type deleteKittenUsingDELETEParams = {
-        /** id */
-        id: number;
-    };
+  type changeParentPhotoUsingPOSTParams = {
+    /** id */
+    id: number;
+  };
 
-    type deleteParentImageUsingDELETEParams = {
-        /** id */
-        id: number;
-    };
+  type deleteKittenPhotoUsingDELETEParams = {
+    /** kittenId */
+    kittenId: number;
+    /** photoId */
+    photoId: number;
+  };
 
-    type deleteParentUsingDELETEParams = {
-        /** id */
-        id: number;
-    };
+  type deleteKittenUsingDELETEParams = {
+    /** id */
+    id: number;
+  };
 
-    type getKittenByIdUsingGETParams = {
-        /** id */
-        id: number;
-    };
+  type deleteParentImageUsingDELETEParams = {
+    /** id */
+    id: number;
+  };
 
-    type getKittenParentsUsingGETParams = {
-        /** id */
-        id: number;
-    };
+  type deleteParentUsingDELETEParams = {
+    /** id */
+    id: number;
+  };
 
-    type getParentByIdUsingGETParams = {
-        /** id */
-        id: number;
-    };
+  type getKittenByIdUsingGETParams = {
+    /** id */
+    id: number;
+  };
 
-    type getParentsByKittenIdUsingGETParams = {
-        /** kittenId */
-        kittenId: number;
-    };
+  type getKittenParentsUsingGETParams = {
+    /** id */
+    id: number;
+  };
 
-    type Kitten = {
-        birthday?: string;
-        color?: string;
-        description?: string;
-        gender?: string;
-        id?: number;
-        imgUrl?: string;
-        name?: string;
-        price?: number;
-        status?: string;
-        motherId?: number;
-        fatherId?: number;
-    };
+  type getKittenPhotosUsingGETParams = {
+    /** kittenId */
+    kittenId: number;
+  };
 
-    type KittenParent = {
-        id?: number;
-        kittenId?: number;
-        parentId?: number;
-        parentRole?: string; // "父" 或 "母"
-        parentName?: string;
-        imgUrl?: string;
-        description?: string;
-    };
+  type getParentByIdUsingGETParams = {
+    /** id */
+    id: number;
+  };
 
-    type LoginResponse = {
-        code?: number;
-        loginResult?: string;
-        role?: number;
-        token?: string;
-        userId?: number;
-        username?: string;
-    };
+  type getParentsByKittenIdUsingGETParams = {
+    /** kittenId */
+    kittenId: number;
+  };
 
-    type Parent = {
-        birthday?: string;
-        breed?: string;
-        color?: string;
-        createdAt?: string;
-        description?: string;
-        gender?: string;
-        id?: number;
-        imgUrl?: string;
-        name?: string;
-        updatedAt?: string;
-    };
+  type getPastKittensUsingGETParams = {
+    /** page */
+    page?: number;
+    /** size */
+    size?: number;
+  };
 
-    type removeParentFromKittenUsingDELETEParams = {
-        /** kittenId */
-        kittenId: number;
-        /** parentRole */
-        parentRole: string;
-    };
+  type getPublicKittensUsingGETParams = {
+    /** page */
+    page?: number;
+    /** size */
+    size?: number;
+  };
 
-    type updateKittenUsingPOSTParams = {
-        birthday?: string;
-        color?: string;
-        description?: string;
-        gender?: string;
-        id?: number;
-        imgUrl?: string;
-        name?: string;
-        price?: number;
-        status?: string;
-        fatherId?: number;
-        motherId?: number;
-    };
+  type VisitApplicationRequest = {
+    kittenName?: string;
+    kittenId?: number;
+    visitorName: string;
+    phone: string;
+    email: string;
+    visitDate: string;
+    numberOfVisitors: number;
+    transportation: string;
+    needPickup: string;
+    memo?: string;
+  };
 
-    type updateParentUsingPOSTParams = {
-        birthday?: string;
-        breed?: string;
-        color?: string;
-        description?: string;
-        gender?: string;
-        id?: number;
-        imgUrl?: string;
-        name?: string;
-    };
+  type Kitten = {
+    birthday?: string;
+    color?: string;
+    description?: string;
+    fatherId?: number;
+    gender?: string;
+    id?: number;
+    imgUrl?: string;
+    motherId?: number;
+    name?: string;
+    price?: number;
+    status?: string;
+  };
+
+  type KittenPhoto = {
+    createdAt?: string;
+    displayOrder?: number;
+    fileName?: string;
+    fileSize?: number;
+    id?: number;
+    isPrimary?: boolean;
+    kittenId?: number;
+    photoUrl?: string;
+    updatedAt?: string;
+    uploadDate?: string;
+  };
+
+  type LoginResponse = {
+    code?: number;
+    loginResult?: string;
+    role?: number;
+    token?: string;
+    userId?: number;
+    username?: string;
+  };
+
+  type markKittenAsSoldUsingPOSTParams = {
+    /** id */
+    id: number;
+  };
+
+  type Parent = {
+    birthday?: string;
+    breed?: string;
+    color?: string;
+    createdAt?: string;
+    description?: string;
+    gender?: string;
+    id?: number;
+    imgUrl?: string;
+    name?: string;
+    updatedAt?: string;
+  };
+
+  type PhotoOrderItem = {
+    displayOrder?: number;
+    photoId?: number;
+  };
+
+  type PhotoReorderRequest = {
+    photoOrders?: PhotoOrderItem[];
+  };
+
+  type removeParentFromKittenUsingDELETEParams = {
+    /** kittenId */
+    kittenId: number;
+    /** parentRole */
+    parentRole: string;
+  };
+
+  type reorderKittenPhotosUsingPUTParams = {
+    /** kittenId */
+    kittenId: number;
+  };
+
+  type setPrimaryPhotoUsingPUTParams = {
+    /** kittenId */
+    kittenId: number;
+    /** photoId */
+    photoId: number;
+  };
+
+  type UpdateKittenRequest = {
+    birthday?: string;
+    color?: string;
+    description?: string;
+    fatherId?: number;
+    gender?: string;
+    id?: number;
+    imgUrl?: string;
+    motherId?: number;
+    name?: string;
+    price?: number;
+    status?: string;
+  };
+
+  type updateParentUsingPOSTParams = {
+    birthday?: string;
+    breed?: string;
+    color?: string;
+    description?: string;
+    gender?: string;
+    id?: number;
+    imgUrl?: string;
+    name?: string;
+  };
+
+  type uploadKittenPhotoUsingPOSTParams = {
+    /** displayOrder */
+    displayOrder?: number;
+    /** isPrimary */
+    isPrimary?: boolean;
+    /** kittenId */
+    kittenId: number;
+  };
 }

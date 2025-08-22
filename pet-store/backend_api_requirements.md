@@ -28,13 +28,13 @@ CREATE TABLE kitten_photos (
 
 ### 1. Get Kitten Photos
 ```
-GET /api/kittens/{kittenId}/photos
+GET kittens/{kittenId}/photos
 Response: List<KittenPhoto>
 ```
 
 ### 2. Upload Kitten Photo
 ```
-POST /api/kittens/{kittenId}/photos
+POST kittens/{kittenId}/photos
 Content-Type: multipart/form-data
 Body: 
   - file: MultipartFile
@@ -47,7 +47,7 @@ Response: KittenPhoto
 
 ### 3. Delete Kitten Photo
 ```
-DELETE /api/kittens/{kittenId}/photos/{photoId}
+DELETE kittens/{kittenId}/photos/{photoId}
 Response: Success message
 Action: Also delete from S3
 Note: 应用层面需要处理数据一致性，确保删除小猫时也清理相关照片
@@ -55,21 +55,21 @@ Note: 应用层面需要处理数据一致性，确保删除小猫时也清理�
 
 ### 4. Update Photo Order
 ```
-PUT /api/kittens/{kittenId}/photos/reorder
+PUT kittens/{kittenId}/photos/reorder
 Body: List<{photoId: Long, displayOrder: Integer}>
 Response: Success message
 ```
 
 ### 5. Set Primary Photo
 ```
-PUT /api/kittens/{kittenId}/photos/{photoId}/primary
+PUT kittens/{kittenId}/photos/{photoId}/primary
 Response: Success message
 Action: Set isPrimary=true for this photo, false for others
 ```
 
 ### 6. Bulk Upload Photos
 ```
-POST /api/kittens/{kittenId}/photos/bulk
+POST kittens/{kittenId}/photos/bulk
 Content-Type: multipart/form-data
 Body: files: MultipartFile[]
 Response: List<KittenPhoto>

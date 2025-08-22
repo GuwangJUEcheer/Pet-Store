@@ -22,6 +22,7 @@ const EditModal: React.FC<EditModalProps> = ({isOpen, close, id, onSuccess, mode
     const [visible, setVisible] = useState(isOpen);
     const [fileList, setFileList] = useState<any[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
+    const [confirmLoading, setConfirmLoading] = useState<boolean>(false);
     const [form] = Form.useForm();
     const [imageUrl, setImageUrl] = useState('');
     const [selectedImageFile, setSelectedImageFile] = useState<File | null>(null);
@@ -122,6 +123,7 @@ const EditModal: React.FC<EditModalProps> = ({isOpen, close, id, onSuccess, mode
     };
 
     const handleOk = async () => {
+        setConfirmLoading(true);
         try {
             const values = await form.validateFields();
 
@@ -153,6 +155,8 @@ const EditModal: React.FC<EditModalProps> = ({isOpen, close, id, onSuccess, mode
         } catch (error) {
             console.log('操作失败:', error);
             message.error(mode === 'edit' ? '更新失败，请重试' : '添加失败，请重试');
+        } finally {
+            setConfirmLoading(false);
         }
     };
 
@@ -188,6 +192,7 @@ const EditModal: React.FC<EditModalProps> = ({isOpen, close, id, onSuccess, mode
                 okText="提交"
                 width="90%"
                 style={{maxWidth: '600px'}}
+                confirmLoading={confirmLoading}
             >
                 {/* 文件上传区域 */}
                 <Flex gap="middle" wrap>
@@ -268,7 +273,7 @@ const EditModal: React.FC<EditModalProps> = ({isOpen, close, id, onSuccess, mode
                     >
                         <Select placeholder="请选择状态">
                             <Select.Option value="予約受付中">予約受付中</Select.Option>
-                            <Select.Option value="予約済み">予約済み</Select.Option>
+                            <Select.Option value="相談中">相談中</Select.Option>
                         </Select>
                     </Form.Item>
 

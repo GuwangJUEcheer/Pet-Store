@@ -49,6 +49,7 @@ public class ParentServiceImpl implements ParentService {
 			parent.setImgUrl(url);
 			parentMapper.addParent(parent);
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new BizException(ErrorCode.OPER_ERROR, "新增父母失败");
 		}
 	}
@@ -65,6 +66,7 @@ public class ParentServiceImpl implements ParentService {
 			}
 			parentMapper.updateParent(parent);
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new BizException(ErrorCode.OPER_ERROR, "更新父母信息失败");
 		}
 	}
@@ -100,7 +102,7 @@ public class ParentServiceImpl implements ParentService {
 	}
 
 	@Override
-	public void assignParentToKitten(Long kittenId,  int parentId, String parentRole) {
+	public void assignParentToKitten(Long kittenId, int parentId, String parentRole) {
 		try {
 			// 创建KittenParent对象并设置属性
 			KittenParent kittenParent = new KittenParent();

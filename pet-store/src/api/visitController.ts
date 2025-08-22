@@ -2,12 +2,12 @@
 /* eslint-disable */
 import request from "../Request/request";
 
-/** login POST login */
-export async function loginUsingPost(
-  body: Record<string, any>,
+/** submitVisitApplication POST /visit/apply */
+export async function submitVisitApplicationUsingPost(
+  body: API.VisitApplicationRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.LoginResponse>("login", {
+  return request<Record<string, any>>("visit/apply", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

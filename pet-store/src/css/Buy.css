@@ -1,18 +1,22 @@
 .buy-container {
-  padding: 40px 20px; /* 增加上下间距 */
+  padding: 40px 24px;
+  background-color: #fefbea;
+  min-height: 100vh;
+  font-family: 'MochiyPopOne', sans-serif;
+}
+
+.buy-header {
   text-align: center;
-  color: #555;
-  line-height: 1.8;
-  background-color: #faf9f7; /* 添加米白色背景 */
-  border-radius: 10px; /* 圆角效果 */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* 添加阴影，增加层次感 */
+  margin-bottom: 50px;
 }
 
 .buy-container h1 {
-  font-size: 2.8rem; /* 增大标题字体 */
-  color: #d45d5d; /* 使用柔和的红色 */
-  margin-bottom: 20px; /* 增大标题与子标题间距 */
+  font-size: 2.8rem;
+  color: #a7a88b;
+  margin-bottom: 20px;
   font-weight: bold;
+  font-family: 'MochiyPopOne', sans-serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .buy-container .subtitle {
@@ -22,13 +26,32 @@
 }
 
 .buy-section,
-.caution-section {
+.buy-timeline-section,
+.caution-section,
+.reservation-section {
   text-align: left;
-  margin-bottom: 40px; /* 加大段落间距 */
-  padding: 20px; /* 增加内边距 */
-  background-color: #fff; /* 为段落添加白色背景 */
-  border-radius: 10px; /* 圆角效果 */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* 阴影效果 */
+  margin-bottom: 40px;
+  padding: 30px;
+  background: linear-gradient(145deg, #ffffff, #f8f8f8);
+  border-radius: 20px;
+  border: 3px solid #f0f0f0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  position: relative;
+}
+
+.section-icon {
+  font-size: 2rem;
+  position: absolute;
+  top: -15px;
+  left: 30px;
+  background: linear-gradient(135deg, #a7a88b, #d4af7a);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(167, 168, 139, 0.3);
 }
 
 .buy-section h2,
@@ -54,7 +77,322 @@
 }
 
 .buy-section ol li::marker,
-.caution-section ul li::marker {
-  color: #d45d5d; /* 列表标记颜色 */
+.caution-section ul li::marker,
+.reservation-section ul li::marker {
+  color: #a7a88b;
   font-weight: bold;
+}
+
+/* Ant Design 组件样式修改 */
+.info-card {
+  border-radius: 20px !important;
+  border: 3px solid #f0f0f0 !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08) !important;
+  transition: all 0.3s ease !important;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12) !important;
+  border-color: #d4af7a !important;
+}
+
+.info-card .ant-card-head {
+  background: linear-gradient(90deg, #a7a88b 0%, #d4af7a 100%);
+  border-radius: 17px 17px 0 0 !important;
+  border-bottom: none !important;
+}
+
+.info-card .ant-card-head-title {
+  color: #fff !important;
+  font-weight: bold !important;
+  font-family: 'MochiyPopOne', sans-serif !important;
+  font-size: 1.2rem !important;
+}
+
+.full-width {
+  margin-top: 20px;
+}
+
+/* 支付方式样式 */
+.payment-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.payment-item {
+  padding: 16px;
+  background: #fefbea;
+  border-radius: 12px;
+  border: 2px solid #f0f0f0;
+  transition: all 0.3s ease;
+}
+
+.payment-item:hover {
+  border-color: #d4af7a;
+  transform: translateX(5px);
+}
+
+.payment-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.payment-icon {
+  font-size: 1.5rem;
+  color: #a7a88b;
+}
+
+.payment-method {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+  font-family: 'MochiyPopOne', sans-serif;
+}
+
+.payment-note {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0;
+  padding-left: 28px;
+}
+
+/* 配送信息样式 */
+.delivery-info p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.delivery-table .ant-table {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.delivery-table .ant-table-thead > tr > th {
+  background: linear-gradient(90deg, #a7a88b 0%, #d4af7a 100%) !important;
+  color: #fff !important;
+  font-weight: bold !important;
+  border: none !important;
+  font-family: 'MochiyPopOne', sans-serif;
+}
+
+.fee-text {
+  font-weight: bold;
+  color: #d4af7a;
+  font-size: 1rem;
+}
+
+/* 予約金区域 */
+.reservation-content {
+  padding-top: 20px;
+}
+
+.reservation-card {
+  text-align: center;
+  border-radius: 15px !important;
+  border: 2px solid #f0f0f0 !important;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.reservation-card:hover {
+  border-color: #d4af7a !important;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-card h4 {
+  color: #a7a88b;
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  font-family: 'MochiyPopOne', sans-serif;
+}
+
+.reservation-card p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+/* 分割线样式 */
+.cute-divider {
+  margin: 50px 0 !important;
+  border-color: #f0f0f0 !important;
+  position: relative;
+}
+
+.cute-divider::before {
+  content: '🐾';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fefbea;
+  padding: 0 20px;
+  font-size: 1.5rem;
+}
+
+/* 页脚 */
+.buy-footer {
+  text-align: center;
+  background: linear-gradient(135deg, #fff 0%, #f8f8f8 100%);
+  border-radius: 20px;
+  padding: 30px;
+  border: 2px solid #f0f0f0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  margin-top: 40px;
+}
+
+.buy-footer p {
+  font-size: 1.2rem;
+  color: #a7a88b;
+  font-weight: bold;
+  margin: 0;
+  font-family: 'MochiyPopOne', sans-serif;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Timeline 样式 */
+.purchase-timeline {
+  margin-top: 20px;
+  padding: 20px;
+  background: #fefbea;
+  border-radius: 16px;
+  border: 2px solid #f0f0f0;
+}
+
+.timeline-intro {
+  font-size: 1.1rem;
+  color: #666;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.cute-timeline {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cute-timeline .ant-timeline-item-tail {
+  border-left: 2px solid #ffd6e7 !important;
+}
+
+.cute-timeline .ant-timeline-item-head {
+  background: #fff !important;
+  border: 3px solid #ffd6e7 !important;
+  width: 32px !important;
+  height: 32px !important;
+}
+
+.timeline-content {
+  padding: 16px 20px;
+  background: #fff;
+  border-radius: 12px;
+  border: 2px solid #f0f0f0;
+  margin-left: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.timeline-content:hover {
+  transform: translateX(5px);
+  border-color: #ffd6e7;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-content h4 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 8px;
+  font-weight: bold;
+  font-family: 'MochiyPopOne', sans-serif;
+}
+
+.timeline-content p {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.timeline-details {
+  background: linear-gradient(135deg, #fff9f0 0%, #fff0f6 100%);
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ffe0eb;
+}
+
+.timeline-details span {
+  font-size: 0.9rem;
+  color: #d46b08;
+  font-weight: 500;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .buy-container {
+    padding: 20px 16px;
+  }
+
+  .buy-container h1 {
+    font-size: 2.2rem;
+  }
+
+  .buy-section,
+  .buy-timeline-section,
+  .caution-section,
+  .reservation-section {
+    padding: 20px;
+  }
+
+  .section-icon {
+    top: -12px;
+    left: 20px;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+
+  .payment-methods {
+    gap: 12px;
+  }
+
+  .payment-item {
+    padding: 12px;
+  }
+
+  .payment-method {
+    font-size: 1rem;
+  }
+
+  .payment-note {
+    font-size: 0.85rem;
+    padding-left: 24px;
+  }
+
+  /* Timeline 响应式 */
+  .purchase-timeline {
+    padding: 16px;
+  }
+
+  .timeline-content {
+    padding: 12px 16px;
+    margin-left: 4px;
+  }
+
+  .timeline-content h4 {
+    font-size: 1.1rem;
+  }
+
+  .timeline-content p {
+    font-size: 0.9rem;
+  }
+
+  .timeline-details span {
+    font-size: 0.85rem;
+  }
 }

@@ -43,5 +43,22 @@ public interface KittenMapper {
 	void updateKittenImage(@Param("kittenId") Long kittenId,
 						   @Param("newImgUrl") String newImgUrl);
 
+	// 分页相关方法
+	@Select("SELECT * FROM kittens WHERE status != '已出售' ORDER BY id DESC LIMIT #{offset}, #{size}")
+	List<Kitten> getAvailableKittensByPage(@Param("offset") int offset, @Param("size") int size);
+	
+	@Select("SELECT COUNT(*) FROM kittens WHERE status != '已出售'")
+	int getAvailableKittensCount();
+
+	// 过去小猫相关方法
+	@Select("SELECT * FROM kittens WHERE status = '已出售' ORDER BY created_at DESC LIMIT #{offset}, #{size}")
+	List<Kitten> getSoldKittens(@Param("offset") int offset, @Param("size") int size);
+
+	@Select("SELECT COUNT(*) FROM kittens WHERE status = '已出售'")
+	int getSoldKittensCount();
+
+	@Update("UPDATE kittens SET status = #{status} WHERE id = #{kittenId}")
+	void updateKittenStatus(@Param("kittenId") Long kittenId, @Param("status") String status);
+
 }
 

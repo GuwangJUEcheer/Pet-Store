@@ -12,9 +12,8 @@ const Header: React.FC = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // 清除用户信息
+    // 清除用户信息和token
     logout();
-    localStorage.removeItem("token"); // 移除本地存储的 token
 
     // 显示成功信息
     message.success("ログアウトしました！", 2, () => {

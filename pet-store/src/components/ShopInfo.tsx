@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/ShopInfo.css";
+import certificate from "../images/certificate.jpg";
 
 const ShopInfo: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalImage, setModalImage] = useState("");
+
+  const openModal = (image: string) => {
+    setModalImage(image);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setModalImage("");
+  };
+
   return (
     <div className="shopinfo-container">
       <h1 className="shopinfo-title">アドレス</h1>
@@ -38,8 +52,78 @@ const ShopInfo: React.FC = () => {
             <br />
             駐車場についてのご説明をさせていただきますので車でお越しの際には、お問い合わせの際にお伝えください。
           </p>
+          
+          {/* 駐車場案内 */}
+          <div className="parking-info">
+            <h3>🚗 駐車場のご案内</h3>
+            <p>
+              駐車場の詳細な案内図をPDFでご用意しております。
+              <br />
+              お車でお越しの際は、事前にご確認いただけますようお願いいたします。
+            </p>
+            <div className="download-section">
+              <a
+                href="https://pet-store-bucket-2025.s3.ap-northeast-1.amazonaws.com/%E9%A7%90%E8%BB%8A%E6%A1%88%E5%86%85.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="download-button"
+                download="駐車案内.pdf"
+              >
+                📄 駐車場案内をダウンロード
+              </a>
+            </div>
+          </div>
         </div>
       </div>
+
+      {/* 资格与执照 */}
+      <section className="qualifications">
+        <h2 className="room-title">資格 & 免許</h2>
+        <div className="room-section">
+          {/* 左侧图片 */}
+          <div className="image-content">
+            <img
+              src={certificate}
+              alt="Certification Document"
+              className="certification-image"
+              onClick={() => openModal(certificate)}
+              style={{ cursor: "pointer" }}
+            />
+          </div>
+
+          {/* 中间文字描述 */}
+          <div className="text-content">
+            <h3>資格</h3>
+            <ul>
+              <li>家庭動物管理士3級</li>
+              <li>愛玩動物看護士</li>
+              <li>動物飼養助手</li>
+              <li>動物専門学校 看護コース卒業</li>
+            </ul>
+          </div>
+
+          {/* 右侧文字描述 */}
+          <div className="text-content">
+            <h3>免許＆責任者</h3>
+            <p>第一種動物取扱業　第71-0388号</p>
+            <p>事業所の名称: Doria pet</p>
+            <p>事業所の所在地: 運田市黒浜3536-2</p>
+            <p>登録に動物取扱業の種別: 販売</p>
+            <p>動物取扱責任者の氏名: 尾崎由倖</p>
+            <p>登録の年月日: 令和5年3月22日</p>
+            <p>有効期限の末日: 令和10年3月21日</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 模态框 */}
+      {isModalOpen && (
+        <div className="modal" onClick={closeModal}>
+          <div className="modal-content">
+            <img src={modalImage} alt="Enlarged" className="modal-image" />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

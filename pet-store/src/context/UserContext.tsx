@@ -1,4 +1,5 @@
-import React, { createContext, useState, useContext, ReactNode } from "react";
+import React, { createContext, useState, useContext, ReactNode, useEffect } from "react";
+import { clearUser, getUser, setUser as setUserStore } from "../other/userStore";
 
 // 定义用户信息接口
 interface User {
@@ -28,15 +29,47 @@ export const useUser = () => {
 
 // Context 提供者组件
 export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null); // 存储用户信息
+  const [user, setUser] = useState<User | null>(() => {
+    // 初始化时从userStore读取用户信息
+    const savedUser = getUser();
+    if (savedUser && savedUser.name) {
+      return {
+        username: savedUser.name,
+        role: savedUser.role === 1 ? 'admin' : 'user',
+        userId: savedUser.id || 0
+      };
+    }
+    return null;
+  });
 
   const login = (user: User) => {
-    setUser(user); // 设置用户信息
+    setUser(user); // 设置用户信息到Context
+    
+    // 同时保存到userStore
+    setUserStore({
+      id: user.userId,
+      name: user.username,
+      role: user.role === 'admin' ? 1 : 2
+    });
   };
 
   const logout = () => {
     setUser(null); // 清空用户信息
+    clearUser(); // 清除localStorage中的用户信息和token
   };
+
+  // 监听token过期事件
+  useEffect(() => {
+    const handleTokenExpired = () => {
+      setUser(null); // 清空用户状态
+    };
+
+    window.addEventListener('tokenExpired', handleTokenExpired);
+
+    return () => {
+      window.removeEventListener('tokenExpired', handleTokenExpired);
+    };
+  }, []);
 
   return (
     <UserContext.Provider value={{ user, login, logout }}>

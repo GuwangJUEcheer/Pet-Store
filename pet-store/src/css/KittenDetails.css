@@ -2,11 +2,11 @@
 .kitten-details-container {
   padding: 20px;
   font-family: Arial, sans-serif;
-  background-color: #faf9f7;
+  background-color: #fefbea;
 }
 
 #pictureDetailPage {
-  background-color: #faf9f7;
+  background-color: #fefbea;
   min-height: 100vh;
   padding: 24px;
   max-width: 1400px;
@@ -444,12 +444,13 @@
 
 /* 轮播图相关样式 */
 .carousel-slide {
-  height: 443px !important;
+  height: 543px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   background-color: #f5f5f5;
   overflow: hidden;
+  position: relative;
 }
 
 .carousel-dots {
@@ -523,7 +524,7 @@
 
 /* Antd Carousel 轮播图样式修复 */
 .ant-carousel .slick-slide {
-  height: 443px !important;
+  height: 543px !important;
 }
 
 .ant-carousel .slick-slide > div {
@@ -531,11 +532,11 @@
 }
 
 .ant-carousel .slick-track {
-  height: 443px !important;
+  height: 543px !important;
 }
 
 .ant-carousel .slick-list {
-  height: 443px !important;
+  height: 543px !important;
 }
 
 /* 响应式支持 */
@@ -558,14 +559,14 @@
   }
 
   .carousel-slide {
-    height: 300px !important;
+    height: 400px !important;
   }
   
   .ant-carousel .slick-slide,
   .ant-carousel .slick-slide > div,
   .ant-carousel .slick-track,
   .ant-carousel .slick-list {
-    height: 300px !important;
+    height: 400px !important;
   }
 }
 
@@ -593,7 +594,7 @@
 
 /* 新的全宽父母情报区域样式 */
 .parent-info-section-fullwidth {
-  background: linear-gradient(135deg, #fff 0%, #faf9f7 100%);
+  background: linear-gradient(135deg, #fff 0%, #fefbea 100%);
   border-radius: 16px;
   padding: 32px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
@@ -676,7 +677,7 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
   margin: 0 auto 24px;
   transition: all 0.3s ease;
-  background: linear-gradient(135deg, #faf9f7, #f0f0f0);
+  background: linear-gradient(135deg, #fefbea, #f0f0f0);
 }
 
 .parent-avatar-large:hover {
@@ -736,7 +737,7 @@
 }
 
 .parent-details-large {
-  background: #faf9f7;
+  background: #fefbea;
   border-radius: 12px;
   padding: 20px;
   margin-bottom: 16px;

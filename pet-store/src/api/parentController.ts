@@ -66,7 +66,7 @@ export async function addParentUsingPost(
       ...params,
     },
     data: formData,
-   
+    
     ...(options || {}),
   });
 }
@@ -122,7 +122,7 @@ export async function changeParentPhotoUsingPost(
       ...params,
     },
     data: formData,
-   
+    
     ...(options || {}),
   });
 }
@@ -200,7 +200,7 @@ export async function updateParentUsingPost(
       ...params,
     },
     data: formData,
-   
+    
     ...(options || {}),
   });
 }

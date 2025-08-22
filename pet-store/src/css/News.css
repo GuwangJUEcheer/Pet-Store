@@ -1,325 +1,335 @@
 /* 新闻容器样式 */
 .news-container {
-  padding: 20px;
-  text-align: center;
-  background-color: #faf9f7;
+    padding: 20px;
+    text-align: center;
+    background-color: #fefbea;
 }
 
 .news-container h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-  color: #908663;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #908663;
 }
 
 .news-container .subtitle {
-  font-size: 1.2rem;
-  color: #999;
-  margin-bottom: 30px;
+    font-size: 1.2rem;
+    color: #999;
+    margin-bottom: 30px;
 }
 
 /* 子猫网格布局 */
 .kitten-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 @media (min-width: 1200px) {
-  .kitten-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
+    .kitten-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
 @media (max-width: 1199px) and (min-width: 900px) {
-  .kitten-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+    .kitten-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 @media (max-width: 899px) and (min-width: 600px) {
-  .kitten-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+    .kitten-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 599px) {
-  .kitten-grid {
-    grid-template-columns: 1fr;
-  }
+    .kitten-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .kitten-card {
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  overflow: hidden;
-  width: 300px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: left;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  font-family: 'MochiyPopOne', sans-serif;
-  font-size: 18px;
-  position: relative;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-family: 'MochiyPopOne', sans-serif;
+    font-size: 18px;
+    position: relative;
 }
 
 .kitten-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
 /* 状态标签 */
 .status-tag {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 1;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
 }
 
-/* 图片容器 */
+/* 图片容器 - 专为9:16竖图优化 */
 .image-container {
-  height: 250px;
-  overflow: hidden;
+    height: 350px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fafafa;
 }
 
 .kitten-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    width: auto;
+    height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: center;
 }
 
 .kitten-info {
-  padding: 15px;
+    padding: 15px;
 }
 
 .status {
-  display: inline-block;
-  background: #f2dede;
-  color: #a94442;
-  font-size: 0.9rem;
-  padding: 5px 10px;
-  border-radius: 20px;
-  margin-bottom: 10px;
+    display: inline-block;
+    background: #f2dede;
+    color: #a94442;
+    font-size: 0.9rem;
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
 }
 
 .kitten-info h2 {
-  font-size: 1.5rem;
-  color: #908663;
-  margin: 10px 0;
+    font-size: 1.5rem;
+    color: #908663;
+    margin: 10px 0;
 }
 
 /* 价格容器样式 */
 .price-container {
-  display: flex;
-  align-items: center;
-  margin: 15px 0;
-  font-weight: bold;
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+    font-weight: bold;
 }
 
 .yen-symbol {
-  font-size: 1.5rem;
-  color: #f4c430;
-  margin-right: 5px;
+    font-size: 1.5rem;
+    color: #f4c430;
+    margin-right: 5px;
 }
 
 .price-amount {
-  font-size: 1.3rem;
-  color: #a7a88b;
+    font-size: 1.3rem;
+    color: #a7a88b;
 }
 
 /* 表格样式 */
 table {
-  width: 100%;
-  margin-top: 10px;
-  border-collapse: collapse; /* 移除表格边框间的空隙 */
-  border: none; /* 移除表格的边框 */
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse; /* 移除表格边框间的空隙 */
+    border: none; /* 移除表格的边框 */
 }
 
 table td {
-  padding: 3px 5px;
-  font-size: 0.9rem;
-  color: #666;
-  border: none; /* 确保单元格之间没有边框 */
+    padding: 3px 5px;
+    font-size: 0.9rem;
+    color: #666;
+    border: none; /* 确保单元格之间没有边框 */
 }
 
 table td:first-child {
-  font-weight: bold;
-  width: 40%;
-  color: #999;
+    font-weight: bold;
+    width: 40%;
+    color: #999;
 }
 
 
 /* 管理员控制按钮样式 */
 .admin-controls {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  margin-bottom: 30px;
-  flex-wrap: wrap;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
 }
 
 /* 小猫卡片按钮样式 */
 .kitten-buttons {
-  display: flex;
-  justify-content: center;
-  margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
 }
 
 /* 响应式样式 */
 @media (max-width: 768px) {
-  .admin-controls {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .kitten-card {
-    width: 100%;
-    max-width: 350px;
-  }
-  
-  .image-container {
-    height: 200px;
-  }
-  
-  .kitten-info h2 {
-    font-size: 1.3rem;
-  }
-  
-  .yen-symbol {
-    font-size: 1.3rem;
-  }
-  
-  .price-amount {
-    font-size: 1.1rem;
-  }
+    .admin-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .kitten-card {
+        width: 100%;
+        max-width: 350px;
+    }
+
+    .image-container {
+        height: 200px;
+    }
+
+    .kitten-info h2 {
+        font-size: 1.3rem;
+    }
+
+    .yen-symbol {
+        font-size: 1.3rem;
+    }
+
+    .price-amount {
+        font-size: 1.1rem;
+    }
 }
 
 @media (max-width: 480px) {
-  .news-container {
-    padding: 15px;
-  }
-  
-  .news-container h1 {
-    font-size: 2rem;
-  }
-  
-  .kitten-card {
-    width: 100%;
-  }
-  
-  .image-container {
-    height: 180px;
-  }
-  
-  .kitten-info {
-    padding: 12px;
-  }
+    .news-container {
+        padding: 15px;
+    }
+
+    .news-container h1 {
+        font-size: 2rem;
+    }
+
+    .kitten-card {
+        width: 100%;
+    }
+
+    .image-container {
+        height: 180px;
+    }
+
+    .kitten-info {
+        padding: 12px;
+    }
 }
 
 /* 弹窗背景遮罩样式 */
 .modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
 
 /* 弹窗内容样式 */
 .modal-content {
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 15px;
-  width: 450px;
-  min-height: 700px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  text-align: left;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  font-family: 'Arial', sans-serif;
-  animation: fadeIn 0.3s ease-in-out;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    width: 450px;
+    min-height: 700px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Arial', sans-serif;
+    animation: fadeIn 0.3s ease-in-out;
 }
 
 .modal-content h2 {
-  margin-bottom: 20px;
-  font-size: 1.8rem;
-  color: #444;
-  text-align: center;
-  border-bottom: 2px solid #f0f0f0;
-  padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    color: #444;
+    text-align: center;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
 }
 
 /* 弹窗表单样式 */
 .modal-content label {
-  display: flex;
-  flex-direction: row; /* 横向排列 */
-  align-items: center; /* 垂直居中 */
-  margin-bottom: 20px;
-  font-size: 1rem;
-  font-weight: bold;
-  color: #555;
+    display: flex;
+    flex-direction: row; /* 横向排列 */
+    align-items: center; /* 垂直居中 */
+    margin-bottom: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #555;
 }
 
 .modal-content label span {
-  width: 30%; /* 固定宽度，保证对齐 */
-  text-align: left;
+    width: 30%; /* 固定宽度，保证对齐 */
+    text-align: left;
 }
 
 .modal-content input,
 .modal-content select {
-  flex: 1; /* 输入框占满剩余空间 */
-  padding: 10px;
-  margin-left: 10px; /* 与文字保持间距 */
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  transition: border-color 0.2s ease-in-out;
+    flex: 1; /* 输入框占满剩余空间 */
+    padding: 10px;
+    margin-left: 10px; /* 与文字保持间距 */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: border-color 0.2s ease-in-out;
 }
 
 .modal-content input:focus,
 .modal-content select:focus {
-  outline: none;
-  border-color: #4caf50;
-  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    outline: none;
+    border-color: #4caf50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
 
 /* 单选按钮容器 */
 .modal-content .radio-group {
-  display: flex;
-  gap: 10px;
+    display: flex;
+    gap: 10px;
 }
 
 .modal-content .radio-group label {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
 }
 
 /* 模态框按钮区域 */
 .modal-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
 }
 
 /* 弹窗动画效果 */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.ant-collapse-header {
+    text-align: left;
 }
 

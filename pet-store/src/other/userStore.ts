@@ -21,3 +21,9 @@ export const getUser = (): User | undefined => {
     }
     return undefined;
 };
+
+// 清除用户信息
+export const clearUser = () => {
+    localStorage.removeItem("currentUser");
+    localStorage.removeItem("token");
+};

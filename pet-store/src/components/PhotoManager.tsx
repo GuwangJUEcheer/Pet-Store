@@ -25,8 +25,7 @@ import {
     deleteKittenPhotoUsingDelete,
     setPrimaryPhotoUsingPut,
     bulkUploadPhotosUsingPost,
-    reorderKittenPhotosUsingPut,
-    KittenPhoto,
+    reorderKittenPhotosUsingPut
 } from '../api/kittenPhotoController';
 import {
     DndContext,
@@ -51,14 +50,15 @@ import '../css/PhotoManager.css';
 
 interface PhotoManagerProps {
     kittenId: number;
-    onPhotosChange?: (photos: KittenPhoto[]) => void;
+    onPhotosChange?: (photos: API.KittenPhoto[]) => void;
 }
 
 const PhotoCard: React.FC<{
-    photo: KittenPhoto;
+    photo: API.KittenPhoto;
     onDelete: (photoId: number) => void;
     onSetPrimary: (photoId: number) => void;
-}> = ({photo, onDelete, onSetPrimary}) => {
+    isOperationLoading: boolean;
+}> = ({photo, onDelete, onSetPrimary, isOperationLoading}) => {
     const {
         attributes,
         listeners,
@@ -114,6 +114,8 @@ const PhotoCard: React.FC<{
                         onClick={() => onSetPrimary(photo.id!)}
                         title={photo.isPrimary ? '已是主图' : '设为主图'}
                         style={{color: photo.isPrimary ? '#faad14' : undefined}}
+                        loading={isOperationLoading}
+                        disabled={isOperationLoading}
                     />,
                     <Popconfirm
                         key="delete"
@@ -127,6 +129,8 @@ const PhotoCard: React.FC<{
                             icon={<DeleteOutlined/>}
                             danger
                             title="删除照片"
+                            loading={isOperationLoading}
+                            disabled={isOperationLoading}
                         />
                     </Popconfirm>,
                 ]}
@@ -141,9 +145,10 @@ const PhotoCard: React.FC<{
 };
 
 const PhotoManager: React.FC<PhotoManagerProps> = ({kittenId, onPhotosChange}) => {
-    const [photos, setPhotos] = useState<KittenPhoto[]>([]);
+    const [photos, setPhotos] = useState<API.KittenPhoto[]>([]);
     const [loading, setLoading] = useState(false);
     const [uploading, setUploading] = useState(false);
+    const [operationLoading, setOperationLoading] = useState<{ [key: number]: boolean }>({});
 
     useEffect(() => {
         void fetchPhotos();
@@ -190,7 +195,7 @@ const PhotoManager: React.FC<PhotoManagerProps> = ({kittenId, onPhotosChange}) =
 
         setUploading(true);
         try {
-            await bulkUploadPhotosUsingPost({kittenId}, {}, files);
+            await bulkUploadPhotosUsingPost({kittenId}, {files});
             message.success(`成功上传 ${files.length} 张照片`);
             await fetchPhotos();
         } catch (error) {
@@ -202,6 +207,7 @@ const PhotoManager: React.FC<PhotoManagerProps> = ({kittenId, onPhotosChange}) =
     };
 
     const handleDelete = async (photoId: number) => {
+        setOperationLoading(prev => ({ ...prev, [photoId]: true }));
         try {
             await deleteKittenPhotoUsingDelete({kittenId, photoId});
             message.success('照片删除成功');
@@ -209,10 +215,13 @@ const PhotoManager: React.FC<PhotoManagerProps> = ({kittenId, onPhotosChange}) =
         } catch (error) {
             message.error('照片删除失败');
             console.error('照片删除失败:', error);
+        } finally {
+            setOperationLoading(prev => ({ ...prev, [photoId]: false }));
         }
     };
 
     const handleSetPrimary = async (photoId: number) => {
+        setOperationLoading(prev => ({ ...prev, [photoId]: true }));
         try {
             await setPrimaryPhotoUsingPut({kittenId, photoId});
             message.success('主图设置成功');
@@ -220,6 +229,8 @@ const PhotoManager: React.FC<PhotoManagerProps> = ({kittenId, onPhotosChange}) =
         } catch (error) {
             message.error('主图设置失败');
             console.error('主图设置失败:', error);
+        } finally {
+            setOperationLoading(prev => ({ ...prev, [photoId]: false }));
         }
     };
 
@@ -332,6 +343,7 @@ const PhotoManager: React.FC<PhotoManagerProps> = ({kittenId, onPhotosChange}) =
                                                 photo={photo}
                                                 onDelete={handleDelete}
                                                 onSetPrimary={handleSetPrimary}
+                                                isOperationLoading={operationLoading[photo.id!] || false}
                                             />
                                         </Col>
                                     ))}

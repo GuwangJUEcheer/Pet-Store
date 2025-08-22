@@ -1,116 +1,136 @@
-import request from '../Request/request';
+// @ts-ignore
+/* eslint-disable */
+import request from "../Request/request";
 
-// 照片排序请求类型
-export interface PhotoOrder {
-  photoId: number;
-  displayOrder: number;
-}
-
-export interface PhotoReorderRequest {
-  photoOrders: PhotoOrder[];
-}
-
-// 小猫照片类型
-export interface KittenPhoto {
-  id?: number;
-  kittenId?: number;
-  photoUrl?: string;
-  fileName?: string;
-  fileSize?: number;
-  uploadDate?: string;
-  displayOrder?: number;
-  isPrimary?: boolean;
-  createdAt?: string;
-  updatedAt?: string;
-}
-
-/**
- * 获取小猫照片列表
- */
-export async function getKittenPhotosUsingGet(params: { kittenId: number }) {
-  return request<KittenPhoto[]>(`kittens/${params.kittenId}/photos`, {
-    method: 'GET',
+/** getKittenPhotos GET kittens/${param0}/photos */
+export async function getKittenPhotosUsingGet(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.getKittenPhotosUsingGETParams,
+  options?: { [key: string]: any }
+) {
+  const { kittenId: param0, ...queryParams } = params;
+  return request<API.KittenPhoto[]>(`kittens/${param0}/photos`, {
+    method: "GET",
+    params: { ...queryParams },
+    ...(options || {}),
   });
 }
 
-/**
- * 上传小猫照片
- */
+/** uploadKittenPhoto POST kittens/${param0}/photos */
 export async function uploadKittenPhotoUsingPost(
-  params: { 
-    kittenId: number;
-    displayOrder?: number;
-    isPrimary?: boolean;
-  },
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.uploadKittenPhotoUsingPOSTParams,
   body: {},
-  file?: File
+  file?: File,
+  options?: { [key: string]: any }
 ) {
+  const { kittenId: param0, ...queryParams } = params;
   const formData = new FormData();
+
   if (file) {
-    formData.append('file', file);
-  }
-  if (params.displayOrder !== undefined) {
-    formData.append('displayOrder', params.displayOrder.toString());
-  }
-  if (params.isPrimary !== undefined) {
-    formData.append('isPrimary', params.isPrimary.toString());
+    formData.append("file", file);
   }
 
-  return request<KittenPhoto>(`kittens/${params.kittenId}/photos`, {
-    method: 'POST',
+  Object.keys(body).forEach((ele) => {
+    const item = (body as any)[ele];
+
+    if (item !== undefined && item !== null) {
+      if (typeof item === "object" && !(item instanceof File)) {
+        if (item instanceof Array) {
+          item.forEach((f) => formData.append(ele, f || ""));
+        } else {
+          formData.append(ele, JSON.stringify(item));
+        }
+      } else {
+        formData.append(ele, item);
+      }
+    }
+  });
+
+  return request<API.KittenPhoto>(`kittens/${param0}/photos`, {
+    method: "POST",
+    params: {
+      ...queryParams,
+    },
     data: formData,
-
+    
+    ...(options || {}),
   });
 }
 
-/**
- * 删除小猫照片
- */
-export async function deleteKittenPhotoUsingDelete(params: { kittenId: number; photoId: number }) {
-  return request<string>(`kittens/${params.kittenId}/photos/${params.photoId}`, {
-    method: 'DELETE',
-  });
-}
-
-/**
- * 重新排序照片
- */
-export async function reorderKittenPhotosUsingPut(
-  params: { kittenId: number },
-  body: PhotoReorderRequest
+/** deleteKittenPhoto DELETE kittens/${param0}/photos/${param1} */
+export async function deleteKittenPhotoUsingDelete(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.deleteKittenPhotoUsingDELETEParams,
+  options?: { [key: string]: any }
 ) {
-  return request<string>(`kittens/${params.kittenId}/photos/reorder`, {
-    method: 'PUT',
-    data: body,
+  const { kittenId: param0, photoId: param1, ...queryParams } = params;
+  return request<string>(`kittens/${param0}/photos/${param1}`, {
+    method: "DELETE",
+    params: { ...queryParams },
+    ...(options || {}),
   });
 }
 
-/**
- * 设置主要照片
- */
-export async function setPrimaryPhotoUsingPut(params: { kittenId: number; photoId: number }) {
-  return request<string>(`kittens/${params.kittenId}/photos/${params.photoId}/primary`, {
-    method: 'PUT',
+/** setPrimaryPhoto PUT kittens/${param0}/photos/${param1}/primary */
+export async function setPrimaryPhotoUsingPut(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.setPrimaryPhotoUsingPUTParams,
+  options?: { [key: string]: any }
+) {
+  const { kittenId: param0, photoId: param1, ...queryParams } = params;
+  return request<string>(`kittens/${param0}/photos/${param1}/primary`, {
+    method: "PUT",
+    params: { ...queryParams },
+    ...(options || {}),
   });
 }
 
-/**
- * 批量上传照片
- */
+/** bulkUploadPhotos POST kittens/${param0}/photos/bulk */
 export async function bulkUploadPhotosUsingPost(
-  params: { kittenId: number },
-  body: {},
-  files?: File[]
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.bulkUploadPhotosUsingPOSTParams,
+  body: {
+    /** files */
+    files: any[];
+  },
+  options?: { [key: string]: any }
 ) {
+  const { kittenId: param0, ...queryParams } = params;
   const formData = new FormData();
-  if (files) {
-    files.forEach((file) => {
-      formData.append('files', file);
+  
+  // Add each file to FormData
+  if (body.files && Array.isArray(body.files)) {
+    body.files.forEach((file) => {
+      if (file instanceof File) {
+        formData.append("files", file);
+      }
     });
   }
-
-  return request<KittenPhoto[]>(`kittens/${params.kittenId}/photos/bulk`, {
-    method: 'POST',
+  
+  return request<API.KittenPhoto[]>(`kittens/${param0}/photos/bulk`, {
+    method: "POST",
+    params: { ...queryParams },
     data: formData,
+    ...(options || {}),
+  });
+}
+
+/** reorderKittenPhotos PUT kittens/${param0}/photos/reorder */
+export async function reorderKittenPhotosUsingPut(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.reorderKittenPhotosUsingPUTParams,
+  body: API.PhotoReorderRequest,
+  options?: { [key: string]: any }
+) {
+  const { kittenId: param0, ...queryParams } = params;
+  return request<string>(`kittens/${param0}/photos/reorder`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    params: { ...queryParams },
+    data: body,
+    ...(options || {}),
   });
 }

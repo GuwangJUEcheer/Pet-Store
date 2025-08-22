@@ -18,16 +18,36 @@ import java.util.List;
 import java.util.Optional;
 
 @Slf4j
-@RestController("kitten")
+@RestController
 public class KittenController {
 
 	@Resource
 	private KittenService kittenService;
 
 	@GetMapping("/list")
-	public ResponseEntity<List<Kitten>> getPublicKittens() {
-		List<Kitten> kittens = kittenService.getAllKittens();
-		return ResponseEntity.ok(kittens);
+	public ResponseEntity<?> getPublicKittens(
+			@RequestParam(value = "page", defaultValue = "1") int page,
+			@RequestParam(value = "size", defaultValue = "8") int size) {
+		try {
+			List<Kitten> kittens = kittenService.getKittensByPage(page, size);
+			int totalCount = kittenService.getAvailableKittensCount();
+			int totalPages = (int) Math.ceil((double) totalCount / size);
+			boolean hasMore = page < totalPages;
+
+			// 构建响应对象
+			java.util.Map<String, Object> response = new java.util.HashMap<>();
+			response.put("kittens", kittens);
+			response.put("currentPage", page);
+			response.put("totalPages", totalPages);
+			response.put("totalCount", totalCount);
+			response.put("pageSize", size);
+			response.put("hasMore", hasMore);
+
+			return ResponseEntity.ok(response);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("获取小猫列表失败！");
+		}
 	}
 
 	@GetMapping("/get/{id}")
@@ -101,6 +121,42 @@ public class KittenController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseEntity.status(500).body("画像削除失敗！");
+		}
+	}
+
+	// 过去小猫相关接口
+	@GetMapping("/past")
+	public ResponseEntity<?> getPastKittens(
+			@RequestParam(value = "page", defaultValue = "1") int page,
+			@RequestParam(value = "size", defaultValue = "5") int size) {
+		try {
+			List<Kitten> soldKittens = kittenService.getSoldKittens(page, size);
+			int totalCount = kittenService.getSoldKittensCount();
+			int totalPages = (int) Math.ceil((double) totalCount / size);
+
+			// 构建响应对象
+			java.util.Map<String, Object> response = new java.util.HashMap<>();
+			response.put("kittens", soldKittens);
+			response.put("currentPage", page);
+			response.put("totalPages", totalPages);
+			response.put("totalCount", totalCount);
+			response.put("pageSize", size);
+
+			return ResponseEntity.ok(response);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("获取过去小猫失败！");
+		}
+	}
+
+	@PostMapping("/mark-as-sold/{id}")
+	public ResponseEntity<?> markKittenAsSold(@PathVariable Long id) {
+		try {
+			kittenService.markKittenAsSold(id);
+			return ResponseEntity.ok("小猫已标记为已出售！");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("标记失败！");
 		}
 	}
 }

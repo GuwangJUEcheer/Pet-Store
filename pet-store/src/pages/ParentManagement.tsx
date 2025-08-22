@@ -8,11 +8,15 @@ import {
     deleteParentUsingDelete,
 } from '../api/parentController';
 import dayjs from 'dayjs';
+import { useUser } from '../context/UserContext';
 
 // 使用API类型定义
 type Parent = API.Parent;
 
 const ParentManagement: React.FC = () => {
+    const { user } = useUser();
+    const canAdmin = !!user;
+    
     const [parents, setParents] = useState<Parent[]>([]);
     const [loading, setLoading] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
@@ -24,8 +28,10 @@ const ParentManagement: React.FC = () => {
     const [confirmLoading, setConfirmLoading] = useState(false);
 
     useEffect(() => {
-        void fetchParents();
-    }, []);
+        if (canAdmin) {
+            void fetchParents();
+        }
+    }, [canAdmin]);
 
     const fetchParents = async () => {
         setLoading(true);
@@ -40,17 +46,14 @@ const ParentManagement: React.FC = () => {
     };
 
     const handleAdd = () => {
-        setConfirmLoading(true);
         setEditingParent(null);
         setImageUrl('');
         setSelectedImageFile(null);
         form.resetFields();
         setModalVisible(true);
-        setConfirmLoading(false);
     };
 
     const handleEdit = (parent: Parent) => {
-        setConfirmLoading(true);
         setEditingParent(parent);
         setImageUrl(parent.imgUrl || '');
         form.setFieldsValue({
@@ -58,11 +61,9 @@ const ParentManagement: React.FC = () => {
             gender: parent.gender,
             breed: parent.breed,
             color: parent.color,
-            birthday: parent.birthday ? dayjs(parent.birthday) : null,
             description: parent.description
         });
         setModalVisible(true);
-        setConfirmLoading(false);
     };
 
     const handleDelete = async (id: number) => {
@@ -86,9 +87,8 @@ const ParentManagement: React.FC = () => {
             const values = await form.validateFields();
             const formData = {
                 ...values,
-                birthday: values.birthday ? values.birthday.format('YYYY-MM-DD') : null,
             };
-
+            console.log(formData);
             if (editingParent) {
                 // 更新 - 需要包含 id
                 const updateData = {...formData, id: editingParent.id};
@@ -105,7 +105,7 @@ const ParentManagement: React.FC = () => {
         } catch (error) {
             message.error('操作失败');
         } finally {
-            setLoading(false);
+            setConfirmLoading(false);
         }
     };
 
@@ -165,9 +165,13 @@ const ParentManagement: React.FC = () => {
             key: 'color',
         },
         {
-            title: '誕生日',
-            dataIndex: 'birthday',
-            key: 'birthday',
+            title: '遺伝子検査',
+            key: 'genetic_testing',
+            render: () => (
+                <div style={{fontSize: '12px', color: '#4caf50', fontWeight: 'bold'}}>
+                    ✅ 全項目クリア
+                </div>
+            ),
         },
         {
             title: '操作',
@@ -199,6 +203,16 @@ const ParentManagement: React.FC = () => {
             ),
         },
     ];
+
+    // 如果没有登录，显示提示信息
+    if (!canAdmin) {
+        return (
+            <div style={{ textAlign: 'center', padding: '50px' }}>
+                <h2>アクセス権限がありません</h2>
+                <p>この機能を使用するにはログインが必要です。</p>
+            </div>
+        );
+    }
 
     return (
         <div style={{padding: '16px 8px', maxWidth: '100%', backgroundColor: '#faf9f7', minHeight: '100vh'}}>
@@ -293,16 +307,25 @@ const ParentManagement: React.FC = () => {
                         <Input placeholder="请输入颜色"/>
                     </Form.Item>
 
-                    <Form.Item
-                        label="誕生日"
-                        name="birthday"
-                        rules={[{required: true, message: '请选择出生日期'}]}
-                    >
-                        <DatePicker
-                            style={{width: '100%'}}
-                            placeholder="请选择出生日期"
-                            format="YYYY-MM-DD"
-                        />
+                    <Form.Item label="遺伝子検査結果">
+                        <div style={{
+                            background: '#f6ffed',
+                            padding: '16px',
+                            border: '1px solid #b7eb8f',
+                            borderRadius: '8px'
+                        }}>
+                            <div style={{marginBottom: '8px', fontWeight: 'bold', color: '#389e0d'}}>
+                                全ての遺伝子検査項目でクリア済み ✅
+                            </div>
+                            <div style={{fontSize: '12px', color: '#666', lineHeight: '1.5'}}>
+                                <div>• α-マンノシドーシス</div>
+                                <div>• 多発性嚢胞腎（PKD）</div>
+                                <div>• ピルビン酸キナーゼ欠乏症（PK Deficiency）</div>
+                                <div>• 進行性網膜萎縮症 -b（PRA-b）</div>
+                                <div>• 肥大型心筋症 -MC（HCM-MC）</div>
+                                <div>• 肥大型心筋症 -RD （HCM-RD）</div>
+                            </div>
+                        </div>
                     </Form.Item>
 
                     <Form.Item

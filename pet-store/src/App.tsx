@@ -25,7 +25,7 @@ const App: React.FC = () => {
         <Sidebar />
       <Layout style={{ marginLeft: '19%' }}>
         <Header /> 
-        <Content style={{ padding: '20px' }}>
+        <Content style={{ padding: '20px' ,background:'#fefbea'}}>
           <Routes /> {/* 动态加载路由内容 */}
         </Content> 
         <Footer />

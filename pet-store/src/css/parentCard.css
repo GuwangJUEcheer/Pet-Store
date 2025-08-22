@@ -57,7 +57,7 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     margin: 0 auto 24px;
     transition: all 0.3s ease;
-    background: linear-gradient(135deg, #faf9f7, #f0f0f0);
+    background: linear-gradient(135deg, #fefbea, #f0f0f0);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -94,9 +94,11 @@
 
 .parent-name-row {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin-bottom: 12px;
+    gap: 16px;
+    flex-wrap: wrap;
 }
 
 .parent-name-large {
@@ -117,7 +119,7 @@
 }
 
 .parent-details-large {
-    background: #faf9f7;
+    background: #fefbea;
     border-radius: 12px;
     padding: 20px;
     margin-bottom: 16px;
@@ -125,6 +127,9 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .detail-row {
@@ -153,6 +158,37 @@
     font-weight: 500;
 }
 
+.genetic-testing {
+    margin-bottom: 12px;
+}
+
+.genetic-testing .detail-label {
+    font-weight: bold;
+    color: #666;
+    font-family: 'MochiyPopOne', sans-serif, '可爱字体', 'Comic Sans MS', cursive;
+    margin-bottom: 12px;
+    display: block;
+    text-align: center;
+}
+
+.genetic-results {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.genetic-item {
+    font-size: 13px;
+    color: #333;
+    padding: 4px 8px;
+    background: rgba(76, 175, 80, 0.1);
+    border-radius: 6px;
+    border-left: 3px solid #4caf50;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}
+
 .parent-description-large {
     background: #f8f8f8;
     border-radius: 8px;
@@ -163,6 +199,10 @@
     line-height: 1.6;
     border-left: 4px solid #a7a88b;
     margin-top: 8px;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 
 /* 响应式设计 */

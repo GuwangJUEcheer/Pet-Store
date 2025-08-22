@@ -1,10 +1,10 @@
-import React, {useState, useEffect, useMemo} from "react";
+import React, {useState, useEffect, useMemo, useCallback, useRef} from "react";
 import "../css/News.css";
-import {deleteKittenUsingDelete, getPublicKittensUsingGet} from "../api/kittenController";
+import {deleteKittenUsingDelete, getPublicKittensUsingGet, markKittenAsSoldUsingPost} from "../api/kittenController";
 import {useNavigate, useParams} from "react-router-dom";
 import {getUser} from "../other/userStore";
 import EditModal from "../pages/EditModal";
-import {Pagination, Button, Space} from "antd";
+import {Button, Space, Spin} from "antd";
 import {EyeOutlined, EditOutlined, DeleteOutlined, CameraOutlined, PlusOutlined, UserOutlined} from "@ant-design/icons";
 import {Image, Tag} from "antd";
 // 定义子猫信息的类型
@@ -17,14 +17,22 @@ const News: React.FC = () => {
     const [editMode, setEditMode] = useState<'add' | 'edit'>('add');
     const [editKittenId, setEditKittenId] = useState<number | undefined>(undefined);
 
-    // 分页相关状态
+    // 无限滚动相关状态
     const [currentPage, setCurrentPage] = useState(1);
     const [pageSize] = useState(8);
+    const [hasMore, setHasMore] = useState(true);
+    const [totalCount, setTotalCount] = useState(0);
 
     const [loading, setLoading] = useState(true);
+    const [loadingMore, setLoadingMore] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [soldLoading, setSoldLoading] = useState<{ [key: number]: boolean }>({});
+    
+    // 无限滚动相关 refs
+    const observerRef = useRef<IntersectionObserver | null>(null);
+    const loadingRef = useRef<HTMLDivElement>(null);
     const isAdmin = useMemo(() => {
-        return getUser()?.role === 0
+        return !!getUser()
     }, []);
     const [validationErrors, setValidationErrors] = useState<{
         [key: string]: string;
@@ -38,26 +46,95 @@ const News: React.FC = () => {
                 return 'green';
             case '予約済み':
                 return 'orange';
+            case '已出售':
+                return 'red';
             default:
                 return 'default';
         }
     };
-    // 获取数据
-    const fetchData = async () => {
+    // 获取初始数据
+    const fetchData = async (isReset: boolean = false) => {
         try {
-            const response = await getPublicKittensUsingGet();
-            setKittenData(response.data); // 设置数据
+            const page = isReset ? 1 : currentPage;
+            const response = await getPublicKittensUsingGet({
+                page: page,
+                size: pageSize
+            });
+            
+            const responseData = response.data;
+            const newKittens = responseData.kittens || [];
+            
+            if (isReset) {
+                setKittenData(newKittens);
+                setCurrentPage(1);
+            } else {
+                setKittenData(prev => [...prev, ...newKittens]);
+            }
+            
+            setHasMore(responseData.hasMore || false);
+            setTotalCount(responseData.totalCount || 0);
         } catch (err) {
             setError("子猫情報を読み込めませんでした。");
             console.error("获取子猫信息失败:", err);
         } finally {
             setLoading(false);
+            setLoadingMore(false);
         }
     };
 
+    // 加载更多数据
+    const loadMoreData = useCallback(async () => {
+        if (loadingMore || !hasMore) return;
+        
+        setLoadingMore(true);
+        try {
+            const nextPage = currentPage + 1;
+            const response = await getPublicKittensUsingGet({
+                page: nextPage,
+                size: pageSize
+            });
+            
+            const responseData = response.data;
+            const newKittens = responseData.kittens || [];
+            
+            setKittenData(prev => [...prev, ...newKittens]);
+            setCurrentPage(nextPage);
+            setHasMore(responseData.hasMore || false);
+        } catch (err) {
+            console.error("加载更多失败:", err);
+        } finally {
+            setLoadingMore(false);
+        }
+    }, [currentPage, pageSize, hasMore, loadingMore]);
+
     useEffect(() => {
-        void fetchData();
+        void fetchData(true);
     }, []);
+
+    // 设置 Intersection Observer
+    useEffect(() => {
+        if (!loadingRef.current) return;
+
+        observerRef.current = new IntersectionObserver(
+            (entries) => {
+                const [entry] = entries;
+                if (entry.isIntersecting && hasMore && !loadingMore) {
+                    loadMoreData();
+                }
+            },
+            {
+                rootMargin: '100px',
+            }
+        );
+
+        observerRef.current.observe(loadingRef.current);
+
+        return () => {
+            if (observerRef.current) {
+                observerRef.current.disconnect();
+            }
+        };
+    }, [hasMore, loadingMore, loadMoreData]);
 
 
     // 查看详情
@@ -93,6 +170,23 @@ const News: React.FC = () => {
         setIsModalOpen(true);
     };
 
+    // 标记为已出售
+    const handleMarkAsSold = async (kitten: API.Kitten) => {
+        if (!kitten.id) return;
+        
+        setSoldLoading(prev => ({ ...prev, [kitten.id!]: true }));
+        try {
+            await markKittenAsSoldUsingPost({id: kitten.id});
+            // 重新获取数据
+            await fetchData(true);
+            alert('小猫已标记为已出售！');
+        } catch (err) {
+            alert('标记失败：' + (err instanceof Error ? err.message : '未知错误'));
+        } finally {
+            setSoldLoading(prev => ({ ...prev, [kitten.id!]: false }));
+        }
+    };
+
     // 删除确认
     const handleConfirmDelete = async () => {
         if (!currentKitten) return;
@@ -114,14 +208,8 @@ const News: React.FC = () => {
         setValidationErrors({});
     };
 
-    // 分页逻辑
-    const startIndex = (currentPage - 1) * pageSize;
-    const endIndex = startIndex + pageSize;
-    const currentKittens = kittenData.slice(startIndex, endIndex);
-
-    const handlePageChange = (page: number) => {
-        setCurrentPage(page);
-    };
+    // 现在数据已经在后端过滤了已出售的小猫，所以直接使用 kittenData
+    const displayedKittens = kittenData;
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>{error}</div>;
@@ -133,18 +221,18 @@ const News: React.FC = () => {
 
             {/* 管理员权限下显示添加按钮 */}
             {isAdmin && (
-                <div className="admin-controls" style={{ marginBottom: 20 }}>
+                <div className="admin-controls" style={{marginBottom: 20}}>
                     <Space>
-                        <Button 
+                        <Button
                             type="primary"
-                            icon={<PlusOutlined />}
+                            icon={<PlusOutlined/>}
                             onClick={handleAddKitten}
                             size="large"
                         >
                             新しい子猫を追加
                         </Button>
                         <Button
-                            icon={<UserOutlined />}
+                            icon={<UserOutlined/>}
                             onClick={() => navigate('/parent-management')}
                             size="large"
                         >
@@ -156,7 +244,7 @@ const News: React.FC = () => {
 
             {/* 子猫信息展示 */}
             <div className="kitten-grid">
-                {currentKittens.map((kitten) => (
+                {displayedKittens.map((kitten) => (
                     <div key={kitten.id} className="kitten-card">
                         {/* 状态标签 */}
                         <div className="status-tag">
@@ -189,7 +277,7 @@ const News: React.FC = () => {
                                     {/* 查看详情按钮（所有人可见） */}
                                     <Button
                                         type="primary"
-                                        icon={<EyeOutlined />}
+                                        icon={<EyeOutlined/>}
                                         onClick={() => {
                                             if (!kitten.id) return;
                                             handleViewDetails(kitten.id);
@@ -203,23 +291,35 @@ const News: React.FC = () => {
                                     {isAdmin && (
                                         <>
                                             <Button
-                                                icon={<EditOutlined />}
+                                                icon={<EditOutlined/>}
                                                 onClick={() => handleEditKitten(kitten)}
                                                 size="small"
                                             >
                                                 編集
                                             </Button>
                                             <Button
-                                                icon={<CameraOutlined />}
+                                                icon={<CameraOutlined/>}
                                                 onClick={() => handlePhotoManagement(kitten)}
                                                 size="small"
                                                 type="dashed"
                                             >
                                                 写真管理
                                             </Button>
+                                            {kitten.status !== '已出售' && (
+                                                <Button
+                                                    style={{backgroundColor: '#ff4757', borderColor: '#ff4757'}}
+                                                    onClick={() => handleMarkAsSold(kitten)}
+                                                    size="small"
+                                                    type="primary"
+                                                    loading={soldLoading[kitten.id!] || false}
+                                                    disabled={soldLoading[kitten.id!] || false}
+                                                >
+                                                    标记为已出售
+                                                </Button>
+                                            )}
                                             <Button
                                                 danger
-                                                icon={<DeleteOutlined />}
+                                                icon={<DeleteOutlined/>}
                                                 onClick={() => handleDeleteKitten(kitten)}
                                                 size="small"
                                             >
@@ -234,19 +334,16 @@ const News: React.FC = () => {
                 ))}
             </div>
 
-            {/* 分页组件 */}
-            <div style={{display: 'flex', justifyContent: 'center', marginTop: 32}}>
-                <Pagination
-                    current={currentPage}
-                    total={kittenData.length}
-                    pageSize={pageSize}
-                    onChange={handlePageChange}
-                    showSizeChanger={false}
-                    showQuickJumper={false}
-                    showTotal={(total, range) =>
-                        `${range[0]}-${range[1]} / ${total} 匹の子猫`
-                    }
-                />
+            {/* 无限滚动加载指示器 */}
+            <div ref={loadingRef} style={{ display: 'flex', justifyContent: 'center', marginTop: 32, minHeight: 50 }}>
+                {loadingMore && (
+                    <Spin size="large" />
+                )}
+                {!hasMore && displayedKittens.length > 0 && (
+                    <div style={{ textAlign: 'center', color: '#999', fontSize: 16 }}>
+                        全ての子猫を表示しました（{totalCount}匹）
+                    </div>
+                )}
             </div>
 
             {/* 删除确认模态框 */}
@@ -257,7 +354,7 @@ const News: React.FC = () => {
                         <p style={{textAlign: "center"}}>{currentKitten?.name}</p>
                         <div className="modal-buttons">
                             <Space>
-                                <Button 
+                                <Button
                                     danger
                                     onClick={handleConfirmDelete}
                                 >
@@ -280,9 +377,10 @@ const News: React.FC = () => {
                 mode={editMode}
                 onSuccess={() => {
                     setEditModalOpen(false);
-                    fetchData(); // 刷新数据
+                    fetchData(true); // 重新获取数据
                 }}
             />
+
 
         </div>
     );
